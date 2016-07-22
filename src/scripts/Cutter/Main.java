@@ -32,7 +32,7 @@ public class Main extends Script implements Painting, Ending {
 	public static TaskSet taskSet = new TaskSet();
 
 	public JFrame gui = new GUI(this, taskSet);
-   
+
 	@Override
 	public void run() {
 		Walking.setWalkingTimeout(General.random(1000, 1500));
@@ -42,10 +42,10 @@ public class Main extends Script implements Painting, Ending {
 				if ("Metal".equals(info.getName())) {
 					javax.swing.UIManager.setLookAndFeel(info.getClassName());
 					break;
-				} 
+				}
 			}
 		} catch (ClassNotFoundException ex) {
-			 java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (InstantiationException ex) {
 			java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex) {
