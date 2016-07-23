@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 
 import org.tribot.api.General;
 import org.tribot.api.Timing;
-import org.tribot.api2007.Camera;
 import org.tribot.api2007.Projection;
 import org.tribot.api2007.Skills;
 import org.tribot.api2007.Skills.SKILLS;
@@ -75,11 +74,7 @@ public class Main extends Script implements Painting, Ending {
 		}
 
 		while (Vars.start) {
-			if (Camera.getCameraAngle() > 90) {
-				sleep(loop());
-			} else {
-				Camera.setCameraAngle(100);
-			}
+			sleep(loop());
 		}
 	}
 

@@ -68,7 +68,7 @@ public class Chop extends Task {
 				}
 			}
 		} else {
-			WebWalking.walkTo(centreTile());
+			Walking.blindWalkTo(centreTile());
 		}
 	}
 
@@ -176,14 +176,15 @@ public class Chop extends Task {
 					}
 				}
 			} else {
-				if (Player.getPosition().distanceTo(tree.getPosition()) > 5) {
+				if (Player.getPosition().distanceTo(tree.getPosition()) > 8) {
 					Walking.blindWalkTo(tree.getPosition());
 				} else {
 					if (Antiban.shouldMoveAnticipated()) {
-						if (Player.getPosition().distanceTo(tree.getPosition()) < 3) {
-							Walking.generateStraightScreenPath(tree.getPosition());
-						} else {
+						if (Player.getPosition().distanceTo(tree.getPosition()) < 5) {
+							Camera.setCameraAngle(tree.getModel().getClickHeight());
 							Camera.turnToTile(tree.getPosition());
+						} else {
+							Walking.walkTo(tree);
 						}
 					}
 				}

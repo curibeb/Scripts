@@ -30,7 +30,7 @@ public class GameChat extends Task {
 			Timing.waitCondition(new Condition(){
 				@Override
 				public boolean active() {
-					return NPCChat.getMessage() == null;
+					return !Interface.INSIDEGAME.text().contains("You must defend");
 				}	
 			}, General.random(4000, 7000));
 		}
