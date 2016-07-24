@@ -1,4 +1,4 @@
-package scripts.cowkiller;
+package scripts.tutorials.cowkiller;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -11,8 +11,8 @@ import org.tribot.script.Script;
 import org.tribot.script.ScriptManifest;
 import org.tribot.script.interfaces.Painting;
 
-import scripts.cowkiller.methods.Bank;
-import scripts.cowkiller.methods.Cows;
+import scripts.tutorials.cowkiller.methods.Bank;
+import scripts.tutorials.cowkiller.methods.Cows;
 
 // now lets learn how to add a script manefist because right now 
 // because our script now is uncategorized

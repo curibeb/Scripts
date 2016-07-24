@@ -1,17 +1,17 @@
-package scripts.cowkiller.methods;
+package scripts.tutorials.cowkiller.methods;
 
 import org.tribot.api.General;
 import org.tribot.api.Timing;
+import org.tribot.api.types.generic.Condition;
 import org.tribot.api2007.Banking;
 import org.tribot.api2007.Inventory;
-import org.tribot.api.types.generic.Condition;
 import org.tribot.api2007.Objects;
 import org.tribot.api2007.Player;
 import org.tribot.api2007.WebWalking;
 import org.tribot.api2007.types.RSObject;
 import org.tribot.api2007.types.RSTile;
 
-import scripts.cowkiller.utilities.Vars;
+import scripts.tutorials.cowkiller.utilities.Vars;
 
 public class Bank {
 
