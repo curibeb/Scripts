@@ -68,7 +68,7 @@ public class PowerChop extends Task {
 				}
 			}
 		} else {
-			WebWalking.walkTo(centreTile());
+			WebWalking.walkTo(Vars.treesTile);
 		}
 	}
 

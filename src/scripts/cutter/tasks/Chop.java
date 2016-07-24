@@ -68,7 +68,7 @@ public class Chop extends Task {
 				}
 			}
 		} else {
-			Walking.blindWalkTo(centreTile());
+			Walking.blindWalkTo(Vars.treesTile);
 		}
 	}
 

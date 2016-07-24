@@ -3,6 +3,7 @@ package scripts.cutter.utilities;
 import org.tribot.api2007.Skills;
 import org.tribot.api2007.Skills.SKILLS;
 import org.tribot.api2007.types.RSArea;
+import org.tribot.api2007.types.RSTile;
 
 import scripts.cutter.antiban.Antiban;
 
@@ -17,6 +18,7 @@ public class Vars {
 	//
 
 	// RSAREA
+	public static RSTile treesTile = null;
 	public static RSArea bank = null;
 	public static RSArea treesLoc = null;
 	//
