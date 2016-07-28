@@ -2,7 +2,6 @@ package scripts.cutter.tasks;
 
 import org.tribot.api.General;
 import org.tribot.api.Timing;
-import org.tribot.api.types.generic.Condition;
 import org.tribot.api2007.Banking;
 import org.tribot.api2007.Equipment;
 import org.tribot.api2007.Interfaces;
@@ -19,7 +18,7 @@ import scripts.cutter.utilities.Priorities;
 import scripts.cutter.utilities.Vars;
 
 public class GearUp extends Task {
-	
+
 	@Override
 	public int priority() {
 		return Priorities.GEAR.getPriority();
@@ -78,13 +77,7 @@ public class GearUp extends Task {
 						Antiban.setWaitingSince();
 						Antiban.get().performReactionTimeWait();
 						if (axe[0].click("Wield")) {
-							Timing.waitCondition(new Condition() {
-								@Override
-								public boolean active() {
-									return Equipment.isEquipped(Vars.axeId);
-								}
-
-							}, General.random(2500, 3000));
+							Timing.waitCondition(Conditions.equipmentOn(), General.random(2500, 3000));
 						}
 					}
 				}

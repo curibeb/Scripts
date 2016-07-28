@@ -7,7 +7,6 @@ import org.tribot.api.General;
 import org.tribot.api.Timing;
 import org.tribot.api.input.Mouse;
 import org.tribot.api.interfaces.Positionable;
-import org.tribot.api.types.generic.Condition;
 import org.tribot.api.types.generic.CustomRet_0P;
 import org.tribot.api2007.Camera;
 import org.tribot.api2007.ChooseOption;
@@ -95,14 +94,8 @@ public class Chop extends Task {
 				Antiban.setWaitingSince();
 				Antiban.get().performReactionTimeWait();
 				if (tree[1].hover()) {
-					Timing.waitCondition(new Condition() {
-						@Override
-						public boolean active() {
-							return hovered();
-						}
-					}, General.random(4000, 7000));
+					Timing.waitCondition(Conditions.hovered(), General.random(4000, 7000));
 				}
-
 			} else {
 				Camera.turnToTile(tree[0]);
 			}
