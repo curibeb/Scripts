@@ -15,8 +15,6 @@ import scripts.flaxspinner.utilities.Conditions;
 
 public class Lumby {
 
-	public static String status = "";
-
 	public static void handleLumby() {
 		if (Spin.lost()) {
 			Spin.status = "Lost recovering.";
@@ -27,7 +25,7 @@ public class Lumby {
 			bankLumby(Tiles.LUMBYTHIRDFLOORLADDERTILE.getTile(), "Climb-down");
 		}
 		if (Areas.LUMBYSECONDFLOOR.getArea().contains(Spin.myTile())) {
-			if (PathFinding.canReach(new RSTile(3209, 3212, 1), true)) {
+			if (PathFinding.canReach(Tiles.WHEELTILE.getTile(), true)) {
 				Spin.spin();
 			} else {
 				Spin.status = "Open door.";
@@ -47,7 +45,7 @@ public class Lumby {
 	}
 
 	public static void headToBankLumb() {
-		if (PathFinding.canReach(new RSTile(3206, 3208, 1), true)) {
+		if (PathFinding.canReach(Tiles.LUMBYSECONDFLOORLADDERWALKTILE.getTile(), true)) {
 			Spin.status = "To bank.";
 			if (Interface.SPININTERFACE.open()) {
 				Interfaces.closeAll();

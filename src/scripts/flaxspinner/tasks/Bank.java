@@ -46,7 +46,7 @@ public class Bank extends Task {
 			status = Catherby.status;
 			Catherby.handleCatherby();
 		} else {
-			status = Lumby.status;
+			status = Spin.status;
 			if (Areas.LUMBYSECONDFLOOR.getArea().contains(this.myTile())) {
 				Lumby.headToBankLumb();
 			}
