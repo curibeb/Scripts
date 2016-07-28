@@ -42,6 +42,7 @@ public class Chop extends Task {
 	@Override
 	public void execute() {
 		while (Player.getAnimation() != -1) {
+			General.random(500, 800);
 			Antiban.doIdleActions();
 		}
 		if (Vars.trees_Loc.contains(Player.getPosition())) {
