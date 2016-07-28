@@ -8,7 +8,6 @@ import org.tribot.api.Screen;
 import org.tribot.api.Timing;
 import org.tribot.api.input.Keyboard;
 import org.tribot.api.types.colour.Tolerance;
-import org.tribot.api.types.generic.Condition;
 import org.tribot.api2007.Camera;
 import org.tribot.api2007.Inventory;
 import org.tribot.api2007.Objects;
@@ -25,6 +24,7 @@ import scripts.flaxspinner.misc.Lumby;
 import scripts.flaxspinner.positions.Areas;
 import scripts.flaxspinner.positions.Tiles;
 import scripts.flaxspinner.taskframework.Task;
+import scripts.flaxspinner.utilities.Conditions;
 import scripts.flaxspinner.utilities.Timer;
 import scripts.flaxspinner.utilities.Vars;
 
@@ -122,23 +122,17 @@ public class Spin extends Task {
 		if (needToResume(2000L, ANIMATION_TIMER)) {
 			if (makeXInterface()) {
 				Keyboard.typeSend(String.valueOf(Antiban.getRunPercentage() + 10));
-				Timing.waitCondition(new Condition() {
-					@Override
-					public boolean active() {
-						return Player.getAnimation() != -1;
-					}
-
-				}, General.random(4000, 7000));
+				Timing.waitCondition(Conditions.animating(), General.random(4000, 7000));
 				Antiban.generateRunPercentage();
 			} else {
 				if (Interface.SPININTERFACE.open()) {
 					if (Interface.SPININTERFACE.getInterface().click("Make X")) {
-						Timing.waitCondition(makeXInterfaceCondtion(), General.random(2500, 4000));
+						Timing.waitCondition(Conditions.makeXInterface(), General.random(2500, 4000));
 					}
 				} else {
 					RSObject[] wheel = Objects.find(25, "Spinning wheel");
 					if (interactWithObject(wheel, "Spin")) {
-						Timing.waitCondition(spinInterfaceCondtion(), General.random(4000, 7000));
+						Timing.waitCondition(Conditions.spinInterface(), General.random(4000, 7000));
 					}
 				}
 			}
@@ -149,24 +143,6 @@ public class Spin extends Task {
 			}
 			Antiban.doIdleActions();
 		}
-	}
-
-	public static Condition spinInterfaceCondtion() {
-		return new Condition() {
-			@Override
-			public boolean active() {
-				return Interface.SPININTERFACE.open();
-			}
-		};
-	}
-
-	public static Condition makeXInterfaceCondtion() {
-		return new Condition() {
-			@Override
-			public boolean active() {
-				return makeXInterface();
-			}
-		};
 	}
 
 	@Override

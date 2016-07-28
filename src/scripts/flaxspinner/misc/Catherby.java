@@ -11,6 +11,7 @@ import org.tribot.api2007.types.RSObject;
 import scripts.flaxspinner.positions.Areas;
 import scripts.flaxspinner.positions.Tiles;
 import scripts.flaxspinner.tasks.Spin;
+import scripts.flaxspinner.utilities.Conditions;
 
 public class Catherby {
 
@@ -39,12 +40,7 @@ public class Catherby {
 		RSObject[] ladder = Objects.getAt(Tiles.CATHERBYFIRSTFLOORLADDERTILE.getTile());
 		if (Spin.interactWithObject(ladder, "Climb-down")) {
 			if (ladder[0].click("Climb-down")) {
-				Timing.waitCondition(new Condition() {
-					@Override
-					public boolean active() {
-						return Areas.BUILDINGGROUNDFLOOR.getArea().contains(Spin.myTile());
-					}
-				}, General.random(7500, 10000));
+				Timing.waitCondition(Conditions.buildingGroundFloor(), General.random(7500, 10000));
 			}
 		}
 	}
@@ -54,13 +50,7 @@ public class Catherby {
 		RSObject[] door = Objects.getAt(Tiles.CATHERBYDOORTILE.getTile());
 		if (door.length > 0){
 			if (Spin.interactWithObject(door, "Open")) {
-				Timing.waitCondition(new Condition() {
-					@Override
-					public boolean active() {
-						return !Objects.isAt(Tiles.CATHERBYDOORTILE.getTile(), "Door");
-					}
-
-				}, General.random(7500, 10000));
+				Timing.waitCondition(Conditions.objectAtCatherbyDoorTile(), General.random(7500, 10000));
 			}
 		}else{
 			WebWalking.walkToBank();
@@ -73,12 +63,7 @@ public class Catherby {
 		RSObject[] ladder = Objects.getAt(Tiles.CATHERBYGROUNDFLOORLADDERTILE.getTile());
 		if (door.length > 0) {
 			if (Spin.interactWithObject(door, "Open")) {
-				Timing.waitCondition(new Condition() {
-					@Override
-					public boolean active() {
-						return !Objects.isAt(Tiles.CATHERBYDOORTILE.getTile(), "Door");
-					}
-				}, General.random(2500, 3500));
+				Timing.waitCondition(Conditions.objectAtCatherbyDoorTile(), General.random(2500, 3500));
 			}
 		} else {
 			if (Spin.interactWithObject(ladder, "Climb-up")) {

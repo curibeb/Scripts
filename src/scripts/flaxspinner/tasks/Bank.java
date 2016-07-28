@@ -2,7 +2,6 @@ package scripts.flaxspinner.tasks;
 
 import org.tribot.api.General;
 import org.tribot.api.Timing;
-import org.tribot.api.types.generic.Condition;
 import org.tribot.api2007.Banking;
 import org.tribot.api2007.Interfaces;
 import org.tribot.api2007.Inventory;
@@ -16,6 +15,7 @@ import scripts.flaxspinner.misc.Catherby;
 import scripts.flaxspinner.misc.Lumby;
 import scripts.flaxspinner.positions.Areas;
 import scripts.flaxspinner.taskframework.Task;
+import scripts.flaxspinner.utilities.Conditions;
 import scripts.flaxspinner.utilities.Vars;
 
 public class Bank extends Task {
@@ -96,23 +96,11 @@ public class Bank extends Task {
 				if (flax.length > 0) {
 					if (Inventory.isFull()) {
 						if (Banking.depositAll() > 0) {
-							Timing.waitCondition(new Condition() {
-								@Override
-								public boolean active() {
-									return Inventory.getAll().length == 0;
-								}
-							}, General.random(7500, 10000));
+							Timing.waitCondition(Conditions.inventoryHasNothing(), General.random(7500, 10000));
 						}
 					} else {
 						if (Banking.withdraw(0, "Flax")) {
-							Timing.waitCondition(new Condition() {
-
-								@Override
-								public boolean active() {
-									return Inventory.isFull();
-								}
-
-							}, General.random(7500, 10000));
+							Timing.waitCondition(Conditions.inventoryFull(), General.random(7500, 10000));
 						}
 					}
 				} else {
@@ -122,12 +110,7 @@ public class Bank extends Task {
 			}
 		} else {
 			if (Banking.openBank()) {
-				Timing.waitCondition(new Condition() {
-					@Override
-					public boolean active() {
-						return Banking.isBankScreenOpen();
-					}
-				}, General.random(7500, 10000));
+				Timing.waitCondition(Conditions.bankingScreenOpen(), General.random(7500, 10000));
 			}
 		}
 	}
