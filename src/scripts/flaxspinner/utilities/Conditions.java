@@ -131,4 +131,12 @@ public class Conditions {
 		};
 	}
 
+	public static Condition buildingFirstFloor(){
+		return new Condition() {
+			@Override
+			public boolean active() {
+				return Areas.BUILDINGFIRSTFLOOR.getArea().contains(Spin.myTile());
+			}
+		};
+	}
 }

@@ -2,7 +2,6 @@ package scripts.flaxspinner.misc;
 
 import org.tribot.api.General;
 import org.tribot.api.Timing;
-import org.tribot.api.types.generic.Condition;
 import org.tribot.api2007.Interfaces;
 import org.tribot.api2007.Objects;
 import org.tribot.api2007.WebWalking;
@@ -67,12 +66,7 @@ public class Catherby {
 			}
 		} else {
 			if (Spin.interactWithObject(ladder, "Climb-up")) {
-				Timing.waitCondition(new Condition() {
-					@Override
-					public boolean active() {
-						return Areas.BUILDINGFIRSTFLOOR.getArea().contains(Spin.myTile());
-					}
-				}, General.random(2500, 3500));
+				Timing.waitCondition(Conditions.buildingFirstFloor(), General.random(2500, 3500));
 			}
 		}
 	}
