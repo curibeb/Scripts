@@ -30,7 +30,7 @@ import scripts.pestcontrol.utilities.Vars;;
 public class Main extends Script implements Painting, Starting, EventBlockingOverride {
 
 	public TaskSet taskSet = new TaskSet();
-	public JFrame gui = new Gui(this, taskSet);
+	public  JFrame gui = new Gui(this, taskSet);
 	
 	public static final Image image = Paint.getImage("http://i.imgur.com/RIyYzER.png");
 	private final Rectangle showTiles = new Rectangle(300, 439, 105, 20);
