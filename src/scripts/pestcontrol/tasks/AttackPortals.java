@@ -26,7 +26,7 @@ public class AttackPortals extends Task {
 			Antiban.doIdleActions();
 		}
 		if (Player.getRSPlayer().getInteractingCharacter() == null)
-			DefendKnight.getDamage();
+			DefendKnights.getDamage();
 	}
 
 }

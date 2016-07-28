@@ -6,7 +6,7 @@ import org.tribot.api2007.types.RSTile;
 import scripts.pestcontrol.Main;
 import scripts.pestcontrol.taskframework.TaskSet;
 import scripts.pestcontrol.tasks.AttackPortals;
-import scripts.pestcontrol.tasks.DefendKnight;
+import scripts.pestcontrol.tasks.DefendKnights;
 import scripts.pestcontrol.tasks.GameChat;
 import scripts.pestcontrol.tasks.IdleBoat;
 import scripts.pestcontrol.tasks.PerfomAreaGenerate;
@@ -149,7 +149,7 @@ public class Gui extends javax.swing.JFrame {
 		}
 		if (modeCombo.getSelectedIndex() == 2) {
 			script.taskSet.addTasks(new GameChat(), new RideBoat(), new PerfomAreaGenerate(), new IdleBoat(),
-					new DefendKnight());
+					new DefendKnights());
 		}
 		this.dispose();
 		this.setVisible(false);
