@@ -53,7 +53,7 @@ public class Vars {
 	public static RSArea southGate;
 	public static RSArea eastGate;
 	public static RSArea westGate;
-	public static RSArea lobbyBoat = new RSArea(new RSTile(0, 0, 0), new RSTile(0, 0, 0));
-	public static RSArea lobby = new RSArea(new RSTile(2601, 2691, 0), new RSTile(2708, 2626, 0));
+	public static RSArea lobbyBoat;
+	public static RSArea lobby;
 
 }
