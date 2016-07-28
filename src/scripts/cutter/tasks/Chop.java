@@ -17,7 +17,6 @@ import org.tribot.api2007.Inventory;
 import org.tribot.api2007.Objects;
 import org.tribot.api2007.Player;
 import org.tribot.api2007.Walking;
-import org.tribot.api2007.WebWalking;
 import org.tribot.api2007.types.RSObject;
 import org.tribot.api2007.types.RSTile;
 
@@ -29,7 +28,7 @@ import scripts.cutter.utilities.Vars;
 
 public class Chop extends Task {
 
-	Positionable treeTile;
+	static Positionable treeTile;
 
 	@Override
 	public int priority() {
@@ -72,12 +71,12 @@ public class Chop extends Task {
 		}
 	}
 
-	public RSTile centreTile() {
+	public static  RSTile centreTile() {
 		return Vars.treesLoc.polygon.npoints > 0 ? new RSTile((int) Math.round(avg(Vars.treesLoc.polygon.xpoints)),
 				(int) Math.round(avg(Vars.treesLoc.polygon.ypoints))) : null;
 	}
 
-	private double avg(final int... nums) {
+	private static double avg(final int... nums) {
 		long total = 0;
 		for (int i : nums) {
 			total += (long) i;
@@ -85,11 +84,11 @@ public class Chop extends Task {
 		return (double) total / (double) nums.length;
 	}
 
-	public boolean hovered() {
+	public static boolean hovered() {
 		return Game.getUptext() != null && Game.getUptext().contains("Chop");
 	}
 
-	public void hover() {
+	public static void hover() {
 		RSObject[] tree = Objects.findNearest(8, Vars.tree);
 		if (tree.length > 1) {
 			if (tree[1].isOnScreen()) {
@@ -110,11 +109,11 @@ public class Chop extends Task {
 		}
 	}
 
-	public boolean isTreeAtTile() {
+	public static boolean isTreeAtTile() {
 		return Objects.isAt(treeTile, Vars.tree);
 	}
 
-	public boolean grabTreeTile() {
+	public static boolean grabTreeTile() {
 		RSObject[] tree = Objects.findNearest(100, Vars.tree);
 		if (tree != null && tree.length > 0) {
 			if (Vars.treesLoc.contains(tree[0].getPosition())) {
@@ -124,7 +123,7 @@ public class Chop extends Task {
 		return true;
 	}
 
-	public RSObject tree() {
+	public static RSObject tree() {
 		RSObject[] tree = Objects.getAt(treeTile);
 		if (tree.length > 0) {
 			return tree[0];
@@ -163,7 +162,7 @@ public class Chop extends Task {
 		}
 	}
 
-	public void cutTree() {
+	public static void cutTree() {
 		RSObject tree = tree();
 		if (tree != null) {
 			if (tree.isOnScreen()) {
