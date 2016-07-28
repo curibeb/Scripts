@@ -18,7 +18,7 @@ public class Conditions {
 		return new Condition() {
 			@Override
 			public boolean active() {
-				return Areas.LUMBYTHIRDFLOOR.getArea().contains(Spin.myTile());
+				return Areas.LUMBY_THIRD_FLOOR.getArea().contains(Spin.myTile());
 			}
 		};
 	}
@@ -36,7 +36,7 @@ public class Conditions {
 		return new Condition() {
 			@Override
 			public boolean active() {
-				return Areas.LUMBYSECONDFLOOR.getArea().contains(Spin.myTile());
+				return Areas.LUMBY_SECOND_FLOOR.getArea().contains(Spin.myTile());
 			}
 		};
 	}
@@ -54,7 +54,7 @@ public class Conditions {
 		return new Condition() {
 			@Override
 			public boolean active() {
-				return Areas.BUILDINGGROUNDFLOOR.getArea().contains(Spin.myTile());
+				return Areas.BUILDING_GROUND_FLOOR.getArea().contains(Spin.myTile());
 			}
 		};
 	}
@@ -117,7 +117,7 @@ public class Conditions {
 		return new Condition() {
 			@Override
 			public boolean active() {
-				return Interface.SPININTERFACE.open();
+				return Interface.SPIN_INTERFACE.open();
 			}
 		};
 	}
@@ -135,7 +135,7 @@ public class Conditions {
 		return new Condition() {
 			@Override
 			public boolean active() {
-				return Areas.BUILDINGFIRSTFLOOR.getArea().contains(Spin.myTile());
+				return Areas.BUILDING_FIRST_FLOOR.getArea().contains(Spin.myTile());
 			}
 		};
 	}

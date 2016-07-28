@@ -24,7 +24,7 @@ public class Lumby {
 			Spin.status = "To ladder.";
 			bankLumby(Tiles.LUMBYTHIRDFLOORLADDERTILE.getTile(), "Climb-down");
 		}
-		if (Areas.LUMBYSECONDFLOOR.getArea().contains(Spin.myTile())) {
+		if (Areas.LUMBY_SECOND_FLOOR.getArea().contains(Spin.myTile())) {
 			if (PathFinding.canReach(Tiles.WHEELTILE.getTile(), true)) {
 				Spin.spin();
 			} else {
@@ -47,7 +47,7 @@ public class Lumby {
 	public static void headToBankLumb() {
 		if (PathFinding.canReach(Tiles.LUMBYSECONDFLOORLADDERWALKTILE.getTile(), true)) {
 			Spin.status = "To bank.";
-			if (Interface.SPININTERFACE.open()) {
+			if (Interface.SPIN_INTERFACE.open()) {
 				Interfaces.closeAll();
 			} else {
 				RSObject[] ladder = Objects.getAt(Tiles.LUMBYSECONDFLOORLADDERTILE.getTile());

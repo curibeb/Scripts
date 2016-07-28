@@ -68,11 +68,11 @@ public class Main extends Script implements Painting, Starting {
 				this.drawTile(t, (Graphics2D) g, false);
 			}
 			String status = taskSet.getTask().status();
-			Vars.stringMade = Vars.xpGained / 15;
-			Vars.timeRan = System.currentTimeMillis() - Vars.beforeStart;
-			Vars.xpGained = Skills.getXP(SKILLS.CRAFTING) - Vars.craftXp;
-			Vars.xpPerHour = (Vars.xpGained * (3600000 / Vars.timeRan));
-			Vars.stringPerHour = (long) (Vars.stringMade * (3600000D / Vars.timeRan));
+			Vars.string_Made = Vars.xp_Gained / 15;
+			Vars.time_Ran = System.currentTimeMillis() - Vars.before_Start;
+			Vars.xp_Gained = Skills.getXP(SKILLS.CRAFTING) - Vars.craft_Xp;
+			Vars.xp_Per_Hour = (Vars.xp_Gained * (3600000 / Vars.time_Ran));
+			Vars.string_Per_Hour = (long) (Vars.string_Made * (3600000D / Vars.time_Ran));
 
 			g.setColor(Color.yellow);
 			g.fillRect(280, 360, 180, 20);
@@ -85,11 +85,11 @@ public class Main extends Script implements Painting, Starting {
 			g.setColor(Color.red);
 			g.fillRect(280, 390, 180, 120);
 			g.setColor(Color.yellow);
-			g.drawString("Time Running: " + Timing.msToString(Vars.timeRan), 300, 410);
-			g.drawString("String made: " + Vars.stringMade, 300, 440);
-			g.drawString("String Per Hour: " + Vars.stringPerHour, 300, 455);
-			g.drawString("Xp gained: " + Vars.xpGained, 300, 470);
-			g.drawString("Xp Per Hour: " + Vars.xpPerHour, 300, 485);
+			g.drawString("Time Running: " + Timing.msToString(Vars.time_Ran), 300, 410);
+			g.drawString("String made: " + Vars.string_Made, 300, 440);
+			g.drawString("String Per Hour: " + Vars.string_Per_Hour, 300, 455);
+			g.drawString("Xp gained: " + Vars.xp_Gained, 300, 470);
+			g.drawString("Xp Per Hour: " + Vars.xp_Per_Hour, 300, 485);
 			if (status != null) {
 				g.drawString("Status: " + status, 300, 500);
 			}
@@ -104,7 +104,7 @@ public class Main extends Script implements Painting, Starting {
 		if (reply == JOptionPane.YES_OPTION) {
 			Vars.start = true;
 			Vars.lumby = true;
-			taskSet.addTasks(new Bank(Areas.LUMBYTHIRDFLOOR.getArea()), new Spin(Areas.LUMBYTHIRDFLOOR.getArea()),
+			taskSet.addTasks(new Bank(Areas.LUMBY_THIRD_FLOOR.getArea()), new Spin(Areas.LUMBY_THIRD_FLOOR.getArea()),
 					new ToggleRun());
 		} else {
 			Vars.start = true;

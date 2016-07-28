@@ -10,17 +10,17 @@ public class Vars {
 	//
 
 	//
-	public static long timeRan;
-	public static long timeBeforeStart = System.currentTimeMillis();
-	public static int pointsGained = 0;
-	public static long pointsPerHor = 0;
-	public static int gamesWon = 0;
-	public static int gamesLost = 0;
-	public static long gamerPerHour;
-	public static final int paintToggleX = 550;
-	public static final int paintToggleY = 225;
-	public static final int paintToggleWidth = 250;
-	public static final int paintToggleHeight = 175;
+	public static long time_Ran;
+	public static long time_Before_Start = System.currentTimeMillis();
+	public static int points_Gained = 0;
+	public static long point_Per_Hor = 0;
+	public static int games_Won = 0;
+	public static int games_Lost = 0;
+	public static long games_Per_Hour;
+	public static final int paint_Toggle_X = 550;
+	public static final int paint_Toggle_Y = 225;
+	public static final int paint_Toggle_Width = 250;
+	public static final int paint_Toggle_Height = 175;
 	//
 
 	// booleans
@@ -28,32 +28,32 @@ public class Vars {
 	public static boolean novice = false;
 	public static boolean intermediate = false;
 	public static boolean veteran = false;
-	public static boolean lostMsg = false;
-	public static boolean wonMsg = false;
-	public static boolean showPaint = true;
-	public static boolean paintAreas = false;
-	public static boolean isInGameBoatArea = false;
-	public static boolean isInGameVoidKnightArea = false;
-	public static boolean isInGameAroundVoidKnightArea = false;
-	public static boolean isInLobbyBoatArea = false;
-	public static boolean isInLobbyArea = false;
+	public static boolean lost_Msg = false;
+	public static boolean won_Msg = false;
+	public static boolean show_Paint = true;
+	public static boolean paint_Areas = false;
+	public static boolean is_In_Game_Boat_Area = false;
+	public static boolean is_In_Game_Void_Knight_Area = false;
+	public static boolean is_In_Game_Around_Void_Knight_Area = false;
+	public static boolean is_In_Lobby_Boat_Area = false;
+	public static boolean is_In_Lobby_Area = false;
 	//
 
-	public static RSTile gangPlankTile;
-	public static RSTile voidKnightTile;
+	public static RSTile gang_Plank_Tile;
+	public static RSTile void_Knight_Tile;
 
-	public static RSArea fullGameArea;
-	public static RSArea gameBoatArea;
-	public static RSArea gameVoidKnightProtectArea;
-	public static RSArea gameAroundVoidKnightArea;
-	public static RSArea bluePortalArea;
-	public static RSArea yellowPortalArea;
-	public static RSArea pinkPortalArea;
-	public static RSArea puplePortalArea;
-	public static RSArea southGate;
-	public static RSArea eastGate;
-	public static RSArea westGate;
-	public static RSArea lobbyBoat;
+	public static RSArea full_Game_Area;
+	public static RSArea game_Boat_Area;
+	public static RSArea game_Void_Knight_Protect_Area;
+	public static RSArea game_Around_Void_Knight_Area;
+	public static RSArea blue_Portal_Area;
+	public static RSArea yellow_Portal_Area;
+	public static RSArea pink_Portal_Area;
+	public static RSArea puple_Portal_Area;
+	public static RSArea south_Gate;
+	public static RSArea east_Gate;
+	public static RSArea west_Gate;
+	public static RSArea lobby_Boat;
 	public static RSArea lobby;
 
 }

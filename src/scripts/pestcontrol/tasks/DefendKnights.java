@@ -1,5 +1,6 @@
 package scripts.pestcontrol.tasks;
 
+import org.tribot.api.General;
 import org.tribot.api2007.Player;
 import org.tribot.api2007.Walking;
 
@@ -16,7 +17,7 @@ public class DefendKnights extends Task {
 
 	@Override
 	public int priority() {
-		return  Priorities.DEFENDKNIGHT.getPriority();
+		return  Priorities.DEFEND_KNIGHT.getPriority();
 	}
 
 	@Override
@@ -29,6 +30,7 @@ public class DefendKnights extends Task {
 	public void execute() {
 
 		while (Player.getRSPlayer().getInteractingCharacter() != null) {
+			General.sleep(500,800);
 			Antiban.doIdleActions();
 		}
 
@@ -40,24 +42,24 @@ public class DefendKnights extends Task {
 	}
 
 	public static void getDamage() {
-		if (!Portals.portalDead(Interface.PINKPORTAL.getValue()))
-			Portals.attackPortalNpc(Vars.pinkPortalArea, Vars.westGate);
-		else if (!Portals.portalDead(Interface.PURPLEPORTAL.getValue()))
-			Portals.attackPortalNpc(Vars.puplePortalArea, Vars.southGate);
+		if (!Portals.portalDead(Interface.PINK_PORTAL.getValue()))
+			Portals.attackPortalNpc(Vars.pink_Portal_Area, Vars.west_Gate);
+		else if (!Portals.portalDead(Interface.PURPLE_PORTAL.getValue()))
+			Portals.attackPortalNpc(Vars.puple_Portal_Area, Vars.south_Gate);
 
-		else if (!Portals.portalDead(Interface.BLUEPORTAL.getValue()))
-			Portals.attackPortalNpc(Vars.bluePortalArea, Vars.eastGate);
+		else if (!Portals.portalDead(Interface.BLUE_PORTAL.getValue()))
+			Portals.attackPortalNpc(Vars.blue_Portal_Area, Vars.east_Gate);
 
-		else if (!Portals.portalDead(Interface.YELLOPORTAL.getValue())) {
-			Portals.attackPortalNpc(Vars.yellowPortalArea, Vars.southGate);
+		else if (!Portals.portalDead(Interface.YELLO_PORTAL.getValue())) {
+			Portals.attackPortalNpc(Vars.yellow_Portal_Area, Vars.south_Gate);
 		}
 	}
 
 	public void defendKnight() {
 		if (AreaCheck.isInsideGameVoidKnightArea()) {
 			if (Player.getRSPlayer().getInteractingCharacter() == null) {
-				if (Attack.target(Vars.gameVoidKnightProtectArea) != null) {
-					Attack.attack(Vars.gameVoidKnightProtectArea);
+				if (Attack.target(Vars.game_Void_Knight_Protect_Area) != null) {
+					Attack.attack(Vars.game_Void_Knight_Protect_Area);
 				} else {
 					Vars.status = "Idling.";
 					Antiban.doIdleActions();
@@ -65,21 +67,21 @@ public class DefendKnights extends Task {
 			}
 		} else {
 			Vars.status = "Walking to void knight.";
-			Walking.blindWalkTo(Vars.voidKnightTile);
+			Walking.blindWalkTo(Vars.void_Knight_Tile);
 		}
 	}
 
 	private boolean needToGetDamage() {
-		return portalHpLow() && Interface.DAMAGECOLLECTED.getValue() < 50;
+		return portalHpLow() && Interface.DAMAGE_COLLECTED.getValue() < 50;
 	}
 
 	public boolean portalHpLow() {
-		return (Interface.BLUEPORTAL.getValue() == 0 && Interface.PURPLEPORTAL.getValue() == 0)
-				|| (Interface.PINKPORTAL.getValue() == 0 && Interface.YELLOPORTAL.getValue() == 0)
-				|| (Interface.PURPLEPORTAL.getValue() == 0 && Interface.PINKPORTAL.getValue() == 0)
-				|| (Interface.BLUEPORTAL.getValue() == 0 && Interface.PINKPORTAL.getValue() == 0)
-				|| (Interface.BLUEPORTAL.getValue() == 0 && Interface.PURPLEPORTAL.getValue() == 0)
-				|| (Interface.PURPLEPORTAL.getValue() == 0 && Interface.PINKPORTAL.getValue() == 0);
+		return (Interface.BLUE_PORTAL.getValue() == 0 && Interface.PURPLE_PORTAL.getValue() == 0)
+				|| (Interface.PINK_PORTAL.getValue() == 0 && Interface.YELLO_PORTAL.getValue() == 0)
+				|| (Interface.PURPLE_PORTAL.getValue() == 0 && Interface.PINK_PORTAL.getValue() == 0)
+				|| (Interface.BLUE_PORTAL.getValue() == 0 && Interface.PINK_PORTAL.getValue() == 0)
+				|| (Interface.BLUE_PORTAL.getValue() == 0 && Interface.PURPLE_PORTAL.getValue() == 0)
+				|| (Interface.PURPLE_PORTAL.getValue() == 0 && Interface.PINK_PORTAL.getValue() == 0);
 	}
 
 }

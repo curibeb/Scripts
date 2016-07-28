@@ -26,7 +26,7 @@ public class GearUp extends Task {
 
 	@Override
 	public boolean validate() {
-		return !Equipment.isEquipped(Vars.axeId);
+		return !Equipment.isEquipped(Vars.axe_Id);
 	}
 
 	private static int getCurrentBankSpace() {
@@ -49,41 +49,48 @@ public class GearUp extends Task {
 	@Override
 	public void execute() {
 		if (Vars.bank.contains(Player.getPosition())) {
-			if (Inventory.getCount(Vars.axeId) == 0) {
-				if (Banking.isBankScreenOpen()) {
-					if (getCurrentBankSpace() > 0) {
-						if (Banking.find(Vars.axeId) != null) {
-							if (Banking.withdraw(1, Vars.axeId)) {
-								Timing.waitCondition(Conditions.gotAxe, General.random(3500, 5000));
-							}
-						} else {
-							General.println("Couldnt find axe so we stopped :(");
-							Vars.start = false;
-						}
-					}
-				} else {
-					if (Banking.openBank()) {
-						Timing.waitCondition(Conditions.bankOpen, General.random(3500, 5000));
-					}
-				}
+			if (Inventory.getCount(Vars.axe_Id) == 0) {
+				grabAxe();
 			} else {
 				if (Banking.isBankScreenOpen()) {
-					if (Banking.close()) {
+					if (Banking.close())
 						Timing.waitCondition(Conditions.bankClosed, General.random(2500, 3500));
-					}
 				} else {
-					RSItem[] axe = Inventory.find(Vars.axeId);
-					if (axe.length > 0) {
-						Antiban.setWaitingSince();
-						Antiban.get().performReactionTimeWait();
-						if (axe[0].click("Wield")) {
-							Timing.waitCondition(Conditions.equipmentOn(), General.random(2500, 3000));
-						}
-					}
+					wieldAxe();
 				}
 			}
 		} else {
 			Walking.blindWalkTo(Chop.centreTile());
+		}
+	}
+
+	private void grabAxe() {
+		if (Banking.isBankScreenOpen()) {
+			if (getCurrentBankSpace() > 0) {
+				if (Banking.find(Vars.axe_Id) != null) {
+					if (Banking.withdraw(1, Vars.axe_Id)) {
+						Timing.waitCondition(Conditions.gotAxe, General.random(3500, 5000));
+					}
+				} else {
+					General.println("Couldnt find axe so we stopped :(");
+					Vars.start = false;
+				}
+			}
+		} else {
+			if (Banking.openBank()) {
+				Timing.waitCondition(Conditions.bankOpen, General.random(3500, 5000));
+			}
+		}
+	}
+
+	private void wieldAxe() {
+		RSItem[] axe = Inventory.find(Vars.axe_Id);
+		if (axe.length > 0) {
+			Antiban.setWaitingSince();
+			Antiban.get().performReactionTimeWait();
+			if (axe[0].click("Wield")) {
+				Timing.waitCondition(Conditions.equipmentOn(), General.random(2500, 3000));
+			}
 		}
 	}
 

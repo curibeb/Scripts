@@ -12,15 +12,15 @@ public class Vars {
 	//
 
 	// ints
-	public static long xpPerHour = 0;
-	public static long timeRan = 0;
-	public static long xpGained = 0;
-	public static long stringMade = 0;
-	public static long stringPerHour = 0;
-	public static final int bankPriority = 0;
-	public static final int spinPriority = 1;
-	public static final int runPriority = 2;
-	public static final int craftXp = Skills.getXP(SKILLS.CRAFTING);
-	public static final long beforeStart = System.currentTimeMillis();
+	public static long xp_Per_Hour = 0;
+	public static long time_Ran = 0;
+	public static long xp_Gained = 0;
+	public static long string_Made = 0;
+	public static long string_Per_Hour = 0;
+	public static final int bank_Priority = 0;
+	public static final int spin_Priority = 1;
+	public static final int run_Priority = 2;
+	public static final int craft_Xp = Skills.getXP(SKILLS.CRAFTING);
+	public static final long before_Start = System.currentTimeMillis();
 	//
 }

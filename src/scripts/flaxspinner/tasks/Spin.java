@@ -40,7 +40,7 @@ public class Spin extends Task {
 
 	@Override
 	public int priority() {
-		return Vars.runPriority;
+		return Vars.run_Priority;
 	}
 
 	@Override
@@ -77,10 +77,10 @@ public class Spin extends Task {
 
 	public static boolean lost() {
 		if (!Vars.lumby) {
-			return !bank.contains(myTile()) && !Areas.BUILDINGFIRSTFLOOR.getArea().contains(myTile())
-					&& !Areas.BUILDINGGROUNDFLOOR.getArea().contains(myTile());
+			return !bank.contains(myTile()) && !Areas.BUILDING_FIRST_FLOOR.getArea().contains(myTile())
+					&& !Areas.BUILDING_GROUND_FLOOR.getArea().contains(myTile());
 		} else {
-			return Areas.LUMBYFIRSTFLOOR.getArea().contains(myTile());
+			return Areas.LUMBY_FIRST_FLOOR.getArea().contains(myTile());
 		}
 	}
 
@@ -89,10 +89,10 @@ public class Spin extends Task {
 			status = "Heading to building.";
 			Walking.blindWalkTo(Tiles.CATHERBYWALKTODOORTILE.getTile());
 		}
-		if (Areas.BUILDINGGROUNDFLOOR.getArea().contains(myTile())) {
+		if (Areas.BUILDING_GROUND_FLOOR.getArea().contains(myTile())) {
 			Catherby.accendBuilding();
 		}
-		if (Areas.BUILDINGFIRSTFLOOR.getArea().contains(myTile())) {
+		if (Areas.BUILDING_FIRST_FLOOR.getArea().contains(myTile())) {
 			spin();
 		}
 	}
@@ -125,8 +125,8 @@ public class Spin extends Task {
 				Timing.waitCondition(Conditions.animating(), General.random(4000, 7000));
 				Antiban.generateRunPercentage();
 			} else {
-				if (Interface.SPININTERFACE.open()) {
-					if (Interface.SPININTERFACE.getInterface().click("Make X")) {
+				if (Interface.SPIN_INTERFACE.open()) {
+					if (Interface.SPIN_INTERFACE.getInterface().click("Make X")) {
 						Timing.waitCondition(Conditions.makeXInterface(), General.random(2500, 4000));
 					}
 				} else {

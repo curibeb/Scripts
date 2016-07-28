@@ -29,7 +29,7 @@ public class Bank extends Task {
 
 	@Override
 	public int priority() {
-		return Vars.bankPriority;
+		return Vars.bank_Priority;
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class Bank extends Task {
 			Catherby.handleCatherby();
 		} else {
 			status = Spin.status;
-			if (Areas.LUMBYSECONDFLOOR.getArea().contains(this.myTile())) {
+			if (Areas.LUMBY_SECOND_FLOOR.getArea().contains(this.myTile())) {
 				Lumby.headToBankLumb();
 			}
 		}
@@ -56,10 +56,10 @@ public class Bank extends Task {
 	public boolean lost() {
 		if (!Vars.lumby) {
 			return !Areas.BANK.getArea().contains(this.myTile())
-					&& !Areas.BUILDINGFIRSTFLOOR.getArea().contains(this.myTile())
-					&& !Areas.BUILDINGGROUNDFLOOR.getArea().contains(this.myTile());
+					&& !Areas.BUILDING_FIRST_FLOOR.getArea().contains(this.myTile())
+					&& !Areas.BUILDING_GROUND_FLOOR.getArea().contains(this.myTile());
 		} else {
-			return Areas.LUMBYFIRSTFLOOR.getArea().contains(this.myTile());
+			return Areas.LUMBY_FIRST_FLOOR.getArea().contains(this.myTile());
 		}
 	}
 

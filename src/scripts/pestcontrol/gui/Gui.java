@@ -157,21 +157,21 @@ public class Gui extends javax.swing.JFrame {
 
 	private void noviceRadioActionPerformed(java.awt.event.ActionEvent evt) {
 		if (noviceRadio.isSelected()) {
-			Vars.lobbyBoat = new RSArea(new RSTile(2660, 2643, 0), new RSTile(2663, 2638, 0));
-			Vars.gangPlankTile = new RSTile(2658, 2639, 0);
+			Vars.lobby_Boat = new RSArea(new RSTile(2660, 2643, 0), new RSTile(2663, 2638, 0));
+			Vars.gang_Plank_Tile = new RSTile(2658, 2639, 0);
 		}
 	}
 
 	private void intermediateRadioActionPerformed(java.awt.event.ActionEvent evt) {
 		if (intermediateRadio.isSelected()) {
-			Vars.lobbyBoat = new RSArea(new RSTile(2638, 2642, 0), new RSTile(2641, 2649, 0));
-			Vars.gangPlankTile = new RSTile(2643, 2644, 0);
+			Vars.lobby_Boat = new RSArea(new RSTile(2638, 2642, 0), new RSTile(2641, 2649, 0));
+			Vars.gang_Plank_Tile = new RSTile(2643, 2644, 0);
 		}
 	}
 
 	private void veteranRadioActionPerformed(java.awt.event.ActionEvent evt) {
-		Vars.lobbyBoat = new RSArea(new RSTile(2632, 2649, 0), new RSTile(2635, 2655, 0));
-		Vars.gangPlankTile = new RSTile(2737, 2653, 0);
+		Vars.lobby_Boat = new RSArea(new RSTile(2632, 2649, 0), new RSTile(2635, 2655, 0));
+		Vars.gang_Plank_Tile = new RSTile(2737, 2653, 0);
 	}
 
 	/**

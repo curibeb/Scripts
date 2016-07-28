@@ -7,143 +7,143 @@ import scripts.pestcontrol.utilities.Vars;
 
 public enum Areas {
 
-	WESTGATE {
+	WEST_GATE {
 
 		@Override
 		public RSArea getArea() {
 			return new RSArea(
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.WESTGATEXTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.WESTGATEXTILE.getYOffset()),
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.WESTGATEYTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.WESTGATEYTILE.getYOffset()));
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.WEST_GATE_XTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.WEST_GATE_XTILE.getYOffset()),
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.WEST_GATEY_TILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.WEST_GATEY_TILE.getYOffset()));
 		}
 	},
 
-	EASTGATE {
+	EAST_GATE {
 
 		@Override
 		public RSArea getArea() {
 			return new RSArea(
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.EASTGATEXTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.EASTGATEXTILE.getYOffset()),
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.EASTGATEYTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.EASTGATEYTILE.getYOffset()));
-		}
-
-	},
-
-	SOUTHGATE {
-
-		@Override
-		public RSArea getArea() {
-			return new RSArea(
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.SOUTHGATEXTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.SOUTHGATEXTILE.getYOffset()),
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.SOUTHGATEYTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.SOUTHGATEYTILE.getYOffset()));
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.EAST_GATE_XTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.EAST_GATE_XTILE.getYOffset()),
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.EAST_GATEY_TILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.EAST_GATEY_TILE.getYOffset()));
 		}
 
 	},
 
-	GAMEAROUNDVOIDKNIGHTAREA {
+	SOUTH_GATE {
 
 		@Override
 		public RSArea getArea() {
 			return new RSArea(
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.AROUNDVOIDKNIGHTXTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.AROUNDVOIDKNIGHTXTILE.getYOffset()),
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.AROUNDVOIDKNIGHTyTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.AROUNDVOIDKNIGHTyTILE.getYOffset()));
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.SOUTH_GATEX_TILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.SOUTH_GATEX_TILE.getYOffset()),
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.SOUTH_GATE_YTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.SOUTH_GATE_YTILE.getYOffset()));
 		}
 
 	},
 
-	GAMEVOIDKNIGHTPROTECTAREA {
+	GAME_AROUND_VOID_KNIGHT_AREA {
 
 		@Override
 		public RSArea getArea() {
 			return new RSArea(
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.VOIDKNIGHTXTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.VOIDKNIGHTXTILE.getYOffset()),
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.VOIDKNIGHTYTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.VOIDKNIGHTYTILE.getYOffset()));
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.AROUND_VOID_KNIGHT_XTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.AROUND_VOID_KNIGHT_XTILE.getYOffset()),
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.AROUND_VOID_KNIGHT_YTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.AROUND_VOID_KNIGHT_YTILE.getYOffset()));
 		}
 
 	},
 
-	GAMEBOATAREA {
+	GAME_VOID_KNIGHT_PROTECT_AREA {
 
 		@Override
 		public RSArea getArea() {
 			return new RSArea(
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.GAMEBOATXTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.GAMEBOATXTILE.getYOffset()),
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.GAMEBOATYTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.GAMEBOATYTILE.getYOffset()));
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.VOID_KNIGHT_XTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.VOID_KNIGHT_XTILE.getYOffset()),
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.VOID_KNIGHT_YTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.VOID_KNIGHT_YTILE.getYOffset()));
 		}
 
 	},
 
-	BLUEPORTALAREA {
+	GAME_BOAT_AREA {
+
 		@Override
 		public RSArea getArea() {
 			return new RSArea(
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.BLUEPORTALXTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.BLUEPORTALXTILE.getYOffset()),
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.BLUEPORTALYTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.BLUEPORTALYTILE.getYOffset()));
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.GAME_BOAT_XTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.GAME_BOAT_XTILE.getYOffset()),
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.GAME_BOAT_YTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.GAME_BOAT_YTILE.getYOffset()));
 		}
 
 	},
 
-	YELLOWPORTALAREA {
-
+	BLUE_PORTAL_AREA {
 		@Override
 		public RSArea getArea() {
 			return new RSArea(
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.YELLOWPORTALXTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.YELLOWPORTALXTILE.getYOffset()),
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.YELLOWPORTALYTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.YELLOWPORTALYTILE.getYOffset()));
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.BLUE_PORTAL_XTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.BLUE_PORTAL_XTILE.getYOffset()),
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.BLUE_PORTAL_YTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.BLUE_PORTAL_YTILE.getYOffset()));
 		}
 
 	},
 
-	PINKPORTALAREA {
+	YELLOW_PORTAL_AREA {
 
 		@Override
 		public RSArea getArea() {
 			return new RSArea(
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.PINKPORTALXTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.PINKPORTALXTILE.getYOffset()),
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.PINKPORTALYTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.PINKPORTALYTILE.getYOffset()));
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.YELLOW_PORTAL_XTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.YELLOW_PORTAL_XTILE.getYOffset()),
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.YELLOW_PORTAL_YTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.YELLOW_PORTAL_YTILE.getYOffset()));
 		}
 
 	},
 
-	PURPLEPORTALAREA {
+	PINK_PORTAL_AREA {
 
 		@Override
 		public RSArea getArea() {
 			return new RSArea(
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.PURPLEPORTALXTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.PURPLEPORTALXTILE.getYOffset()),
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.PURPLEPORTALYTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.PURPLEPORTALYTILE.getYOffset()));
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.PINK_PORTAL_XTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.PINK_PORTAL_XTILE.getYOffset()),
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.PINK_PORTAL_YTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.PINK_PORTAL_YTILE.getYOffset()));
 		}
 
 	},
 
-	FULLGAMEAREA {
+	PURPLE_PORTAL_AREA {
 
 		@Override
 		public RSArea getArea() {
 			return new RSArea(
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.FULLGAMEXTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.FULLGAMEYTILE.getXOffset()),
-					new RSTile(Vars.voidKnightTile.getX() + Offsets.FULLGAMEYTILE.getXOffset(),
-							Vars.voidKnightTile.getY() + Offsets.FULLGAMEYTILE.getYOffset()));
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.PURPLE_PORTAL_XTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.PURPLE_PORTAL_XTILE.getYOffset()),
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.PURPLE_PORTAL_YTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.PURPLE_PORTAL_YTILE.getYOffset()));
+		}
+
+	},
+
+	FULL_GAME_AREA {
+
+		@Override
+		public RSArea getArea() {
+			return new RSArea(
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.FULL_GAME_XTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.FULL_GAME_YTILE.getXOffset()),
+					new RSTile(Vars.void_Knight_Tile.getX() + Offsets.FULL_GAME_YTILE.getXOffset(),
+							Vars.void_Knight_Tile.getY() + Offsets.FULL_GAME_YTILE.getYOffset()));
 		}
 
 	};

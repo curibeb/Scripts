@@ -30,9 +30,9 @@ public class Paint {
 	public static void paintStrings(Graphics g, String status) {
 		Font font = new Font("Arial", Font.BOLD, 18);
 		g.setFont(font);
-		Vars.timeRan = System.currentTimeMillis() - Vars.timeBeforeStart;
-		Vars.pointsPerHor = (long) (Vars.pointsGained * (3600000D / Vars.timeRan));
-		Vars.gamerPerHour = (long) ((Vars.gamesLost + Vars.gamesWon) * (3600000D / Vars.timeRan));
+		Vars.time_Ran = System.currentTimeMillis() - Vars.time_Before_Start;
+		Vars.point_Per_Hor = (long) (Vars.points_Gained * (3600000D / Vars.time_Ran));
+		Vars.games_Per_Hour = (long) ((Vars.games_Lost + Vars.games_Won) * (3600000D / Vars.time_Ran));
 		Graphics2D gg = (Graphics2D) g;
 		gg.drawImage(Main.image, 0, 300, null);
 		g.setColor(Color.red);
@@ -44,19 +44,19 @@ public class Paint {
 		// 560, 290);
 		// g.drawString("At Area Around Knight: " + Vars.isInGameVoidKnightArea,
 		// 560, 305);
-		g.drawString("Void Knight Hp:" + Interface.VOIDKNIGHTHP.getValue(), 80, 455);
-		g.drawString("" + Vars.gamerPerHour, 430, 480);
-		g.drawString(Vars.pointsGained + "(" + Vars.pointsPerHor + ")", 250, 405);
-		g.drawString(Vars.gamesWon + "(" + Vars.gamesLost + ")", 390, 405);
-		g.drawString(Timing.msToString(Vars.timeRan), 70, 405);
+		g.drawString("Void Knight Hp:" + Interface.VOID_KNIGHT_HP.getValue(), 80, 455);
+		g.drawString("" + Vars.games_Per_Hour, 430, 480);
+		g.drawString(Vars.points_Gained + "(" + Vars.point_Per_Hor + ")", 250, 405);
+		g.drawString(Vars.games_Won + "(" + Vars.games_Lost + ")", 390, 405);
+		g.drawString(Timing.msToString(Vars.time_Ran), 70, 405);
 		g.setColor(Color.magenta);
-		g.drawString("" + Interface.PURPLEPORTAL.getValue(), 5, 400);
+		g.drawString("" + Interface.PURPLE_PORTAL.getValue(), 5, 400);
 		g.setColor(Color.blue);
-		g.drawString("" + Interface.BLUEPORTAL.getValue(), 5, 420);
+		g.drawString("" + Interface.BLUE_PORTAL.getValue(), 5, 420);
 		g.setColor(Color.yellow);
-		g.drawString("" + Interface.YELLOPORTAL.getValue(), 5, 440);
+		g.drawString("" + Interface.YELLO_PORTAL.getValue(), 5, 440);
 		g.setColor(Color.pink);
-		g.drawString("" + Interface.PINKPORTAL.getValue(), 5, 460);
+		g.drawString("" + Interface.PINK_PORTAL.getValue(), 5, 460);
 
 	}
 
@@ -68,86 +68,71 @@ public class Paint {
 		}
 	}
 
-	public static int getValue() {
-		RSInterface portal = Interfaces.get(407, 15);
-		if (portal != null && !portal.isHidden()) {
-			String pt = portal.getText();
-			pt = pt.replaceAll("[^\\d.]", "");
-			if (pt != null) {
-				if (pt.contains("")) {
-					int pts = Integer.parseInt(pt);
-					if (pts >= 0)
-						return pts;
-				}
-			}
-		}
-		return 0;
-	}
 
 	public static void paintAreas(Graphics g) {
-		if (Vars.fullGameArea != null) {
-			for (RSTile t : Vars.fullGameArea.getAllTiles()) {
+		if (Vars.full_Game_Area != null) {
+			for (RSTile t : Vars.full_Game_Area.getAllTiles()) {
 				drawTile(t, (Graphics2D) g, false, Color.black);
 			}
 		}
-		if (Vars.gameBoatArea != null) {
-			for (RSTile t : Vars.gameBoatArea.getAllTiles()) {
+		if (Vars.game_Boat_Area != null) {
+			for (RSTile t : Vars.game_Boat_Area.getAllTiles()) {
 				drawTile(t, (Graphics2D) g, false, Color.white);
 			}
 		}
-		if (Vars.lobbyBoat != null) {
-			for (RSTile t : Vars.lobbyBoat.getAllTiles()) {
+		if (Vars.lobby_Boat != null) {
+			for (RSTile t : Vars.lobby_Boat.getAllTiles()) {
 				drawTile(t, (Graphics2D) g, false, Color.white);
 			}
 		}
 
-		if (Vars.gameAroundVoidKnightArea != null) {
-			for (RSTile t : Vars.gameAroundVoidKnightArea.getAllTiles()) {
+		if (Vars.game_Around_Void_Knight_Area != null) {
+			for (RSTile t : Vars.game_Around_Void_Knight_Area.getAllTiles()) {
 				drawTile(t, (Graphics2D) g, false, Color.LIGHT_GRAY);
 			}
 		}
-		if (Vars.gameVoidKnightProtectArea != null) {
-			for (RSTile t : Vars.gameVoidKnightProtectArea.getAllTiles()) {
+		if (Vars.game_Void_Knight_Protect_Area != null) {
+			for (RSTile t : Vars.game_Void_Knight_Protect_Area.getAllTiles()) {
 				drawTile(t, (Graphics2D) g, false, Color.green);
 			}
 		}
-		if (Vars.bluePortalArea != null) {
-			for (RSTile t : Vars.bluePortalArea.getAllTiles()) {
+		if (Vars.blue_Portal_Area != null) {
+			for (RSTile t : Vars.blue_Portal_Area.getAllTiles()) {
 				drawTile(t, (Graphics2D) g, false, Color.blue);
 			}
 		}
-		if (Vars.yellowPortalArea != null) {
-			for (RSTile t : Vars.yellowPortalArea.getAllTiles()) {
+		if (Vars.yellow_Portal_Area != null) {
+			for (RSTile t : Vars.yellow_Portal_Area.getAllTiles()) {
 				drawTile(t, (Graphics2D) g, false, Color.yellow);
 			}
 		}
-		if (Vars.pinkPortalArea != null) {
-			for (RSTile t : Vars.pinkPortalArea.getAllTiles()) {
+		if (Vars.pink_Portal_Area != null) {
+			for (RSTile t : Vars.pink_Portal_Area.getAllTiles()) {
 				drawTile(t, (Graphics2D) g, false, Color.pink);
 			}
 		}
-		if (Vars.puplePortalArea != null) {
-			for (RSTile t : Vars.puplePortalArea.getAllTiles()) {
+		if (Vars.puple_Portal_Area != null) {
+			for (RSTile t : Vars.puple_Portal_Area.getAllTiles()) {
 				drawTile(t, (Graphics2D) g, false, Color.magenta);
 			}
 		}
-		if (Vars.southGate != null) {
-			for (RSTile t : Vars.southGate.getAllTiles()) {
+		if (Vars.south_Gate != null) {
+			for (RSTile t : Vars.south_Gate.getAllTiles()) {
 				drawTile(t, (Graphics2D) g, false, Color.red);
 			}
 		}
-		if (Vars.eastGate != null) {
-			for (RSTile t : Vars.eastGate.getAllTiles()) {
+		if (Vars.east_Gate != null) {
+			for (RSTile t : Vars.east_Gate.getAllTiles()) {
 				drawTile(t, (Graphics2D) g, false, Color.red);
 			}
 		}
-		if (Vars.westGate != null) {
-			for (RSTile t : Vars.westGate.getAllTiles()) {
+		if (Vars.west_Gate != null) {
+			for (RSTile t : Vars.west_Gate.getAllTiles()) {
 				drawTile(t, (Graphics2D) g, false, Color.red);
 			}
 		}
-		if (Vars.voidKnightTile != null) {
-			drawTile(Vars.voidKnightTile, (Graphics2D) g, false, Color.red);
+		if (Vars.void_Knight_Tile != null) {
+			drawTile(Vars.void_Knight_Tile, (Graphics2D) g, false, Color.red);
 		}
 	}
 
@@ -181,29 +166,29 @@ public class Paint {
 
 	public static void checkPositionForPaint() {
 		if (AreaCheck.isInLobby()) {
-			Vars.isInLobbyArea = true;
+			Vars.is_In_Lobby_Area = true;
 		} else {
-			Vars.isInLobbyArea = false;
+			Vars.is_In_Lobby_Area = false;
 		}
 		if (AreaCheck.isInsideLobbyBoat()) {
-			Vars.isInLobbyBoatArea = true;
+			Vars.is_In_Lobby_Boat_Area = true;
 		} else {
-			Vars.isInLobbyBoatArea = false;
+			Vars.is_In_Lobby_Boat_Area = false;
 		}
 		if (AreaCheck.areAreasDefined() && AreaCheck.isInsideGameBoat()) {
-			Vars.isInGameBoatArea = true;
+			Vars.is_In_Game_Boat_Area = true;
 		} else {
-			Vars.isInGameBoatArea = false;
+			Vars.is_In_Game_Boat_Area = false;
 		}
 		if (AreaCheck.areAreasDefined() && AreaCheck.isInsideGameAroundVoidKnightArea()) {
-			Vars.isInGameAroundVoidKnightArea = true;
+			Vars.is_In_Game_Around_Void_Knight_Area = true;
 		} else {
-			Vars.isInGameAroundVoidKnightArea = false;
+			Vars.is_In_Game_Around_Void_Knight_Area = false;
 		}
 		if (AreaCheck.areAreasDefined() && AreaCheck.isInsideGameVoidKnightArea()) {
-			Vars.isInGameVoidKnightArea = true;
+			Vars.is_In_Game_Void_Knight_Area = true;
 		} else {
-			Vars.isInGameVoidKnightArea = false;
+			Vars.is_In_Game_Void_Knight_Area = false;
 
 		}
 	}

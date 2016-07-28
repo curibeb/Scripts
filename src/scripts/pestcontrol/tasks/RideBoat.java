@@ -17,7 +17,7 @@ public class RideBoat extends Task {
 
 	@Override
 	public int priority() {
-		return Priorities.RIDEBOAT.getPriority();
+		return Priorities.RIDE_BOAT.getPriority();
 	}
 
 	@Override
@@ -26,28 +26,28 @@ public class RideBoat extends Task {
 	}
 
 	public void resetPositions() {
-		Vars.gameBoatArea = null;
-		Vars.gameAroundVoidKnightArea = null;
-		Vars.gameVoidKnightProtectArea = null;
-		Vars.voidKnightTile = null;
-		Vars.fullGameArea = null;
+		Vars.game_Boat_Area = null;
+		Vars.game_Around_Void_Knight_Area = null;
+		Vars.game_Void_Knight_Protect_Area = null;
+		Vars.void_Knight_Tile = null;
+		Vars.full_Game_Area = null;
 	}
 
 	@Override
 	public void execute() {
-		if (Interface.WONGGAMEMSG.text().contains("Congratulations")) {
-			Vars.wonMsg = true;
+		if (Interface.WON_GAME_MSG.text().contains("Congratulations")) {
+			Vars.won_Msg = true;
 		}
-		if (Interface.LOSTGAMEMSG.text().contains("The knights noticed your lack")
-				|| Interface.LOSTGAMEMSG.text().contains("The void knight was killed")) {
-			Vars.lostMsg = true;
+		if (Interface.LOST_GAME_MSG.text().contains("The knights noticed your lack")
+				|| Interface.LOST_GAME_MSG.text().contains("The void knight was killed")) {
+			Vars.lost_Msg = true;
 		}
 		if (AreaCheck.areAreasDefined()) {
 			Vars.status = "Reseting areas.";
 			this.resetPositions();
 		}
 		Vars.status = "Crossing plank to boat";
-		RSObject[] plank = Objects.getAt(Vars.gangPlankTile);
+		RSObject[] plank = Objects.getAt(Vars.gang_Plank_Tile);
 		if (plank.length > 0) {
 			if (plank[0].isOnScreen()) {
 				if (plank[0].click("Cross")) {

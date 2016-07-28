@@ -16,7 +16,7 @@ public class PerfomAreaGenerate extends Task {
 
 	@Override
 	public int priority() {
-		return Priorities.GENERATEAREA.getPriority();
+		return Priorities.GENERATE_AREA.getPriority();
 	}
 
 	@Override
@@ -37,22 +37,22 @@ public class PerfomAreaGenerate extends Task {
 	public void resetPositions() {
 		Vars.status = "Grabbing required areas.";
 
-		if (Vars.voidKnightTile != null) {
-			Vars.westGate = Areas.WESTGATE.getArea();
-			Vars.eastGate = Areas.EASTGATE.getArea();
-			Vars.southGate = Areas.SOUTHGATE.getArea();
-			Vars.gameAroundVoidKnightArea = Areas.GAMEAROUNDVOIDKNIGHTAREA.getArea();
-			Vars.gameVoidKnightProtectArea = Areas.GAMEVOIDKNIGHTPROTECTAREA.getArea();
-			Vars.gameBoatArea = Areas.GAMEBOATAREA.getArea();
-			Vars.bluePortalArea = Areas.BLUEPORTALAREA.getArea();
-			Vars.yellowPortalArea = Areas.YELLOWPORTALAREA.getArea();
-			Vars.pinkPortalArea = Areas.PINKPORTALAREA.getArea();
-			Vars.puplePortalArea = Areas.PURPLEPORTALAREA.getArea();
-			Vars.fullGameArea = Areas.FULLGAMEAREA.getArea();
+		if (Vars.void_Knight_Tile != null) {
+			Vars.west_Gate = Areas.WEST_GATE.getArea();
+			Vars.east_Gate = Areas.EAST_GATE.getArea();
+			Vars.south_Gate = Areas.SOUTH_GATE.getArea();
+			Vars.game_Around_Void_Knight_Area = Areas.GAME_AROUND_VOID_KNIGHT_AREA.getArea();
+			Vars.game_Void_Knight_Protect_Area = Areas.GAME_VOID_KNIGHT_PROTECT_AREA.getArea();
+			Vars.game_Boat_Area = Areas.GAME_BOAT_AREA.getArea();
+			Vars.blue_Portal_Area = Areas.BLUE_PORTAL_AREA.getArea();
+			Vars.yellow_Portal_Area = Areas.YELLOW_PORTAL_AREA.getArea();
+			Vars.pink_Portal_Area = Areas.PINK_PORTAL_AREA.getArea();
+			Vars.puple_Portal_Area = Areas.PURPLE_PORTAL_AREA.getArea();
+			Vars.full_Game_Area = Areas.FULL_GAME_AREA.getArea();
 		} else {
 			Vars.status = "Grabbing void knight tile.";
-			Vars.voidKnightTile = generateRSTile(Offsets.VOIDKNIGHTTILE.getXOffset(),
-					Offsets.VOIDKNIGHTTILE.getYOffset());
+			Vars.void_Knight_Tile = generateRSTile(Offsets.VOID_KNIGHT_TILE.getXOffset(),
+					Offsets.VOID_KNIGHT_TILE.getYOffset());
 		}
 	}
 

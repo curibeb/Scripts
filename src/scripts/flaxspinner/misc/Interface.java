@@ -5,7 +5,7 @@ import org.tribot.api2007.types.RSInterfaceChild;
 
 public enum Interface {
 
-	SPININTERFACE(459, 91),;
+	SPIN_INTERFACE(459, 91),;
 
 	private int parent;
 	private int child;

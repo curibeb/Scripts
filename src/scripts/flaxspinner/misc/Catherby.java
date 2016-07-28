@@ -17,15 +17,15 @@ public class Catherby {
 	public static String status = "";
 	
 	public static void handleCatherby() {
-		if (Areas.BUILDINGFIRSTFLOOR.getArea().contains(Spin.myTile())) {
-			if (Interface.SPININTERFACE.open()) {
+		if (Areas.BUILDING_FIRST_FLOOR.getArea().contains(Spin.myTile())) {
+			if (Interface.SPIN_INTERFACE.open()) {
 				status = "Closing interface";
 				Interfaces.closeAll();
 			} else {
 				decendToGroundFloor();
 			}
 		}
-		if (Areas.BUILDINGGROUNDFLOOR.getArea().contains(Spin.myTile())) {
+		if (Areas.BUILDING_GROUND_FLOOR.getArea().contains(Spin.myTile())) {
 			headToBankCatherby();
 		}
 		if (Spin.lost()) {

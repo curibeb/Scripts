@@ -13,7 +13,7 @@ public class Conditions {
 		return new Condition() {
 			@Override
 			public boolean active() {
-				return !Interface.INSIDEGAME.text().contains("You must defend");
+				return !Interface.INSIDE_GAME.text().contains("You must defend");
 			}
 		};
 	}

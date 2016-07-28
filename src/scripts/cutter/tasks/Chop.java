@@ -36,7 +36,7 @@ public class Chop extends Task {
 
 	@Override
 	public boolean validate() {
-		return !Inventory.isFull() && Equipment.isEquipped(Vars.axeId);
+		return !Inventory.isFull() && Equipment.isEquipped(Vars.axe_Id);
 	}
 
 	@Override
@@ -44,13 +44,13 @@ public class Chop extends Task {
 		while (Player.getAnimation() != -1) {
 			Antiban.doIdleActions();
 		}
-		if (Vars.treesLoc.contains(Player.getPosition())) {
+		if (Vars.trees_Loc.contains(Player.getPosition())) {
 			if (Player.getAnimation() == -1)
 				this.chopWhenIdle();
 			else
 				this.chopWhenHovered();
 		} else {
-			Walking.blindWalkTo(Vars.treesTile);
+			Walking.blindWalkTo(Vars.trees_Tile);
 		}
 	}
 
@@ -79,8 +79,8 @@ public class Chop extends Task {
 	}
 
 	public static RSTile centreTile() {
-		return Vars.treesLoc.polygon.npoints > 0 ? new RSTile((int) Math.round(avg(Vars.treesLoc.polygon.xpoints)),
-				(int) Math.round(avg(Vars.treesLoc.polygon.ypoints))) : null;
+		return Vars.trees_Loc.polygon.npoints > 0 ? new RSTile((int) Math.round(avg(Vars.trees_Loc.polygon.xpoints)),
+				(int) Math.round(avg(Vars.trees_Loc.polygon.ypoints))) : null;
 	}
 
 	private static double avg(final int... nums) {
@@ -115,9 +115,9 @@ public class Chop extends Task {
 	}
 
 	public static boolean grabTreeTile() {
-		RSObject[] tree = Objects.findNearest(100, Vars.tree);
+		RSObject[] tree = Objects.findNearest(Vars.trees_Loc.getAllTiles().length, Vars.tree);
 		if (tree != null && tree.length > 0) {
-			if (Vars.treesLoc.contains(tree[0].getPosition())) {
+			if (Vars.trees_Loc.contains(tree[0].getPosition())) {
 				treeTile = Antiban.determineNextTarget(tree);
 			}
 		}

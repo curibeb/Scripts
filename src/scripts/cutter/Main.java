@@ -100,19 +100,19 @@ public class Main extends Script implements Painting, Ending {
 
 	public void setXp() {
 		if (Vars.tree.equalsIgnoreCase("willow")) {
-			Vars.logXp = Trees.WILLOW.getXp();
+			Vars.log_Xp = Trees.WILLOW.getXp();
 		}
 		if (Vars.tree.equalsIgnoreCase("yew")) {
-			Vars.logXp = Trees.YEW.getXp();
+			Vars.log_Xp = Trees.YEW.getXp();
 		}
 		if (Vars.tree.equalsIgnoreCase("tree")) {
-			Vars.logXp = Trees.NORMAL.getXp();
+			Vars.log_Xp = Trees.NORMAL.getXp();
 		}
 		if (Vars.tree.equalsIgnoreCase("oak")) {
-			Vars.logXp = Trees.OAK.getXp();
+			Vars.log_Xp = Trees.OAK.getXp();
 		}
 		if (Vars.tree.equalsIgnoreCase("magic")) {
-			Vars.logXp = Trees.MAGIC.getXp();
+			Vars.log_Xp = Trees.MAGIC.getXp();
 		}
 	}
 
@@ -121,10 +121,10 @@ public class Main extends Script implements Painting, Ending {
 		setXp();
 		Graphics2D b = (Graphics2D) g;
 		if (Vars.start) {
-			Vars.timeRan = System.currentTimeMillis() - Vars.beforeStart;
-			Vars.xpGained = Skills.getXP(SKILLS.WOODCUTTING) - Vars.woodcutXp;
-			Vars.logsChopped = (int) Math.round((Vars.xpGained / Vars.logXp));
-			for (RSTile tile : Vars.treesLoc.getAllTiles()) {
+			Vars.time_Ran = System.currentTimeMillis() - Vars.before_Start;
+			Vars.xp_Gained = Skills.getXP(SKILLS.WOODCUTTING) - Vars.woodcut_Xp;
+			Vars.logs_Chopped = (int) Math.round((Vars.xp_Gained / Vars.log_Xp));
+			for (RSTile tile : Vars.trees_Loc.getAllTiles()) {
 				drawTile(tile, b, false);
 			}
 			g.setColor(Color.yellow);
@@ -134,9 +134,9 @@ public class Main extends Script implements Painting, Ending {
 			g.setColor(Color.red);
 			g.fillRect(280, 390, 180, 80);
 			g.setColor(Color.yellow);
-			g.drawString("Time Running: " + Timing.msToString(Vars.timeRan), 300, 410);
-			g.drawString("Woodcut Xp Gained: " + Vars.xpGained, 300, 425);
-			g.drawString(Vars.tree + " Logs Chopped: " + Vars.logsChopped, 300, 440);
+			g.drawString("Time Running: " + Timing.msToString(Vars.time_Ran), 300, 410);
+			g.drawString("Woodcut Xp Gained: " + Vars.xp_Gained, 300, 425);
+			g.drawString(Vars.tree + " Logs Chopped: " + Vars.logs_Chopped, 300, 440);
 			g.drawString("Status: " + taskSet.getTask().status(), 300, 455);
 
 		}
@@ -146,9 +146,9 @@ public class Main extends Script implements Painting, Ending {
 	@Override
 	public void onEnd() {
 		General.println("----------------------C#Cutter----------------------");
-		General.println("Time Ran: " + Timing.msToString(Vars.timeRan));
-		General.println("Xp Gained: " + Vars.xpGained);
-		General.println(Vars.tree + " Logs Chopped: " + Vars.logsChopped);
+		General.println("Time Ran: " + Timing.msToString(Vars.time_Ran));
+		General.println("Xp Gained: " + Vars.xp_Gained);
+		General.println(Vars.tree + " Logs Chopped: " + Vars.logs_Chopped);
 		General.println("----------------------C#Cutter----------------------");
 	}
 

@@ -31,7 +31,7 @@ public class AvoidEnt extends Task {
 	public void execute() {
 		Antiban.setWaitingSince();
 		Antiban.get().performReactionTimeWait();
-		Walking.blindWalkTo(Vars.treesLoc.getRandomTile());
+		Walking.blindWalkTo(Vars.trees_Loc.getRandomTile());
 	}
 
 	@Override

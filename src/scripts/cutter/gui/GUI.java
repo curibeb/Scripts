@@ -349,10 +349,10 @@ public class GUI extends javax.swing.JFrame {
 			script.notify();
 		}
 		Vars.bank = new RSArea(bankFirstTile, bankSecondTile);
-		Vars.treesLoc = new RSArea(treeFirstTile, treeSecondTile);
+		Vars.trees_Loc = new RSArea(treeFirstTile, treeSecondTile);
 		Vars.tree = treeList.getSelectedValue();
-		Vars.treesTile = this.treesTile;
-		Vars.axeId = Integer.parseInt(axeIdTextField.getText());
+		Vars.trees_Tile = this.treesTile;
+		Vars.axe_Id = Integer.parseInt(axeIdTextField.getText());
 		this.dispose();
 		this.setVisible(false);
 		if (Vars.powerchop) {
@@ -468,7 +468,7 @@ public class GUI extends javax.swing.JFrame {
 						Integer.parseInt(prop.getProperty("treetileY")), 0);
 
 				Vars.bank = new RSArea(bankFirstTile, bankSecondTile);
-				Vars.treesLoc = new RSArea(treeFirstTile, treeSecondTile);
+				Vars.trees_Loc = new RSArea(treeFirstTile, treeSecondTile);
 				axeIdTextField.setText(prop.getProperty("axeid"));
 				firstBankTileTextbox.setText(bankFirstTile.toString());
 				secondBankTileTextbox.setText(bankSecondTile.toString());

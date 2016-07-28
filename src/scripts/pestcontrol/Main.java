@@ -82,12 +82,12 @@ public class Main extends Script implements Painting, Starting, EventBlockingOve
 
 	@Override
 	public void onPaint(Graphics g) {
-		if (Vars.paintAreas) {
+		if (Vars.paint_Areas) {
 			Paint.paintAreas(g);
 		}
 		Paint.checkPositionForPaint();
 
-		if (Vars.showPaint) {
+		if (Vars.show_Paint) {
 			Paint.paintStrings(g, Vars.status);
 		}
 		g.setColor(Color.red);
@@ -104,10 +104,10 @@ public class Main extends Script implements Painting, Starting, EventBlockingOve
 			if (showTiles.contains(e.getPoint())) {
 				if (e.getID() == MouseEvent.MOUSE_CLICKED) {
 					e.consume();
-					if (!Vars.paintAreas)
-						Vars.paintAreas = true;
+					if (!Vars.paint_Areas)
+						Vars.paint_Areas = true;
 					else
-						Vars.paintAreas = false;
+						Vars.paint_Areas = false;
 					return OVERRIDE_RETURN.DISMISS;
 				} else if (e.getID() == MouseEvent.MOUSE_PRESSED)
 					return OVERRIDE_RETURN.DISMISS;
@@ -115,10 +115,10 @@ public class Main extends Script implements Painting, Starting, EventBlockingOve
 			if (showPaint.contains(e.getPoint())) {
 				if (e.getID() == MouseEvent.MOUSE_CLICKED) {
 					e.consume();
-					if (!Vars.showPaint)
-						Vars.showPaint = true;
+					if (!Vars.show_Paint)
+						Vars.show_Paint = true;
 					else
-						Vars.showPaint = false;
+						Vars.show_Paint = false;
 					return OVERRIDE_RETURN.DISMISS;
 				} else if (e.getID() == MouseEvent.MOUSE_PRESSED)
 					return OVERRIDE_RETURN.DISMISS;

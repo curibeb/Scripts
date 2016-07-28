@@ -10,7 +10,7 @@ public class IdleBoat extends Task {
 
 	@Override
 	public int priority() {
-		return Priorities.RIDEBOAT.getPriority();
+		return Priorities.RIDE_BOAT.getPriority();
 	}
 
 	@Override
@@ -21,14 +21,14 @@ public class IdleBoat extends Task {
 	@Override
 	public void execute() {
 		Vars.status = "Idling";
-		if (Vars.wonMsg) {
-			Vars.pointsGained += 2;
-			Vars.gamesWon +=1;
-			Vars.wonMsg = false;
+		if (Vars.won_Msg) {
+			Vars.points_Gained += 2;
+			Vars.games_Won +=1;
+			Vars.won_Msg = false;
 		}
-		if (Vars.lostMsg) {
-			Vars.gamesLost +=1;
-			Vars.lostMsg = false;
+		if (Vars.lost_Msg) {
+			Vars.games_Lost +=1;
+			Vars.lost_Msg = false;
 		}
 		Antiban.doIdleActions();
 	}

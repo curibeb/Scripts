@@ -2,7 +2,7 @@ package scripts.pestcontrol.enums;
 
 public enum Priorities {
 
-	DEFENDKNIGHT(1),ATTACKPORTALS(1), IDLEBOAT(0), GAMECHAT(3), GENERATEAREA(4), RIDEBOAT(2);
+	DEFEND_KNIGHT(1),ATTACK_PORTALS(1), IDLE_BOAT(0), GAME_CHAT(3), GENERATE_AREA(4), RIDE_BOAT(2);
 
 	private int priority;
 

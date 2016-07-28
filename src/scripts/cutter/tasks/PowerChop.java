@@ -28,12 +28,12 @@ public class PowerChop extends Task {
 
 	@Override
 	public boolean validate() {
-		return Equipment.isEquipped(Vars.axeId);
+		return Equipment.isEquipped(Vars.axe_Id);
 	}
 
 	@Override
 	public void execute() {
-		if (Vars.treesLoc.contains(Player.getPosition())) {
+		if (Vars.trees_Loc.contains(Player.getPosition())) {
 			if (full) {
 				dropAll();
 				if (Inventory.getAll().length == 0) {
@@ -58,7 +58,7 @@ public class PowerChop extends Task {
 				}
 			}
 		} else {
-			WebWalking.walkTo(Vars.treesTile);
+			WebWalking.walkTo(Vars.trees_Tile);
 		}
 	}
 

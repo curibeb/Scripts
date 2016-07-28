@@ -1,5 +1,6 @@
 package scripts.pestcontrol.tasks;
 
+import org.tribot.api.General;
 import org.tribot.api2007.Player;
 
 import scripts.pestcontrol.antiban.Antiban;
@@ -12,7 +13,7 @@ public class AttackPortals extends Task {
 	@Override
 	public int priority() {
 		// TODO Auto-generated method stub
-		return Priorities.ATTACKPORTALS.getPriority();
+		return Priorities.ATTACK_PORTALS.getPriority();
 	}
 
 	@Override
@@ -23,6 +24,7 @@ public class AttackPortals extends Task {
 	@Override
 	public void execute() {
 		while (Player.getRSPlayer().getInteractingCharacter() != null) {
+			General.sleep(500,800);
 			Antiban.doIdleActions();
 		}
 		if (Player.getRSPlayer().getInteractingCharacter() == null)

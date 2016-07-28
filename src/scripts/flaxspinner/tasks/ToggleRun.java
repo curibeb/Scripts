@@ -14,7 +14,7 @@ public class ToggleRun extends Task {
 
 	@Override
 	public int priority() {
-		return Vars.runPriority;
+		return Vars.run_Priority;
 	}
 
 	@Override

@@ -23,32 +23,32 @@ public class AreaCheck {
 	}
 
 	public static boolean areAreasDefined() {
-		return Vars.gameBoatArea != null && Vars.gameAroundVoidKnightArea != null
-				&& Vars.gameVoidKnightProtectArea != null && Vars.fullGameArea != null;
+		return Vars.game_Boat_Area != null && Vars.game_Around_Void_Knight_Area != null
+				&& Vars.game_Void_Knight_Protect_Area != null && Vars.full_Game_Area != null;
 	}
 
 	public static boolean isInGame() {
-		return Vars.fullGameArea.contains(myTile());
+		return Vars.full_Game_Area.contains(myTile());
 	}
 
 	public static boolean isInLobby() {
-		return !Vars.lobbyBoat.contains(myTile()) && Vars.lobby.contains(myTile());
+		return !Vars.lobby_Boat.contains(myTile()) && Vars.lobby.contains(myTile());
 	}
 
 	public static boolean isInsideLobbyBoat() {
-		return Vars.lobbyBoat.contains(myTile()) && Vars.lobby.contains(myTile());
+		return Vars.lobby_Boat.contains(myTile()) && Vars.lobby.contains(myTile());
 	}
 
 	public static boolean isInsideGameBoat() {
-		return Vars.gameBoatArea.contains(myTile());
+		return Vars.game_Boat_Area.contains(myTile());
 	}
 
 	public static boolean isInsideGameVoidKnightArea() {
-		return Vars.gameVoidKnightProtectArea.contains(myTile());
+		return Vars.game_Void_Knight_Protect_Area.contains(myTile());
 	}
 
 	public static boolean isInsideGameAroundVoidKnightArea() {
-		return Vars.gameAroundVoidKnightArea.contains(myTile());
+		return Vars.game_Around_Void_Knight_Area.contains(myTile());
 	}
 
 }

@@ -14,13 +14,13 @@ public class GameChat extends Task {
 
 	@Override
 	public int priority() {
-		return Priorities.GAMECHAT.getPriority();
+		return Priorities.GAME_CHAT.getPriority();
 	}
 
 	@Override
 	public boolean validate() {
 
-		return Interface.INSIDEGAME.text().contains("You must defend");
+		return Interface.INSIDE_GAME.text().contains("You must defend");
 	}
 
 	@Override

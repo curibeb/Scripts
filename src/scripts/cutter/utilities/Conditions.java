@@ -66,7 +66,7 @@ public class Conditions {
 		return new Condition() {
 			@Override
 			public boolean active() {
-				return Equipment.isEquipped(Vars.axeId);
+				return Equipment.isEquipped(Vars.axe_Id);
 			}
 		};
 	}
