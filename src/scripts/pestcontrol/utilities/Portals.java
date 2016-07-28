@@ -3,10 +3,8 @@ package scripts.pestcontrol.utilities;
 import org.tribot.api.DynamicClicking;
 import org.tribot.api.General;
 import org.tribot.api.Timing;
-import org.tribot.api.types.generic.Condition;
 import org.tribot.api.types.generic.Filter;
 import org.tribot.api2007.Objects;
-import org.tribot.api2007.PathFinding;
 import org.tribot.api2007.Player;
 import org.tribot.api2007.Walking;
 import org.tribot.api2007.WebWalking;
@@ -47,13 +45,7 @@ public class Portals {
 			if (door.length > 0) {
 				if (door[0].isOnScreen()) {
 					if (DynamicClicking.clickRSObject(door[0], "Open")) {
-						Timing.waitCondition(new Condition() {
-							@Override
-							public boolean active() {
-								return PathFinding.canReach(centreTile(area), false);
-							}
-
-						}, General.random(4000, 6000));
+						Timing.waitCondition(Conditions.canReachTile(centreTile(area)), General.random(4000, 6000));
 					}
 				} else {
 					Walking.blindWalkTo(door[0]);

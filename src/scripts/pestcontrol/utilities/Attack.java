@@ -3,7 +3,6 @@ package scripts.pestcontrol.utilities;
 import org.tribot.api.General;
 import org.tribot.api.Timing;
 import org.tribot.api.input.Mouse;
-import org.tribot.api.types.generic.Condition;
 import org.tribot.api.types.generic.Filter;
 import org.tribot.api2007.Camera;
 import org.tribot.api2007.Game;
@@ -43,12 +42,7 @@ public class Attack {
 				if (Game.getUptext() != null) {
 					if (Game.getUptext().contains("Attack")) {
 						Mouse.click(1);
-						Timing.waitCondition(new Condition() {
-							@Override
-							public boolean active() {
-								return Player.getRSPlayer().getInteractingCharacter() != null;
-							}
-						}, General.random(4000, 7000));
+						Timing.waitCondition(Conditions.playerInteracting(), General.random(4000, 7000));
 					} else {
 						target.hover();
 					}
