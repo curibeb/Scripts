@@ -41,36 +41,44 @@ public class Chop extends Task {
 
 	@Override
 	public void execute() {
+		while (Player.getAnimation() != -1) {
+			Antiban.doIdleActions();
+		}
 		if (Vars.treesLoc.contains(Player.getPosition())) {
-			if (Player.getAnimation() == -1) {
-				if (isTreeAtTile()) {
-					if (hovered()) {
-						click();
-					} else {
-						cutTree();
-					}
-				} else {
-					grabTreeTile();
-				}
-			} else {
-				if (!isTreeAtTile()) {
-					if (grabTreeTile()) {
-						if (hovered()) {
-							click();
-						} else {
-							cutTree();
-						}
-					}
-				} else {
-					Antiban.doIdleActions();
-				}
-			}
+			if (Player.getAnimation() == -1)
+				this.chopWhenIdle();
+			else
+				this.chopWhenHovered();
 		} else {
 			Walking.blindWalkTo(Vars.treesTile);
 		}
 	}
 
-	public static  RSTile centreTile() {
+	public void chopWhenIdle() {
+		if (isTreeAtTile()) {
+			if (hovered()) {
+				click();
+			} else {
+				cutTree();
+			}
+		} else {
+			grabTreeTile();
+		}
+	}
+
+	public void chopWhenHovered() {
+		if (!isTreeAtTile()) {
+			if (grabTreeTile()) {
+				if (hovered()) {
+					click();
+				} else {
+					cutTree();
+				}
+			}
+		}
+	}
+
+	public static RSTile centreTile() {
 		return Vars.treesLoc.polygon.npoints > 0 ? new RSTile((int) Math.round(avg(Vars.treesLoc.polygon.xpoints)),
 				(int) Math.round(avg(Vars.treesLoc.polygon.ypoints))) : null;
 	}
