@@ -1,7 +1,7 @@
 package scripts.pestcontrol.tasks;
 
 import org.tribot.api.General;
-import org.tribot.api2007.Player;
+import org.tribot.api2007.Combat;
 import org.tribot.api2007.Walking;
 
 import scripts.pestcontrol.antiban.Antiban;
@@ -28,7 +28,7 @@ public class DefendKnights extends Task {
 
 	@Override
 	public void execute() {
-		while (Player.getRSPlayer().getInteractingCharacter() != null) {
+		while (Combat.isUnderAttack()) {
 			General.sleep(500, 800);
 			Antiban.doIdleActions();
 		}
@@ -54,7 +54,7 @@ public class DefendKnights extends Task {
 
 	public void defendKnight() {
 		if (AreaCheck.isInsideGameVoidKnightArea()) {
-			if (Player.getRSPlayer().getInteractingCharacter() == null) {
+			if (!Combat.isUnderAttack()) {
 				if (Attack.target(Vars.game_Void_Knight_Protect_Area) != null) {
 					Attack.attack(Vars.game_Void_Knight_Protect_Area);
 				} else {

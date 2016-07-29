@@ -1,6 +1,7 @@
 package scripts.pestcontrol.tasks;
 
 import org.tribot.api.General;
+import org.tribot.api2007.Combat;
 import org.tribot.api2007.Player;
 
 import scripts.pestcontrol.antiban.Antiban;
@@ -23,7 +24,7 @@ public class AttackPortals extends Task {
 
 	@Override
 	public void execute() {
-		while (Player.getRSPlayer().getInteractingCharacter() != null) {
+		while (Combat.isUnderAttack()) {
 			General.sleep(500, 800);
 			Antiban.doIdleActions();
 		}
