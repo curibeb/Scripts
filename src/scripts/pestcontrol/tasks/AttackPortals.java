@@ -7,24 +7,24 @@ import scripts.pestcontrol.antiban.Antiban;
 import scripts.pestcontrol.enums.Priorities;
 import scripts.pestcontrol.taskframework.Task;
 import scripts.pestcontrol.utilities.AreaCheck;
+import scripts.pestcontrol.utilities.Vars;
 
 public class AttackPortals extends Task {
 
 	@Override
 	public int priority() {
-		// TODO Auto-generated method stub
 		return Priorities.ATTACK_PORTALS.getPriority();
 	}
 
 	@Override
 	public boolean validate() {
-		return AreaCheck.areAreasDefined() && AreaCheck.isInGame();
+		return Vars.attack_Portals && AreaCheck.areAreasDefined() && AreaCheck.isInGame();
 	}
 
 	@Override
 	public void execute() {
 		while (Player.getRSPlayer().getInteractingCharacter() != null) {
-			General.sleep(500,800);
+			General.sleep(500, 800);
 			Antiban.doIdleActions();
 		}
 		if (Player.getRSPlayer().getInteractingCharacter() == null)

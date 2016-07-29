@@ -17,28 +17,25 @@ public class DefendKnights extends Task {
 
 	@Override
 	public int priority() {
-		return  Priorities.DEFEND_KNIGHT.getPriority();
+		return Priorities.DEFEND_KNIGHT.getPriority();
 	}
 
 	@Override
 	public boolean validate() {
-		return AreaCheck.areAreasDefined() && AreaCheck.isInGame();
+		return Vars.defend_Knight && AreaCheck.areAreasDefined() && AreaCheck.isInGame();
 
 	}
 
 	@Override
 	public void execute() {
-
 		while (Player.getRSPlayer().getInteractingCharacter() != null) {
-			General.sleep(500,800);
+			General.sleep(500, 800);
 			Antiban.doIdleActions();
 		}
-
-		if (this.needToGetDamage())
+		if (needToGetDamage())
 			getDamage();
 		else
-			this.defendKnight();
-
+			defendKnight();
 	}
 
 	public static void getDamage() {

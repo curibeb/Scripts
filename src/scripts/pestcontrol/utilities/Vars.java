@@ -24,6 +24,8 @@ public class Vars {
 	//
 
 	// booleans
+	public static boolean defend_Knight = false;
+	public static boolean attack_Portals = false;
 	public static boolean start = false;
 	public static boolean novice = false;
 	public static boolean intermediate = false;

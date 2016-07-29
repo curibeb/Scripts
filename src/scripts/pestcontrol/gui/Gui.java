@@ -151,6 +151,11 @@ public class Gui extends javax.swing.JFrame {
 			script.taskSet.addTasks(new GameChat(), new RideBoat(), new PerfomAreaGenerate(), new IdleBoat(),
 					new DefendKnights());
 		}
+		if (modeCombo.getSelectedIndex() == 0){
+			Vars.attack_Portals = true;
+		}else{
+			Vars.defend_Knight = true;
+		}
 		this.dispose();
 		this.setVisible(false);
 	}
