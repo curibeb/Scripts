@@ -5,6 +5,8 @@ import java.awt.Graphics;
 
 import javax.swing.JFrame;
 
+import org.tribot.api.General;
+import org.tribot.api.input.Mouse;
 import org.tribot.api2007.Walking;
 import org.tribot.api2007.util.ThreadSettings;
 import org.tribot.script.Script;
@@ -72,6 +74,7 @@ public class Main extends Script implements Painting, Starting, MessageListening
 
 	@Override
 	public void onStart() {
+		Mouse.setSpeed(General.random(100, 120));
 		Walking.setWalkingTimeout(1500);
 		ThreadSettings.get().setClickingAPIUseDynamic(true);
 		Vars.task_Set.addTasks(new Bank(), new Cook(), new ToggleRun());
@@ -103,7 +106,7 @@ public class Main extends Script implements Painting, Starting, MessageListening
 
 	@Override
 	public void serverMessageReceived(String a) {
-		if (a.contains("You successfully cook")) {
+		if (a.contains("You successfully cook") || a.contains("You manage to cook")) {
 			Vars.cooked++;
 		}
 		if (a.contains("You accidentally burn")) {

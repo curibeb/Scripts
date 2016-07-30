@@ -136,7 +136,8 @@ public class Cook extends Task {
 					return false;
 				}
 				for (String a : actions) {
-					return a.equals("Open") && Objectives.COOK.get_Area().contains(object);
+					return object.getDefinition().getName().equals("Door") && a.equals("Open")
+							&& Objectives.COOK.get_Area().contains(object);
 				}
 				return false;
 			}
