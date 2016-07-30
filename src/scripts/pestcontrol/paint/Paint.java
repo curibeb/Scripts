@@ -14,13 +14,12 @@ import javax.imageio.ImageIO;
 import org.tribot.api.Timing;
 import org.tribot.api.input.Mouse;
 import org.tribot.api2007.Game;
-import org.tribot.api2007.Interfaces;
 import org.tribot.api2007.Player;
 import org.tribot.api2007.Projection;
-import org.tribot.api2007.types.RSInterface;
 import org.tribot.api2007.types.RSTile;
 
 import scripts.pestcontrol.Main;
+import scripts.pestcontrol.enums.Areas;
 import scripts.pestcontrol.enums.Interface;
 import scripts.pestcontrol.utilities.AreaCheck;
 import scripts.pestcontrol.utilities.Vars;
@@ -55,9 +54,7 @@ public class Paint {
 		g.drawString("" + Interface.BLUE_PORTAL.getValue(), 5, 420);
 		g.setColor(Color.yellow);
 		g.drawString("" + Interface.YELLO_PORTAL.getValue(), 5, 440);
-		g.setColor(Color.pink);
-		g.drawString("" + Interface.PINK_PORTAL.getValue(), 5, 460);
-
+		g.setColor(Color.pink);	
 	}
 
 	public static Image getImage(String url) {
@@ -68,68 +65,14 @@ public class Paint {
 		}
 	}
 
-
 	public static void paintAreas(Graphics g) {
-		if (Vars.full_Game_Area != null) {
-			for (RSTile t : Vars.full_Game_Area.getAllTiles()) {
-				drawTile(t, (Graphics2D) g, false, Color.black);
+		for (Areas a : Areas.values()) {
+			if (a != null) {
+				for (RSTile t : a.getArea().getAllTiles()) {
+					drawTile(t, (Graphics2D) g, false, Color.red);
+				}
 			}
-		}
-		if (Vars.game_Boat_Area != null) {
-			for (RSTile t : Vars.game_Boat_Area.getAllTiles()) {
-				drawTile(t, (Graphics2D) g, false, Color.white);
-			}
-		}
-		if (Vars.lobby_Boat != null) {
-			for (RSTile t : Vars.lobby_Boat.getAllTiles()) {
-				drawTile(t, (Graphics2D) g, false, Color.white);
-			}
-		}
 
-		if (Vars.game_Around_Void_Knight_Area != null) {
-			for (RSTile t : Vars.game_Around_Void_Knight_Area.getAllTiles()) {
-				drawTile(t, (Graphics2D) g, false, Color.LIGHT_GRAY);
-			}
-		}
-		if (Vars.game_Void_Knight_Protect_Area != null) {
-			for (RSTile t : Vars.game_Void_Knight_Protect_Area.getAllTiles()) {
-				drawTile(t, (Graphics2D) g, false, Color.green);
-			}
-		}
-		if (Vars.blue_Portal_Area != null) {
-			for (RSTile t : Vars.blue_Portal_Area.getAllTiles()) {
-				drawTile(t, (Graphics2D) g, false, Color.blue);
-			}
-		}
-		if (Vars.yellow_Portal_Area != null) {
-			for (RSTile t : Vars.yellow_Portal_Area.getAllTiles()) {
-				drawTile(t, (Graphics2D) g, false, Color.yellow);
-			}
-		}
-		if (Vars.pink_Portal_Area != null) {
-			for (RSTile t : Vars.pink_Portal_Area.getAllTiles()) {
-				drawTile(t, (Graphics2D) g, false, Color.pink);
-			}
-		}
-		if (Vars.puple_Portal_Area != null) {
-			for (RSTile t : Vars.puple_Portal_Area.getAllTiles()) {
-				drawTile(t, (Graphics2D) g, false, Color.magenta);
-			}
-		}
-		if (Vars.south_Gate != null) {
-			for (RSTile t : Vars.south_Gate.getAllTiles()) {
-				drawTile(t, (Graphics2D) g, false, Color.red);
-			}
-		}
-		if (Vars.east_Gate != null) {
-			for (RSTile t : Vars.east_Gate.getAllTiles()) {
-				drawTile(t, (Graphics2D) g, false, Color.red);
-			}
-		}
-		if (Vars.west_Gate != null) {
-			for (RSTile t : Vars.west_Gate.getAllTiles()) {
-				drawTile(t, (Graphics2D) g, false, Color.red);
-			}
 		}
 		if (Vars.void_Knight_Tile != null) {
 			drawTile(Vars.void_Knight_Tile, (Graphics2D) g, false, Color.red);
