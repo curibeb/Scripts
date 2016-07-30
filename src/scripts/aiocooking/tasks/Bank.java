@@ -27,7 +27,7 @@ public class Bank extends Task {
 
 	@Override
 	public boolean validate() {
-		return Inventory.getCount(Food.SHRIMP.getName()) == 0;
+		return Inventory.getCount(Vars.food) == 0;
 	}
 
 	@Override
@@ -77,10 +77,10 @@ public class Bank extends Task {
 			}
 		} else {
 			General.sleep(500, 800);
-			RSItem[] item = Banking.find(Food.SHRIMP.getName());
+			RSItem[] item = Banking.find(Vars.food);
 			if (isBankItemsLoaded()) {
 				if (item.length == 0) {
-					General.println("We ran out of " + Food.SHRIMP.getName() + " so we stopped.");
+					General.println("We ran out of " + Vars.food + " so we stopped.");
 					Vars.start = false;
 				} else {
 					withdraw();
@@ -99,7 +99,7 @@ public class Bank extends Task {
 			}
 		} else {
 			Vars.status = "Withdrawing " + Vars.food;
-			if (Banking.withdraw(0, Food.SHRIMP.getName())) {
+			if (Banking.withdraw(0, Vars.food)) {
 				General.sleep(AntiBan.getReactionTime());
 				General.println("Generated reaction time: " + AntiBan.getReactionTime());
 				Timing.waitCondition(Conditions.get().got_Item(), General.random(4000, 7000));

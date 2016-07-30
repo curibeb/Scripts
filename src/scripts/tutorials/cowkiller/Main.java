@@ -18,7 +18,7 @@ import scripts.tutorials.cowkiller.methods.Cows;
 // because our script now is uncategorized
 // so lets categorize our script
 // and now we have our script manifested
-@ScriptManifest(authors = { "C#2bot" }, category = "Combat", name = "C#2bot Cow Killer")
+@ScriptManifest(authors = { "C#2bot" }, category = "Tutorials", name = "C#2bot Cow Killer")
 public class Main extends Script implements Painting {
 
 	@Override

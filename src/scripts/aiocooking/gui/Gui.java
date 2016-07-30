@@ -458,33 +458,27 @@ public class Gui extends javax.swing.JFrame {
 			Vars.food = Food.CHICKEN.getName();
 		}
 		if (this.cook_Item_Combo.getSelectedIndex() == 3){
-			Vars.food = Food.SHRIMP.getName();
+			Vars.food = Food.SARDINE.getName();
 		}
 		if (this.cook_Item_Combo.getSelectedIndex() == 4){
-			Vars.food = Food.SARDINE.getName();
-		}
-		if (this.cook_Item_Combo.getSelectedIndex() == 5){
 			Vars.food = Food.HERRING.getName();
 		}
-		if (this.cook_Item_Combo.getSelectedIndex() == 6){
-			Vars.food = Food.SARDINE.getName();
-		}
-		if (this.cook_Item_Combo.getSelectedIndex() == 7){
+		if (this.cook_Item_Combo.getSelectedIndex() == 5){
 			Vars.food = Food.TROUT.getName();
 		}
-		if (this.cook_Item_Combo.getSelectedIndex() == 8){
+		if (this.cook_Item_Combo.getSelectedIndex() == 6){
 			Vars.food = Food.PIKE.getName();
 		}
-		if (this.cook_Item_Combo.getSelectedIndex() == 9){
+		if (this.cook_Item_Combo.getSelectedIndex() == 7){
 			Vars.food = Food.SALMON.getName();
 		}
-		if (this.cook_Item_Combo.getSelectedIndex() == 10){
+		if (this.cook_Item_Combo.getSelectedIndex() == 8){
 			Vars.food = Food.TUNA.getName();
 		}
-		if (this.cook_Item_Combo.getSelectedIndex() == 11){
+		if (this.cook_Item_Combo.getSelectedIndex() == 9){
 			Vars.food = Food.LOBSTER.getName();
 		}
-		if (this.cook_Item_Combo.getSelectedIndex() == 12){
+		if (this.cook_Item_Combo.getSelectedIndex() == 10){
 			Vars.food = Food.SWORDFISH.getName();
 		}
 		this.dispose();
