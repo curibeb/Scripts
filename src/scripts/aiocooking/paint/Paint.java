@@ -40,8 +40,6 @@ public class Paint {
 		g.drawString("Cook xp Gained: " + Vars.cooked * xp(), 300, 375);
 		g.drawString("Cook xp/hour: " + Vars.xp_Per_Hour , 300, 390);
 		g.drawString("Time Running: " + Timing.msToString(Vars.time_Ran) , 300, 405);
-
-
 	}
 
 	public static int xp() {
