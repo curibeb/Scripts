@@ -44,41 +44,13 @@ public class Paint {
 
 	}
 
-	private static int xp() {
-		if (Vars.food.equals(Food.CHICKEN.getName())) {
-			return Food.CHICKEN.getXp();
+	public static int xp() {
+		for (Food f : Food.values()) {
+			if (f.getName().equals(Vars.food)) {
+				return f.getXp();
+			}
 		}
-		if (Vars.food.equals(Food.HERRING.getName())) {
-			return Food.HERRING.getXp();
-		}
-		if (Vars.food.equals(Food.LOBSTER.getName())) {
-			return Food.LOBSTER.getXp();
-		}
-		if (Vars.food.equals(Food.MEAT.getName())) {
-			return Food.MEAT.getXp();
-		}
-		if (Vars.food.equals(Food.PIKE.getName())) {
-			return Food.PIKE.getXp();
-		}
-		if (Vars.food.equals(Food.SALMON.getName())) {
-			return Food.SALMON.getXp();
-		}
-		if (Vars.food.equals(Food.SARDINE.getName())) {
-			return Food.SARDINE.getXp();
-		}
-		if (Vars.food.equals(Food.SHRIMP.getName())) {
-			return Food.SHRIMP.getXp();
-		}
-		if (Vars.food.equals(Food.SWORDFISH.getName())) {
-			return Food.SWORDFISH.getXp();
-		}
-		if (Vars.food.equals(Food.TROUT.getName())) {
-			return Food.TROUT.getXp();
-		}
-		if (Vars.food.equals(Food.TUNA.getName())) {
-			return Food.TUNA.getXp();
-		}
-		return 1;
+		return 0;
 	}
 
 	public static void drawTile(RSArea area, Graphics2D g, boolean fill, Color color) {
