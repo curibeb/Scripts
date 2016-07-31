@@ -1,6 +1,5 @@
 package scripts.pestcontrol.utilities;
 
-import org.tribot.api2007.types.RSArea;
 import org.tribot.api2007.types.RSTile;
 
 public class Vars {
@@ -24,8 +23,6 @@ public class Vars {
 	//
 
 	// booleans
-	public static boolean defend_Knight = false;
-	public static boolean attack_Portals = false;
 	public static boolean start = false;
 	public static boolean novice = false;
 	public static boolean intermediate = false;
@@ -42,20 +39,8 @@ public class Vars {
 	//
 
 	public static RSTile gang_Plank_Tile;
-	public static RSTile void_Knight_Tile;
+	public static RSTile void_Knight_Tile = new RSTile(0,0,0);
 
-	public static RSArea full_Game_Area;
-	public static RSArea game_Boat_Area;
-	public static RSArea game_Void_Knight_Protect_Area;
-	public static RSArea game_Around_Void_Knight_Area;
-	public static RSArea blue_Portal_Area;
-	public static RSArea yellow_Portal_Area;
-	public static RSArea pink_Portal_Area;
-	public static RSArea puple_Portal_Area;
-	public static RSArea south_Gate;
-	public static RSArea east_Gate;
-	public static RSArea west_Gate;
-	public static RSArea lobby_Boat;
-	public static RSArea lobby;
+
 
 }

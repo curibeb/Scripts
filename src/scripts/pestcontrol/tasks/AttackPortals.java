@@ -8,7 +8,6 @@ import scripts.pestcontrol.antiban.Antiban;
 import scripts.pestcontrol.enums.Priorities;
 import scripts.pestcontrol.taskframework.Task;
 import scripts.pestcontrol.utilities.AreaCheck;
-import scripts.pestcontrol.utilities.Vars;
 
 public class AttackPortals extends Task {
 
@@ -19,7 +18,7 @@ public class AttackPortals extends Task {
 
 	@Override
 	public boolean validate() {
-		return Vars.attack_Portals && AreaCheck.areAreasDefined() && AreaCheck.isInGame();
+		return AreaCheck.isInGame();
 	}
 
 	@Override

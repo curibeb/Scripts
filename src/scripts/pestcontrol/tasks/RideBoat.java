@@ -25,26 +25,17 @@ public class RideBoat extends Task {
 		return AreaCheck.isInLobby();
 	}
 
-	public void resetPositions() {
-		Vars.game_Boat_Area = null;
-		Vars.game_Around_Void_Knight_Area = null;
-		Vars.game_Void_Knight_Protect_Area = null;
-		Vars.void_Knight_Tile = null;
-		Vars.full_Game_Area = null;
-	}
+
 
 	@Override
 	public void execute() {
+
 		if (Interface.WON_GAME_MSG.text().contains("Congratulations")) {
 			Vars.won_Msg = true;
 		}
 		if (Interface.LOST_GAME_MSG.text().contains("The knights noticed your lack")
 				|| Interface.LOST_GAME_MSG.text().contains("The void knight was killed")) {
 			Vars.lost_Msg = true;
-		}
-		if (AreaCheck.areAreasDefined()) {
-			Vars.status = "Reseting areas.";
-			this.resetPositions();
 		}
 		Vars.status = "Crossing plank to boat";
 		RSObject[] plank = Objects.getAt(Vars.gang_Plank_Tile);

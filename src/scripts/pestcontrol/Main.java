@@ -3,6 +3,7 @@ package scripts.pestcontrol;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -50,14 +51,15 @@ public class Main extends Script implements Painting, Starting, EventBlockingOve
 
 		synchronized (this) {
 			try {
-				Vars.status = "Gui.";
-
 				this.wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
 
+		while (gui.isVisible()) {
+			sleep(50, 80);
+		}
 
 		while (Vars.start) {
 			sleep(loop());
@@ -82,15 +84,17 @@ public class Main extends Script implements Painting, Starting, EventBlockingOve
 
 	@Override
 	public void onPaint(Graphics g) {
-		if (Vars.paint_Areas) {
-			Paint.paintAreas(g);
+		if (Vars.start){
+			if (Vars.paint_Areas) {
+				Paint.drawTile(Vars.void_Knight_Tile, (Graphics2D)g, false, Color.red);
+			}
+			if (Vars.show_Paint) {
+				Paint.paintStrings(g, Vars.status);
+			}
+			g.drawRect(409, 439, 105, 20);
+			g.drawRect(300, 439, 105, 20);
+			g.setColor(Color.red);
 		}
-		Paint.checkPositionForPaint();
-
-		if (Vars.show_Paint) {
-			Paint.paintStrings(g, Vars.status);
-		}
-		g.setColor(Color.red);
 	}
 
 	@Override

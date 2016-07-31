@@ -1,6 +1,6 @@
 package scripts.pestcontrol.gui;
 
-import org.tribot.api2007.types.RSArea;
+import org.tribot.api.General;
 import org.tribot.api2007.types.RSTile;
 
 import scripts.pestcontrol.Main;
@@ -51,8 +51,7 @@ public class Gui extends javax.swing.JFrame {
 
 		jLabel2.setText("Mode:");
 
-		modeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(
-				new String[] { "Attack Portals", "Defend Knight" }));
+		modeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Attack Portals", "Defend Knight" }));
 		modeCombo.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				modeComboActionPerformed(evt);
@@ -139,44 +138,44 @@ public class Gui extends javax.swing.JFrame {
 		synchronized (script) {
 			script.notify();
 		}
-		Vars.start = true;
 		if (modeCombo.getSelectedIndex() == 0) {
-			// fix gate
-		}
-		if (modeCombo.getSelectedIndex() == 1) {
 			script.taskSet.addTasks(new GameChat(), new RideBoat(), new PerfomAreaGenerate(), new IdleBoat(),
 					new AttackPortals());
 		}
-		if (modeCombo.getSelectedIndex() == 2) {
+		if (modeCombo.getSelectedIndex() == 1) {
 			script.taskSet.addTasks(new GameChat(), new RideBoat(), new PerfomAreaGenerate(), new IdleBoat(),
 					new DefendKnights());
 		}
-		if (modeCombo.getSelectedIndex() == 0){
-			Vars.attack_Portals = true;
-		}else{
-			Vars.defend_Knight = true;
+		if (noviceRadio.isSelected()) {
+			General.println("We are using novice boat.");
+			Vars.novice = true;
+			Vars.gang_Plank_Tile = new RSTile(2658, 2639, 0);
+		}
+		if (intermediateRadio.isSelected()) {
+			General.println("We are using intermediate boat.");
+			Vars.intermediate = true;
+			Vars.gang_Plank_Tile = new RSTile(2643, 2644, 0);
+		}
+		if (this.veteranRadio.isSelected()) {
+			General.println("We are using intermediate boat.");
+			Vars.veteran = true;
+			Vars.gang_Plank_Tile = new RSTile(2737, 2653, 0);
 		}
 		this.dispose();
 		this.setVisible(false);
+		Vars.start = true;
 	}
 
 	private void noviceRadioActionPerformed(java.awt.event.ActionEvent evt) {
-		if (noviceRadio.isSelected()) {
-			Vars.lobby_Boat = new RSArea(new RSTile(2660, 2643, 0), new RSTile(2663, 2638, 0));
-			Vars.gang_Plank_Tile = new RSTile(2658, 2639, 0);
-		}
+
 	}
 
 	private void intermediateRadioActionPerformed(java.awt.event.ActionEvent evt) {
-		if (intermediateRadio.isSelected()) {
-			Vars.lobby_Boat = new RSArea(new RSTile(2638, 2642, 0), new RSTile(2641, 2649, 0));
-			Vars.gang_Plank_Tile = new RSTile(2643, 2644, 0);
-		}
+
 	}
 
 	private void veteranRadioActionPerformed(java.awt.event.ActionEvent evt) {
-		Vars.lobby_Boat = new RSArea(new RSTile(2632, 2649, 0), new RSTile(2635, 2655, 0));
-		Vars.gang_Plank_Tile = new RSTile(2737, 2653, 0);
+
 	}
 
 	/**

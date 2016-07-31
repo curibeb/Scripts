@@ -19,9 +19,7 @@ import org.tribot.api2007.Projection;
 import org.tribot.api2007.types.RSTile;
 
 import scripts.pestcontrol.Main;
-import scripts.pestcontrol.enums.Areas;
 import scripts.pestcontrol.enums.Interface;
-import scripts.pestcontrol.utilities.AreaCheck;
 import scripts.pestcontrol.utilities.Vars;
 
 public class Paint {
@@ -43,6 +41,7 @@ public class Paint {
 		// 560, 290);
 		// g.drawString("At Area Around Knight: " + Vars.isInGameVoidKnightArea,
 		// 560, 305);
+
 		g.drawString("Void Knight Hp:" + Interface.VOID_KNIGHT_HP.getValue(), 80, 455);
 		g.drawString("" + Vars.games_Per_Hour, 430, 480);
 		g.drawString(Vars.points_Gained + "(" + Vars.point_Per_Hor + ")", 250, 405);
@@ -55,6 +54,7 @@ public class Paint {
 		g.setColor(Color.yellow);
 		g.drawString("" + Interface.YELLO_PORTAL.getValue(), 5, 440);
 		g.setColor(Color.pink);	
+		g.drawString("" + Interface.PINK_PORTAL.getValue(), 5, 460);
 	}
 
 	public static Image getImage(String url) {
@@ -65,19 +65,7 @@ public class Paint {
 		}
 	}
 
-	public static void paintAreas(Graphics g) {
-		for (Areas a : Areas.values()) {
-			if (a != null) {
-				for (RSTile t : a.getArea().getAllTiles()) {
-					drawTile(t, (Graphics2D) g, false, Color.red);
-				}
-			}
 
-		}
-		if (Vars.void_Knight_Tile != null) {
-			drawTile(Vars.void_Knight_Tile, (Graphics2D) g, false, Color.red);
-		}
-	}
 
 	public static void drawTile(RSTile tile, Graphics2D g, boolean fill, Color color) {
 		g.setColor(color);
@@ -107,32 +95,4 @@ public class Paint {
 		return null;
 	}
 
-	public static void checkPositionForPaint() {
-		if (AreaCheck.isInLobby()) {
-			Vars.is_In_Lobby_Area = true;
-		} else {
-			Vars.is_In_Lobby_Area = false;
-		}
-		if (AreaCheck.isInsideLobbyBoat()) {
-			Vars.is_In_Lobby_Boat_Area = true;
-		} else {
-			Vars.is_In_Lobby_Boat_Area = false;
-		}
-		if (AreaCheck.areAreasDefined() && AreaCheck.isInsideGameBoat()) {
-			Vars.is_In_Game_Boat_Area = true;
-		} else {
-			Vars.is_In_Game_Boat_Area = false;
-		}
-		if (AreaCheck.areAreasDefined() && AreaCheck.isInsideGameAroundVoidKnightArea()) {
-			Vars.is_In_Game_Around_Void_Knight_Area = true;
-		} else {
-			Vars.is_In_Game_Around_Void_Knight_Area = false;
-		}
-		if (AreaCheck.areAreasDefined() && AreaCheck.isInsideGameVoidKnightArea()) {
-			Vars.is_In_Game_Void_Knight_Area = true;
-		} else {
-			Vars.is_In_Game_Void_Knight_Area = false;
-
-		}
-	}
 }

@@ -146,6 +146,28 @@ public enum Areas {
 							Vars.void_Knight_Tile.getY() + Offsets.FULL_GAME_YTILE.getYOffset()));
 		}
 
+	},
+
+	LOBBY {
+
+		@Override
+		public RSArea getArea() {
+			return new RSArea(new RSTile(2613, 2681, 0), new RSTile(2701, 2625, 0));
+		}
+	},
+
+	LOBBY_BOAT {
+
+		@Override
+		public RSArea getArea() {
+			if (Vars.novice)
+				return new RSArea(new RSTile(2660, 2643, 0), new RSTile(2663, 2638, 0));
+			if (Vars.intermediate)
+				return new RSArea(new RSTile(2638, 2642, 0), new RSTile(2641, 2649, 0));
+			if (Vars.veteran)
+				return new RSArea(new RSTile(2632, 2649, 0), new RSTile(2635, 2655, 0));
+			return null;
+		}
 	};
 
 	public abstract RSArea getArea();
