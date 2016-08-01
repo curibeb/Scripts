@@ -11,7 +11,7 @@ import scripts.pestcontrol.taskframework.Task;
 import scripts.pestcontrol.utilities.AreaCheck;
 import scripts.pestcontrol.utilities.Vars;
 
-public class PerfomAreaGenerate extends Task {
+public class GrabKnightTile extends Task {
 
 	@Override
 	public int priority() {

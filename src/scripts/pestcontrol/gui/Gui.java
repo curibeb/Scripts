@@ -9,7 +9,7 @@ import scripts.pestcontrol.tasks.AttackPortals;
 import scripts.pestcontrol.tasks.DefendKnights;
 import scripts.pestcontrol.tasks.GameChat;
 import scripts.pestcontrol.tasks.IdleBoat;
-import scripts.pestcontrol.tasks.PerfomAreaGenerate;
+import scripts.pestcontrol.tasks.GrabKnightTile;
 import scripts.pestcontrol.tasks.RideBoat;
 import scripts.pestcontrol.utilities.Vars;
 
@@ -139,11 +139,11 @@ public class Gui extends javax.swing.JFrame {
 			script.notify();
 		}
 		if (modeCombo.getSelectedIndex() == 0) {
-			script.taskSet.addTasks(new GameChat(), new RideBoat(), new PerfomAreaGenerate(), new IdleBoat(),
+			script.taskSet.addTasks(new GameChat(), new RideBoat(), new GrabKnightTile(), new IdleBoat(),
 					new AttackPortals());
 		}
 		if (modeCombo.getSelectedIndex() == 1) {
-			script.taskSet.addTasks(new GameChat(), new RideBoat(), new PerfomAreaGenerate(), new IdleBoat(),
+			script.taskSet.addTasks(new GameChat(), new RideBoat(), new GrabKnightTile(), new IdleBoat(),
 					new DefendKnights());
 		}
 		if (noviceRadio.isSelected()) {
