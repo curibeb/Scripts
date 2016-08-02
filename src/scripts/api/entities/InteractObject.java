@@ -62,11 +62,12 @@ public class InteractObject {
 	}
 
 	public boolean click() {
-		if (target() == null)
+		RSObject target = this.target();
+		if (target == null)
 			return false;
-		if (!target().isOnScreen())
+		if (!target.isOnScreen())
 			return this.walkTo(target());
-		if (!target().isClickable())
+		if (!target.isClickable())
 			return this.setCameraAngle(target());
 		return DynamicClicking.clickRSObject(target(), action);
 	}

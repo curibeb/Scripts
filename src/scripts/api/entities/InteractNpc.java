@@ -61,11 +61,12 @@ public class InteractNpc {
 	}
 
 	public boolean click() {
-		if (target() == null)
+		RSNPC target = this.target();
+		if (target == null)
 			return false;
-		if (!target().isOnScreen())
+		if (!target.isOnScreen())
 			return this.walkTo(target());
-		if (!target().isClickable())
+		if (!target.isClickable())
 			return this.setCameraAngle(target());
 		return DynamicClicking.clickRSNPC(target(), action);
 	}
