@@ -102,11 +102,12 @@ public class PowerChop extends Task {
 	}
 
 	private static int getY() {
-		if (ChooseOption.isOpen() && ChooseOption.getOptions().length > 0) {
+		if (ChooseOption.isOpen()) {
 			final String[] actions = ChooseOption.getOptions();
-			for (int i = 0; i < actions.length; i++) {
-				if (actions[i].toLowerCase().contains("drop")) {
-					return (int) (ChooseOption.getPosition().getY() + 21 + 16 * i);
+			if (actions.length > 0) {
+				for (int i = 0; i < actions.length; i++) {
+					if (actions[i].toLowerCase().contains("drop"))
+						return (int) (ChooseOption.getPosition().getY() + 21 + 16 * i);
 				}
 			}
 		}
