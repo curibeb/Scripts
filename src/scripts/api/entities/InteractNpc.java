@@ -50,6 +50,8 @@ public class InteractNpc {
 	}
 
 	private boolean walkTo(RSNPC object) {
+		if (object == null)
+			return false;
 		return Walking.blindWalkTo(object);
 	}
 

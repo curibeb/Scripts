@@ -51,6 +51,8 @@ public class InteractObject {
 	}
 
 	private boolean walkTo(RSObject object) {
+		if (object == null)
+			return false;
 		return Walking.blindWalkTo(object);
 	}
 

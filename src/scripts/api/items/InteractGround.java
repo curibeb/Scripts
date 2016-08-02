@@ -39,6 +39,8 @@ public class InteractGround {
 	}
 
 	private boolean walkTo(RSGroundItem object) {
+		if (object == null)
+			return false;
 		return Walking.blindWalkTo(object);
 	}
 
