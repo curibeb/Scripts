@@ -16,7 +16,10 @@ public class InteractInv {
 	private String name;
 	private String action;
 
-
+	public InteractInv(){
+		
+	}
+	
 	public InteractInv(String name, String action) {
 		this.name = name;
 		this.action = action;
