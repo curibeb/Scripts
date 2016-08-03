@@ -1,4 +1,4 @@
-package scripts.api.entities;
+package scripts.pestcontrol.api.entities;
 
 import java.util.Arrays;
 

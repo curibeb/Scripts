@@ -2,15 +2,14 @@ package scripts.pestcontrol.tasks;
 
 import org.tribot.api.General;
 import org.tribot.api.Timing;
-import org.tribot.api2007.Objects;
-import org.tribot.api2007.Walking;
-import org.tribot.api2007.types.RSObject;
 
+import scripts.pestcontrol.api.conditions.Conditions;
+import scripts.pestcontrol.api.entities.InteractObject;
+import scripts.pestcontrol.enums.Areas;
 import scripts.pestcontrol.enums.Interface;
 import scripts.pestcontrol.enums.Priorities;
 import scripts.pestcontrol.taskframework.Task;
 import scripts.pestcontrol.utilities.AreaCheck;
-import scripts.pestcontrol.utilities.Conditions;
 import scripts.pestcontrol.utilities.Vars;
 
 public class RideBoat extends Task {
@@ -25,8 +24,6 @@ public class RideBoat extends Task {
 		return AreaCheck.isInLobby();
 	}
 
-
-
 	@Override
 	public void execute() {
 
@@ -38,16 +35,13 @@ public class RideBoat extends Task {
 			Vars.lost_Msg = true;
 		}
 		Vars.status = "Crossing plank to boat";
-		RSObject[] plank = Objects.getAt(Vars.gang_Plank_Tile);
-		if (plank.length > 0) {
-			if (plank[0].isOnScreen()) {
-				if (plank[0].click("Cross")) {
-					Timing.waitCondition(Conditions.insideLobbyBoat(), General.random(4000, 7000));
-				}
-			} else {
-				Walking.blindWalkTo(plank[0]);
-			}
+		if (this.interactObject()) {
+			Timing.waitCondition(Conditions.get().isInArea(Areas.LOBBY_BOAT.getArea()), General.random(4000, 7000));
 		}
+	}
+
+	private boolean interactObject() {
+		return new InteractObject(true, Vars.gang_Plank_Tile, null, 0, null, "Cross").click();
 	}
 
 }

@@ -4,10 +4,10 @@ import org.tribot.api.General;
 import org.tribot.api.Timing;
 import org.tribot.api2007.NPCChat;
 
+import scripts.pestcontrol.api.conditions.Conditions;
 import scripts.pestcontrol.enums.Interface;
 import scripts.pestcontrol.enums.Priorities;
 import scripts.pestcontrol.taskframework.Task;
-import scripts.pestcontrol.utilities.Conditions;
 import scripts.pestcontrol.utilities.Vars;
 
 public class GameChat extends Task {
@@ -19,7 +19,6 @@ public class GameChat extends Task {
 
 	@Override
 	public boolean validate() {
-
 		return Interface.INSIDE_GAME.text().contains("You must defend");
 	}
 
@@ -27,7 +26,8 @@ public class GameChat extends Task {
 	public void execute() {
 		Vars.status = "Click npc chat.";
 		if (NPCChat.clickContinue(false)) {
-			Timing.waitCondition(Conditions.insideGameInterfaceOn(), General.random(4000, 7000));
+			Timing.waitCondition(Conditions.get().interface_Open(Interface.INSIDE_GAME.getParent(),
+					Interface.INSIDE_GAME.getChild()), General.random(4000, 7000));
 		}
 	}
 

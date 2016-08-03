@@ -1,4 +1,4 @@
-package scripts.api.entities;
+package scripts.pestcontrol.api.entities;
 
 import java.util.Arrays;
 
@@ -74,6 +74,11 @@ public class InteractNpc {
 		return object.isClickable();
 	}
 
+	public boolean npcAvailable() {
+		RSNPC target = this.target();
+		return target != null;
+	}
+
 	public boolean click() {
 		RSNPC target = this.target();
 		if (target == null)
@@ -84,5 +89,4 @@ public class InteractNpc {
 			return this.setCameraAngle(target);
 		return DynamicClicking.clickRSNPC(target, action);
 	}
-
 }

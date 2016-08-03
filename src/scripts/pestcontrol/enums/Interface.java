@@ -15,7 +15,15 @@ public enum Interface {
 		this.parent = parent;
 		this.child = child;
 	}
+	
+	public int getParent(){
+		return this.parent;
+	}
 
+	public int getChild(){
+		return this.child;
+	}
+	
 	public String text() {
 		RSInterface _interface = Interfaces.get(parent, child);
 		if (_interface != null && !_interface.isHidden()) {

@@ -4,7 +4,7 @@ import org.tribot.api.General;
 import org.tribot.api2007.Combat;
 import org.tribot.api2007.Player;
 
-import scripts.pestcontrol.antiban.Antiban;
+import scripts.pestcontrol.api.antiban.Antiban;
 import scripts.pestcontrol.enums.Priorities;
 import scripts.pestcontrol.taskframework.Task;
 import scripts.pestcontrol.utilities.AreaCheck;
@@ -25,7 +25,7 @@ public class AttackPortals extends Task {
 	public void execute() {
 		while (Combat.isUnderAttack()) {
 			General.sleep(500, 800);
-			Antiban.doIdleActions();
+			Antiban.timedActions();
 		}
 		if (Player.getRSPlayer().getInteractingCharacter() == null)
 			DefendKnights.getDamage();
