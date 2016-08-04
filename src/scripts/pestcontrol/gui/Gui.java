@@ -8,9 +8,10 @@ import scripts.pestcontrol.taskframework.TaskSet;
 import scripts.pestcontrol.tasks.AttackPortals;
 import scripts.pestcontrol.tasks.DefendKnights;
 import scripts.pestcontrol.tasks.GameChat;
-import scripts.pestcontrol.tasks.IdleBoat;
 import scripts.pestcontrol.tasks.GrabKnightTile;
+import scripts.pestcontrol.tasks.IdleBoat;
 import scripts.pestcontrol.tasks.RideBoat;
+import scripts.pestcontrol.tasks.ToggleRun;
 import scripts.pestcontrol.utilities.Vars;
 
 @SuppressWarnings("serial")
@@ -140,11 +141,11 @@ public class Gui extends javax.swing.JFrame {
 		}
 		if (modeCombo.getSelectedIndex() == 0) {
 			script.taskSet.addTasks(new GameChat(), new RideBoat(), new GrabKnightTile(), new IdleBoat(),
-					new AttackPortals());
+					new AttackPortals(), new ToggleRun());
 		}
 		if (modeCombo.getSelectedIndex() == 1) {
 			script.taskSet.addTasks(new GameChat(), new RideBoat(), new GrabKnightTile(), new IdleBoat(),
-					new DefendKnights());
+					new DefendKnights(), new ToggleRun());
 		}
 		if (noviceRadio.isSelected()) {
 			General.println("We are using novice boat.");

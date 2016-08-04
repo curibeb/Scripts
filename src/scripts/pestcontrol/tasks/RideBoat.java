@@ -3,6 +3,7 @@ package scripts.pestcontrol.tasks;
 import org.tribot.api.General;
 import org.tribot.api.Timing;
 
+import scripts.pestcontrol.api.antiban.Antiban;
 import scripts.pestcontrol.api.conditions.Conditions;
 import scripts.pestcontrol.api.entities.InteractObject;
 import scripts.pestcontrol.enums.Areas;
@@ -26,7 +27,7 @@ public class RideBoat extends Task {
 
 	@Override
 	public void execute() {
-
+		Antiban.getReactionTime();
 		if (Interface.WON_GAME_MSG.text().contains("Congratulations")) {
 			Vars.won_Msg = true;
 		}
@@ -37,6 +38,7 @@ public class RideBoat extends Task {
 		Vars.status = "Crossing plank to boat";
 		if (this.interactObject()) {
 			Timing.waitCondition(Conditions.get().isInArea(Areas.LOBBY_BOAT.getArea()), General.random(4000, 7000));
+			Antiban.sleepReactionTime();
 		}
 	}
 

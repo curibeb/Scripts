@@ -67,11 +67,17 @@ public class DefendKnights extends Task {
 	private static void attackPortalNpc() {
 		if (!Combat.isUnderAttack()) {
 			if (spinnerAvailable()) {
-				if (attackSpinners())
+				Antiban.getReactionTime();
+				if (attackSpinners()) {
 					Timing.waitCondition(Conditions.get().playerInteracting(), General.random(4000, 7000));
+					Antiban.sleepReactionTime();
+				}
 			} else {
-				if (attackAllNpcs(portalArea))
+				Antiban.getReactionTime();
+				if (attackAllNpcs(portalArea)) {
 					Timing.waitCondition(Conditions.get().playerInteracting(), General.random(4000, 7000));
+					Antiban.sleepReactionTime();
+				}
 			}
 		}
 	}
@@ -89,8 +95,11 @@ public class DefendKnights extends Task {
 		if (PathFinding.canReach(temp, false)) {
 			Walking.blindWalkTo(temp);
 		} else {
-			if (openGate())
+			Antiban.getReactionTime();
+			if (openGate()) {
 				Timing.waitCondition(Conditions.get().canReachTile(temp), General.random(4000, 7000));
+				Antiban.sleepReactionTime();
+			}
 		}
 	}
 
@@ -101,8 +110,10 @@ public class DefendKnights extends Task {
 	private void defendKnight() {
 		if (AreaCheck.isInsideGameVoidKnightArea()) {
 			if (!Combat.isUnderAttack()) {
-				if (attackAllNpcs(Areas.GAME_VOID_KNIGHT_PROTECT_AREA.getArea()))
+				if (attackAllNpcs(Areas.GAME_VOID_KNIGHT_PROTECT_AREA.getArea())) {
 					Timing.waitCondition(Conditions.get().playerInteracting(), General.random(4000, 7000));
+					Antiban.sleepReactionTime();
+				}
 			}
 		} else {
 			Vars.status = "Walking to void knight.";

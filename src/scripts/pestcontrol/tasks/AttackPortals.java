@@ -23,6 +23,7 @@ public class AttackPortals extends Task {
 
 	@Override
 	public void execute() {
+		Antiban.getReactionTime();
 		while (Combat.isUnderAttack()) {
 			General.sleep(500, 800);
 			Antiban.timedActions();
