@@ -5,8 +5,6 @@ import org.tribot.api2007.Skills.SKILLS;
 import org.tribot.api2007.types.RSArea;
 import org.tribot.api2007.types.RSTile;
 
-import scripts.cutter.antiban.Antiban;
-
 public class Vars {
 
 	// ABC
@@ -25,7 +23,6 @@ public class Vars {
 
 	// Ids
 	public static boolean start = false;
-	public static Antiban antiban;
 	public static int axe_Id = 0;
 	public static String tree = "";
 	public static boolean powerchop = false;

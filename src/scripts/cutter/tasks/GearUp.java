@@ -4,14 +4,13 @@ import org.tribot.api.General;
 import org.tribot.api.Timing;
 import org.tribot.api2007.Banking;
 import org.tribot.api2007.Equipment;
-import org.tribot.api2007.Interfaces;
 import org.tribot.api2007.Inventory;
 import org.tribot.api2007.Player;
 import org.tribot.api2007.Walking;
-import org.tribot.api2007.types.RSInterface;
-import org.tribot.api2007.types.RSItem;
 
-import scripts.cutter.antiban.Antiban;
+import scripts.cutter.api.antiban.Antiban;
+import scripts.cutter.api.items.InteractBank;
+import scripts.cutter.api.items.InteractInv;
 import scripts.cutter.taskframework.Task;
 import scripts.cutter.utilities.Conditions;
 import scripts.cutter.utilities.Priorities;
@@ -29,23 +28,6 @@ public class GearUp extends Task {
 		return !Equipment.isEquipped(Vars.axe_Id);
 	}
 
-	private static int getCurrentBankSpace() {
-		RSInterface amount = Interfaces.get(12, 5);
-		if (amount != null) {
-			String text = amount.getText();
-			if (text != null) {
-				try {
-					int parse = Integer.parseInt(text);
-					if (parse > 0)
-						return parse;
-				} catch (NumberFormatException e) {
-					return -1;
-				}
-			}
-		}
-		return -1;
-	}
-
 	@Override
 	public void execute() {
 		if (Vars.bank.contains(Player.getPosition())) {
@@ -56,7 +38,10 @@ public class GearUp extends Task {
 					if (Banking.close())
 						Timing.waitCondition(Conditions.bankClosed, General.random(2500, 3500));
 				} else {
-					wieldAxe();
+					Antiban.getReactionTime();
+					Antiban.sleepReactionTime();
+					if (wieldAxe())
+						Antiban.generateTrackers(Antiban.getWaitingTime());
 				}
 			}
 		} else {
@@ -66,32 +51,26 @@ public class GearUp extends Task {
 
 	private void grabAxe() {
 		if (Banking.isBankScreenOpen()) {
-			if (getCurrentBankSpace() > 0) {
-				if (Banking.find(Vars.axe_Id) != null) {
-					if (Banking.withdraw(1, Vars.axe_Id)) {
-						Timing.waitCondition(Conditions.gotAxe, General.random(3500, 5000));
-					}
-				} else {
-					General.println("Couldnt find axe so we stopped :(");
-					Vars.start = false;
-				}
-			}
+			Antiban.getReactionTime();
+			Antiban.sleepReactionTime();
+			if (this.withdrawAxe())
+				Antiban.generateTrackers(Antiban.getWaitingTime());
 		} else {
+			Antiban.getReactionTime();
+			Antiban.sleepReactionTime();
 			if (Banking.openBank()) {
 				Timing.waitCondition(Conditions.bankOpen, General.random(3500, 5000));
+				Antiban.generateTrackers(Antiban.getWaitingTime());
 			}
 		}
 	}
 
-	private void wieldAxe() {
-		RSItem[] axe = Inventory.find(Vars.axe_Id);
-		if (axe.length > 0) {
-			Antiban.setWaitingSince();
-			Antiban.get().performReactionTimeWait();
-			if (axe[0].click("Wield")) {
-				Timing.waitCondition(Conditions.equipmentOn(), General.random(2500, 3000));
-			}
-		}
+	private boolean withdrawAxe() {
+		return new InteractBank(false, null, Vars.axe_Id, 1).withdraw(Vars.start);
+	}
+
+	private boolean wieldAxe() {
+		return new InteractInv(false, null, Vars.axe_Id, "Wield").click();
 	}
 
 	@Override

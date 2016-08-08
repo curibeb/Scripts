@@ -4,7 +4,7 @@ import org.tribot.api2007.NPCs;
 import org.tribot.api2007.Walking;
 import org.tribot.api2007.types.RSNPC;
 
-import scripts.cutter.antiban.Antiban;
+import scripts.cutter.api.antiban.Antiban;
 import scripts.cutter.taskframework.Task;
 import scripts.cutter.utilities.Priorities;
 import scripts.cutter.utilities.Vars;
@@ -29,14 +29,14 @@ public class AvoidEnt extends Task {
 
 	@Override
 	public void execute() {
-		Antiban.setWaitingSince();
-		Antiban.get().performReactionTimeWait();
-		Walking.blindWalkTo(Vars.trees_Loc.getRandomTile());
+		Antiban.getReactionTime();
+		Antiban.sleepReactionTime();
+		if (Walking.blindWalkTo(Vars.trees_Loc.getRandomTile()))
+			Antiban.generateTrackers(Antiban.getWaitingTime());
 	}
 
 	@Override
 	public String status() {
-		// TODO Auto-generated method stub
 		return "Handling ent.";
 	}
 

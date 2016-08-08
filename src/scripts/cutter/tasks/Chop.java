@@ -19,7 +19,7 @@ import org.tribot.api2007.Walking;
 import org.tribot.api2007.types.RSObject;
 import org.tribot.api2007.types.RSTile;
 
-import scripts.cutter.antiban.Antiban;
+import scripts.cutter.api.antiban.Antiban;
 import scripts.cutter.taskframework.Task;
 import scripts.cutter.utilities.Conditions;
 import scripts.cutter.utilities.Priorities;
@@ -41,9 +41,11 @@ public class Chop extends Task {
 
 	@Override
 	public void execute() {
-		while (Player.getAnimation() != -1) {
+		long t = System.currentTimeMillis();
+
+		while (Player.getAnimation() != -1 && (System.currentTimeMillis() - t) < 5000) {
 			General.random(500, 800);
-			Antiban.doIdleActions();
+			Antiban.timedActions();
 		}
 		if (Vars.trees_Loc.contains(Player.getPosition())) {
 			if (Player.getAnimation() == -1)
@@ -100,10 +102,11 @@ public class Chop extends Task {
 		RSObject[] tree = Objects.findNearest(8, Vars.tree);
 		if (tree.length > 1) {
 			if (tree[1].isOnScreen()) {
-				Antiban.setWaitingSince();
-				Antiban.get().performReactionTimeWait();
+				Antiban.getReactionTime();
+				Antiban.sleepReactionTime();
 				if (tree[1].hover()) {
 					Timing.waitCondition(Conditions.hovered(), General.random(4000, 7000));
+					Antiban.generateTrackers(Antiban.getWaitingTime());
 				}
 			} else {
 				Camera.turnToTile(tree[0]);
@@ -119,7 +122,7 @@ public class Chop extends Task {
 		RSObject[] tree = Objects.findNearest(Vars.trees_Loc.getAllTiles().length, Vars.tree);
 		if (tree.length > 0) {
 			if (Vars.trees_Loc.contains(tree[0].getPosition())) {
-				treeTile = Antiban.determineNextTarget(tree);
+				treeTile = Antiban.selectNextTarget(tree);
 			}
 		}
 		return true;
@@ -134,22 +137,25 @@ public class Chop extends Task {
 	}
 
 	public void click() {
-		if (Antiban.shouldOpenMenuNext()) {
+		if (Antiban.should_open_menu) {
 			if (ChooseOption.getOptions() != null && ChooseOption.isOpen()) {
-				Antiban.setWaitingSince();
-				Antiban.get().performReactionTimeWait();
+				Antiban.getReactionTime();
+				Antiban.sleepReactionTime();
 				if (ChooseOption.select("Chop down")) {
 					Timing.waitCondition(Conditions.animating, General.random(4000, 7000));
-					if (Antiban.shouldHoverNext()) {
+					Antiban.generateTrackers(Antiban.getWaitingTime());
+					Antiban.resetShouldOpenMenu();
+					if (Antiban.should_hover) {
 						hover();
+						Antiban.resetShouldHover();
 					}
 				}
 			} else {
 				Mouse.click(3);
 			}
 		} else {
-			Antiban.setWaitingSince();
-			Antiban.get().performReactionTimeWait();
+			Antiban.getReactionTime();
+			Antiban.sleepReactionTime();
 			if (DynamicClicking.clickPoint(new CustomRet_0P<Point>() {
 				@Override
 				public Point ret() {
@@ -157,8 +163,10 @@ public class Chop extends Task {
 				}
 			}, 1)) {
 				Timing.waitCondition(Conditions.animating, General.random(4000, 7000));
-				if (Antiban.shouldHoverNext()) {
+				Antiban.generateTrackers(Antiban.getWaitingTime());
+				if (Antiban.should_hover) {
 					hover();
+					Antiban.resetShouldHover();
 				}
 			}
 		}
@@ -168,25 +176,25 @@ public class Chop extends Task {
 		RSObject tree = tree();
 		if (tree != null) {
 			if (tree.isOnScreen()) {
-				Antiban.setWaitingSince();
-				Antiban.get().performReactionTimeWait();
+				Antiban.getReactionTime();
+				Antiban.sleepReactionTime();
 				if (tree.click("Chop down")) {
 					Timing.waitCondition(Conditions.animating, General.random(2500, 4500));
-					if (Antiban.shouldHoverNext()) {
+					Antiban.generateTrackers(Antiban.getWaitingTime());
+					if (Antiban.should_hover) {
 						hover();
+						Antiban.resetShouldHover();
 					}
 				}
 			} else {
 				if (Player.getPosition().distanceTo(tree.getPosition()) > 8) {
 					Walking.blindWalkTo(tree.getPosition());
 				} else {
-					if (Antiban.shouldMoveAnticipated()) {
-						if (Player.getPosition().distanceTo(tree.getPosition()) < 5) {
-							Camera.setCameraAngle(tree.getModel().getClickHeight());
-							Camera.turnToTile(tree.getPosition());
-						} else {
-							Walking.walkTo(tree);
-						}
+					if (Player.getPosition().distanceTo(tree.getPosition()) < 5) {
+						Camera.setCameraAngle(tree.getModel().getClickHeight());
+						Camera.turnToTile(tree.getPosition());
+					} else {
+						Walking.walkTo(tree);
 					}
 				}
 			}
