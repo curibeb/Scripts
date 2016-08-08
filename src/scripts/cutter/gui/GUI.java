@@ -428,13 +428,12 @@ public class GUI extends javax.swing.JFrame {
 			prop.put("treefirsttiley", String.valueOf(treeFirstTile.getY()));
 			prop.put("treesecondtilex", String.valueOf(treeSecondTile.getX()));
 			prop.put("treesecondtiley", String.valueOf(treeSecondTile.getY()));
-			prop.put("tree", treeList.getSelectedValue());
-			prop.put("axeid", axeIdTextField.getText());
-			prop.put("treetileX", this.treesTile.getX());
-			prop.put("treetileY", this.treesTile.getY());
+			prop.put("axeid", String.valueOf(axeIdTextField.getText()));
+			prop.put("treetileX", String.valueOf(this.treesTile.getX()));
+			prop.put("treetileY", String.valueOf(this.treesTile.getY()));
 			prop.store(new FileOutputStream(path), "GUI Settings");
 		} catch (Exception e1) {
-			System.out.print("Unable to save settings");
+			System.out.print("Unable to save settings: " + e1);
 		}
 	}
 
@@ -449,31 +448,31 @@ public class GUI extends javax.swing.JFrame {
 				String powerchop = prop.getProperty("powerchop");
 
 				if (Boolean.valueOf(powerchop) == true) {
-					powerchopCheckBox.setSelected(true);
+					this.powerchopCheckBox.setSelected(true);
 				}
 
-				bankFirstTile = new RSTile(Integer.parseInt(prop.getProperty("bankfirsttilex")),
+				this.bankFirstTile = new RSTile(Integer.parseInt(prop.getProperty("bankfirsttilex")),
 						Integer.parseInt(prop.getProperty("bankfirsttiley")), 0);
 
-				bankSecondTile = new RSTile(Integer.parseInt(prop.getProperty("banksecondtilex")),
+				this.bankSecondTile = new RSTile(Integer.parseInt(prop.getProperty("banksecondtilex")),
 						Integer.parseInt(prop.getProperty("banksecondtiley")), 0);
 
-				treeFirstTile = new RSTile(Integer.parseInt(prop.getProperty("treefirsttilex")),
+				this.treeFirstTile = new RSTile(Integer.parseInt(prop.getProperty("treefirsttilex")),
 						Integer.parseInt(prop.getProperty("treefirsttiley")), 0);
 
-				treeSecondTile = new RSTile(Integer.parseInt(prop.getProperty("treesecondtilex")),
+				this.treeSecondTile = new RSTile(Integer.parseInt(prop.getProperty("treesecondtilex")),
 						Integer.parseInt(prop.getProperty("treesecondtiley")), 0);
-				
+
 				this.treesTile = new RSTile(Integer.parseInt(prop.getProperty("treetileX")),
 						Integer.parseInt(prop.getProperty("treetileY")), 0);
 
 				Vars.bank = new RSArea(bankFirstTile, bankSecondTile);
 				Vars.trees_Loc = new RSArea(treeFirstTile, treeSecondTile);
-				axeIdTextField.setText(prop.getProperty("axeid"));
-				firstBankTileTextbox.setText(bankFirstTile.toString());
-				secondBankTileTextbox.setText(bankSecondTile.toString());
-				firstTreeTileTextbox.setText(treeFirstTile.toString());
-				secondTreeTileTextbox.setText(treeSecondTile.toString());
+				this.axeIdTextField.setText(prop.getProperty("axeid"));
+				this.firstBankTileTextbox.setText(bankFirstTile.toString());
+				this.secondBankTileTextbox.setText(bankSecondTile.toString());
+				this.firstTreeTileTextbox.setText(treeFirstTile.toString());
+				this.secondTreeTileTextbox.setText(treeSecondTile.toString());
 				this.treeTileText.setText(treesTile.toString());
 				DefaultListModel<String> lm = new DefaultListModel<String>();
 				lm.clear();
@@ -496,7 +495,8 @@ public class GUI extends javax.swing.JFrame {
 
 	private void treeTileButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		this.treesTile = new RSTile(Player.getPosition().getX(), Player.getPosition().getY());
-		this.treeTileText.setText(Player.getPosition().toString());	}
+		this.treeTileText.setText(Player.getPosition().toString());
+	}
 
 	// Variables declaration - do not modify
 	private javax.swing.JTextField axeIdTextField;

@@ -79,6 +79,10 @@ public class InteractBank {
 			start = false;
 			return false;
 		}
-		return Banking.withdraw(amount, name);
+		if (useName)
+			return Banking.withdraw(amount, name);
+		else
+			return Banking.withdraw(amount, id);
+
 	}
 }
