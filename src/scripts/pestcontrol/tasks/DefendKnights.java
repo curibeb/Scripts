@@ -39,7 +39,9 @@ public class DefendKnights extends Task {
 
 	@Override
 	public void execute() {
-		while (Combat.isUnderAttack()) {
+		long t = System.currentTimeMillis();
+		Antiban.getReactionTime();
+		while (Combat.isUnderAttack() && (System.currentTimeMillis() - t) < 5000) {
 			Vars.status = "Idling.";
 			General.sleep(500, 800);
 			Antiban.timedActions();
