@@ -122,7 +122,7 @@ public class Chop extends Task {
 	}
 
 	public static boolean grabTreeTile() {
-		RSObject[] tree = Objects.findNearest(Vars.trees_Loc.getAllTiles().length, Vars.tree);
+		RSObject[] tree = Objects.findNearest(General.random(30, 50), Vars.tree);
 		if (tree.length > 0) {
 			if (Vars.trees_Loc.contains(tree[0].getPosition())) {
 				treeTile = Antiban.selectNextTarget(tree);
