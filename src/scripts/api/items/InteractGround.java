@@ -51,6 +51,11 @@ public class InteractGround {
 		return object.isClickable();
 	}
 
+	public boolean itemAvailable() {
+		RSGroundItem[] items = this.items();
+		return items.length > 0;
+	}
+
 	public boolean click() {
 		RSGroundItem item = this.item();
 		if (item == null)

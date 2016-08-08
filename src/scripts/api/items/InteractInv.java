@@ -15,14 +15,18 @@ public class InteractInv {
 
 	private String name;
 	private String action;
+	private int id;
+	private boolean useName;
 
-	public InteractInv(){
-		
+	public InteractInv() {
+
 	}
-	
-	public InteractInv(String name, String action) {
+
+	public InteractInv(boolean useName, String name, int id, String action) {
 		this.name = name;
 		this.action = action;
+		this.id = id;
+		this.useName = useName;
 	}
 
 	private RSItem[] items() {
@@ -33,7 +37,10 @@ public class InteractInv {
 					return false;
 				if (a.getDefinition() == null)
 					return false;
-				return a.getDefinition().getName().equals(name);
+				if (useName)
+					return a.getDefinition().getName().equals(name);
+				else
+					return a.getDefinition().getID() == id;
 			}
 		});
 	}

@@ -10,10 +10,14 @@ public class InteractBank {
 
 	private String name;
 	private int amount;
+	private int id;
+	private boolean useName;
 
-	public InteractBank(String name, int amount) {
+	public InteractBank(boolean useName, String name, int id, int amount) {
 		this.name = name;
 		this.amount = amount;
+		this.id = id;
+		this.useName = useName;
 	}
 
 	private int getCurrentBankSpace() {
@@ -45,8 +49,11 @@ public class InteractBank {
 					return false;
 				if (a.getDefinition() == null)
 					return false;
+				if (useName)
+					return a.getDefinition().getName().equals(name);
+				else
+					return a.getDefinition().getID() == id;
 
-				return a.getDefinition().getName().equals(name);
 			}
 		});
 	}
