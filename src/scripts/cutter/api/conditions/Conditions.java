@@ -149,7 +149,10 @@ public class Conditions {
 		return new Condition() {
 			@Override
 			public boolean active() {
-				return Game.getUptext() != null && Game.getUptext().contains(text);
+				String uptext = Game.getUptext();
+				if (uptext == null)
+					return false;
+				return uptext.contains(text);
 			}
 		};
 	}

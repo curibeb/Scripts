@@ -9,10 +9,10 @@ import org.tribot.api2007.Player;
 import org.tribot.api2007.Walking;
 
 import scripts.cutter.api.antiban.Antiban;
+import scripts.cutter.api.conditions.Conditions;
 import scripts.cutter.api.items.InteractBank;
 import scripts.cutter.api.items.InteractInv;
 import scripts.cutter.taskframework.Task;
-import scripts.cutter.utilities.Conditions;
 import scripts.cutter.utilities.Priorities;
 import scripts.cutter.utilities.Vars;
 
@@ -36,7 +36,7 @@ public class GearUp extends Task {
 			} else {
 				if (Banking.isBankScreenOpen()) {
 					if (Banking.close())
-						Timing.waitCondition(Conditions.bankClosed, General.random(2500, 3500));
+						Timing.waitCondition(Conditions.get().bankClosed(), General.random(2500, 3500));
 				} else {
 					Antiban.getReactionTime();
 					Antiban.sleepReactionTime();
@@ -59,7 +59,7 @@ public class GearUp extends Task {
 			Antiban.getReactionTime();
 			Antiban.sleepReactionTime();
 			if (Banking.openBank()) {
-				Timing.waitCondition(Conditions.bankOpen, General.random(3500, 5000));
+				Timing.waitCondition(Conditions.get().bankOpen(), General.random(3500, 5000));
 				Antiban.generateTrackers(Antiban.getWaitingTime());
 			}
 		}

@@ -8,8 +8,8 @@ import org.tribot.api2007.Player;
 import org.tribot.api2007.Walking;
 
 import scripts.cutter.api.antiban.Antiban;
+import scripts.cutter.api.conditions.Conditions;
 import scripts.cutter.taskframework.Task;
-import scripts.cutter.utilities.Conditions;
 import scripts.cutter.utilities.Priorities;
 import scripts.cutter.utilities.Vars;
 
@@ -32,14 +32,14 @@ public class Bank extends Task {
 			Antiban.sleepReactionTime();
 			if (Banking.isBankScreenOpen()) {
 				if (Banking.depositAll() > 0) {
-					Timing.waitCondition(Conditions.bankedLogs, General.random(2500, 4500));
+					Timing.waitCondition(Conditions.get().inventoryEmpty(), General.random(2500, 4500));
 					Antiban.generateTrackers(Antiban.getWaitingTime());
 				}
 			} else {
 				Antiban.getReactionTime();
 				Antiban.sleepReactionTime();
 				if (Banking.openBank()) {
-					Timing.waitCondition(Conditions.bankOpen, General.random(2500, 4500));
+					Timing.waitCondition(Conditions.get().bankOpen(), General.random(2500, 4500));
 					Antiban.generateTrackers(Antiban.getWaitingTime());
 				}
 			}

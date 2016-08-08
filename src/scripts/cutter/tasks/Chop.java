@@ -20,8 +20,8 @@ import org.tribot.api2007.types.RSObject;
 import org.tribot.api2007.types.RSTile;
 
 import scripts.cutter.api.antiban.Antiban;
+import scripts.cutter.api.conditions.Conditions;
 import scripts.cutter.taskframework.Task;
-import scripts.cutter.utilities.Conditions;
 import scripts.cutter.utilities.Priorities;
 import scripts.cutter.utilities.Vars;
 
@@ -95,7 +95,10 @@ public class Chop extends Task {
 	}
 
 	public static boolean hovered() {
-		return Game.getUptext() != null && Game.getUptext().contains("Chop");
+		String uptext = Game.getUptext();
+		if (uptext == null)
+			return false;
+		return uptext.contains("Chop");
 	}
 
 	public static void hover() {
@@ -105,7 +108,7 @@ public class Chop extends Task {
 				Antiban.getReactionTime();
 				Antiban.sleepReactionTime();
 				if (tree[1].hover()) {
-					Timing.waitCondition(Conditions.hovered(), General.random(4000, 7000));
+					Timing.waitCondition(Conditions.get().uptext_Contains("Chop"), General.random(4000, 7000));
 					Antiban.generateTrackers(Antiban.getWaitingTime());
 				}
 			} else {
@@ -142,7 +145,7 @@ public class Chop extends Task {
 				Antiban.getReactionTime();
 				Antiban.sleepReactionTime();
 				if (ChooseOption.select("Chop down")) {
-					Timing.waitCondition(Conditions.animating, General.random(4000, 7000));
+					Timing.waitCondition(Conditions.get().animating(), General.random(4000, 7000));
 					Antiban.generateTrackers(Antiban.getWaitingTime());
 					Antiban.resetShouldOpenMenu();
 					if (Antiban.should_hover) {
@@ -162,7 +165,7 @@ public class Chop extends Task {
 					return new Point(Mouse.getPos().x, Mouse.getPos().y);
 				}
 			}, 1)) {
-				Timing.waitCondition(Conditions.animating, General.random(4000, 7000));
+				Timing.waitCondition(Conditions.get().animating(), General.random(4000, 7000));
 				Antiban.generateTrackers(Antiban.getWaitingTime());
 				if (Antiban.should_hover) {
 					hover();
@@ -179,7 +182,7 @@ public class Chop extends Task {
 				Antiban.getReactionTime();
 				Antiban.sleepReactionTime();
 				if (tree.click("Chop down")) {
-					Timing.waitCondition(Conditions.animating, General.random(2500, 4500));
+					Timing.waitCondition(Conditions.get().animating(), General.random(2500, 4500));
 					Antiban.generateTrackers(Antiban.getWaitingTime());
 					if (Antiban.should_hover) {
 						hover();
