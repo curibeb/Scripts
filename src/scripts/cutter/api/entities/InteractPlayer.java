@@ -20,7 +20,6 @@ public class InteractPlayer {
 		return false;
 	}
 	
-	
 	public boolean playersNearMe() {
 		RSPlayer[] players = this.players();
 		if (players.length == 0)

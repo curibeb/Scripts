@@ -7,6 +7,7 @@ import org.tribot.api2007.Camera;
 import org.tribot.api2007.GroundItems;
 import org.tribot.api2007.Walking;
 import org.tribot.api2007.types.RSGroundItem;
+import org.tribot.api2007.types.RSItemDefinition;
 
 public class InteractGround {
 
@@ -24,9 +25,10 @@ public class InteractGround {
 			public boolean accept(RSGroundItem a) {
 				if (a == null)
 					return false;
-				if (a.getDefinition() == null)
+				RSItemDefinition def = a.getDefinition();
+				if (def == null)
 					return false;
-				return a.getDefinition().getName().equals(name);
+				return def.getName().equals(name);
 			}
 		});
 	}

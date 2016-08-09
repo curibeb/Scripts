@@ -10,6 +10,7 @@ import org.tribot.api2007.Objects;
 import org.tribot.api2007.Walking;
 import org.tribot.api2007.types.RSArea;
 import org.tribot.api2007.types.RSObject;
+import org.tribot.api2007.types.RSObjectDefinition;
 import org.tribot.api2007.types.RSTile;
 
 public class InteractObject {
@@ -36,14 +37,15 @@ public class InteractObject {
 			public boolean accept(RSObject o) {
 				if (o == null)
 					return false;
-				if (o.getDefinition() == null)
+				RSObjectDefinition def = o.getDefinition();
+				if (def == null)
 					return false;
-				String[] actions = o.getDefinition().getActions();
+				String[] actions = def.getActions();
 				if (actions.length == 0)
 					return false;
 				if (!Arrays.asList(actions).contains(action))
 					return false;
-				return o.getDefinition().getName().equals(name) && area.contains(o);
+				return def.getName().equals(name) && area.contains(o);
 			}
 		};
 	}
