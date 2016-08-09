@@ -10,6 +10,7 @@ import org.tribot.api2007.NPCs;
 import org.tribot.api2007.Walking;
 import org.tribot.api2007.types.RSArea;
 import org.tribot.api2007.types.RSNPC;
+import org.tribot.api2007.types.RSNPCDefinition;
 
 public class InteractNpc {
 
@@ -31,9 +32,10 @@ public class InteractNpc {
 			public boolean accept(RSNPC a) {
 				if (a == null)
 					return false;
-				if (a.getDefinition() == null)
+				RSNPCDefinition def = a.getDefinition();
+				if (def == null)
 					return false;
-				String[] actions = a.getDefinition().getActions();
+				String[] actions = def.getActions();
 				if (actions.length == 0)
 					return false;
 				if (!Arrays.asList(actions).contains(action))
@@ -41,7 +43,7 @@ public class InteractNpc {
 				if (allNpcs)
 					return area.contains(a);
 				else
-					return a.getName().equals(name) && area.contains(a);
+					return def.getName().equals(name) && area.contains(a);
 			}
 		};
 	}

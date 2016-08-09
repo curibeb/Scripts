@@ -10,6 +10,7 @@ import org.tribot.api2007.ChooseOption;
 import org.tribot.api2007.GameTab;
 import org.tribot.api2007.Inventory;
 import org.tribot.api2007.types.RSItem;
+import org.tribot.api2007.types.RSItemDefinition;
 
 public class InteractInv {
 
@@ -35,12 +36,13 @@ public class InteractInv {
 			public boolean accept(RSItem a) {
 				if (a == null)
 					return false;
-				if (a.getDefinition() == null)
+				RSItemDefinition def = a.getDefinition();
+				if (def == null)
 					return false;
 				if (useName)
-					return a.getDefinition().getName().equals(name);
+					return def.getName().equals(name);
 				else
-					return a.getDefinition().getID() == id;
+					return def.getID() == id;
 			}
 		});
 	}
