@@ -1,7 +1,5 @@
 package scripts.pestcontrol.tasks;
 
-import org.tribot.api.General;
-
 import scripts.pestcontrol.api.antiban.Antiban;
 import scripts.pestcontrol.enums.Priorities;
 import scripts.pestcontrol.taskframework.Task;
@@ -23,6 +21,7 @@ public class IdleBoat extends Task {
 	@Override
 	public void execute() {
 		Antiban.getReactionTime();
+		Antiban.sleepReactionTime();
 		Vars.status = "Idling";
 		if (Vars.won_Msg) {
 			Vars.points_Gained += 2;
@@ -33,10 +32,7 @@ public class IdleBoat extends Task {
 			Vars.games_Lost += 1;
 			Vars.lost_Msg = false;
 		}
-		while (this.validate()){
-			General.sleep(500,800);
-			Antiban.timedActions();
-		}
+		Antiban.timedActions();
 	}
 
 }

@@ -38,8 +38,8 @@ public enum Interface {
 		RSInterface _interface = Interfaces.get(parent, child);
 		if (_interface != null && !_interface.isHidden()) {
 			String pt = _interface.getText();
-			pt = pt.replaceAll("[^\\d.]", "");
 			if (pt != null) {
+				pt = pt.replaceAll("[^\\d.]", "");
 				int pts = Integer.parseInt(pt);
 				if (pts >= 0)
 					return pts;

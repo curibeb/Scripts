@@ -24,9 +24,10 @@ public class ToggleRun extends Task {
 	@Override
 	public void execute() {
 		Antiban.getReactionTime();
+		Antiban.sleepReactionTime();
 		if (Antiban.activateRun()) {
+			Antiban.generateTrackers(Antiban.getWaitingTime());
 			Timing.waitCondition(Conditions.get().runIsOn(), General.random(3500, 5000));
-			Antiban.sleepReactionTime();
 		}
 	}
 

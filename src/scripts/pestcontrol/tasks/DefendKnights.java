@@ -25,7 +25,7 @@ public class DefendKnights extends Task {
 	private static RSArea[] portalAreas = new RSArea[] { Areas.BLUE_PORTAL_AREA.getArea(),
 			Areas.PINK_PORTAL_AREA.getArea(), Areas.PURPLE_PORTAL_AREA.getArea(), Areas.YELLOW_PORTAL_AREA.getArea() };
 
-	private static RSArea portalArea = portalAreas[Vars.getRandomPortal];
+	private static RSArea portalArea = null;
 
 	@Override
 	public int priority() {
@@ -53,8 +53,9 @@ public class DefendKnights extends Task {
 	}
 
 	public static void getDamage() {
-		if (Vars.getRandomPortal == 0) {
+		if (Vars.getRandomPortal == -1) {
 			Vars.getRandomPortal = General.random(0, 3);
+			portalArea = portalAreas[Vars.getRandomPortal];
 		} else {
 			if (portalArea != null) {
 				if (portalArea.contains(Player.getPosition())) {
@@ -70,15 +71,17 @@ public class DefendKnights extends Task {
 		if (!Combat.isUnderAttack()) {
 			if (spinnerAvailable()) {
 				Antiban.getReactionTime();
+				Antiban.sleepReactionTime();
 				if (attackSpinners()) {
+					Antiban.generateTrackers(Antiban.getWaitingTime());
 					Timing.waitCondition(Conditions.get().playerInteracting(), General.random(4000, 7000));
-					Antiban.sleepReactionTime();
 				}
 			} else {
 				Antiban.getReactionTime();
+				Antiban.sleepReactionTime();
 				if (attackAllNpcs(portalArea)) {
+					Antiban.generateTrackers(Antiban.getWaitingTime());
 					Timing.waitCondition(Conditions.get().playerInteracting(), General.random(4000, 7000));
-					Antiban.sleepReactionTime();
 				}
 			}
 		}
@@ -98,9 +101,10 @@ public class DefendKnights extends Task {
 			Walking.blindWalkTo(temp);
 		} else {
 			Antiban.getReactionTime();
+			Antiban.sleepReactionTime();
 			if (openGate()) {
+				Antiban.generateTrackers(Antiban.getWaitingTime());
 				Timing.waitCondition(Conditions.get().canReachTile(temp), General.random(4000, 7000));
-				Antiban.sleepReactionTime();
 			}
 		}
 	}
@@ -112,9 +116,11 @@ public class DefendKnights extends Task {
 	private void defendKnight() {
 		if (AreaCheck.isInsideGameVoidKnightArea()) {
 			if (!Combat.isUnderAttack()) {
+				Antiban.getReactionTime();
+				Antiban.sleepReactionTime();
 				if (attackAllNpcs(Areas.GAME_VOID_KNIGHT_PROTECT_AREA.getArea())) {
+					Antiban.generateTrackers(Antiban.getWaitingTime());
 					Timing.waitCondition(Conditions.get().playerInteracting(), General.random(4000, 7000));
-					Antiban.sleepReactionTime();
 				}
 			}
 		} else {

@@ -5,6 +5,7 @@ import org.tribot.api2007.Banking;
 import org.tribot.api2007.Interfaces;
 import org.tribot.api2007.types.RSInterface;
 import org.tribot.api2007.types.RSItem;
+import org.tribot.api2007.types.RSItemDefinition;
 
 public class InteractBank {
 
@@ -43,10 +44,10 @@ public class InteractBank {
 			public boolean accept(RSItem a) {
 				if (a == null)
 					return false;
-				if (a.getDefinition() == null)
+				RSItemDefinition def = a.getDefinition();
+				if (def == null)
 					return false;
-
-				return a.getDefinition().getName().equals(name);
+				return def.getName().equals(name);
 			}
 		});
 	}

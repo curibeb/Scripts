@@ -9,7 +9,7 @@ public class Vars {
 	//
 
 	//
-	public static int getRandomPortal = 0;
+	public static int getRandomPortal = -1;
 	public static long time_Ran;
 	public static long time_Before_Start = System.currentTimeMillis();
 	public static int points_Gained = 0;

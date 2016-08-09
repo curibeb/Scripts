@@ -27,6 +27,7 @@ public class RideBoat extends Task {
 
 	@Override
 	public void execute() {
+		Vars.getRandomPortal = -1;
 		Antiban.getReactionTime();
 		if (Interface.WON_GAME_MSG.text().contains("Congratulations")) {
 			Vars.won_Msg = true;
