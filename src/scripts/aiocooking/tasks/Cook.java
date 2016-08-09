@@ -14,6 +14,7 @@ import org.tribot.api2007.Walking;
 import org.tribot.api2007.types.RSInterface;
 import org.tribot.api2007.types.RSItem;
 import org.tribot.api2007.types.RSObject;
+import org.tribot.api2007.types.RSObjectDefinition;
 
 import scripts.aiocooking.antiban.AntiBan;
 import scripts.aiocooking.enums.Objectives;
@@ -22,6 +23,9 @@ import scripts.aiocooking.utils.Conditions;
 import scripts.aiocooking.utils.Vars;
 
 public class Cook extends Task {
+
+	public static RSObject range = grabRange();
+	public static RSObject obstacle = findObstacle();
 
 	@Override
 	public int priority() {
@@ -39,20 +43,20 @@ public class Cook extends Task {
 			Vars.status = "Walking to cooking area.";
 			Walking.blindWalkTo(Objectives.COOK.get_Walk_Tile());
 		} else {
-			while (Player.getAnimation() != -1) {
+			long t = System.currentTimeMillis();
+			while (Player.getAnimation() != -1 && (System.currentTimeMillis() - t) < 5000) {
 				General.sleep(500, 800);
 				Vars.status = "ABC2 Perform timed actions.";
 				AntiBan.timedActions();
 			}
-			if (range() != null) {
-				Vars.range_Tile = range().getPosition();
+			if (range != null) {
+				Vars.range_Tile = range.getPosition();
 				if (PathFinding.canReach(Objectives.COOK.get_Walk_Tile(), false)) {
 					if (Player.getAnimation() == -1)
 						cook();
 				} else {
 					Vars.status = "Handling obstacle.";
-					interact_Object(obstacle(), "Open",
-							Conditions.get().can_Reach_Tile(Objectives.COOK.get_Walk_Tile()));
+					interact_Object(obstacle, "Open", Conditions.get().can_Reach_Tile(Objectives.COOK.get_Walk_Tile()));
 				}
 			}
 		}
@@ -62,14 +66,15 @@ public class Cook extends Task {
 		if (Objectives.COOK.interface_Open()) {
 			cook_All();
 		} else {
-			if (Game.getUptext() != null) {
-				if (range() != null) {
-					if (!range().isOnScreen()) {
-						Walking.walkTo(range());
+			String uptext = Game.getUptext();
+			if (uptext != null) {
+				if (range != null) {
+					if (!range.isOnScreen()) {
+						Walking.walkTo(range);
 					} else {
-						if (Game.getUptext().contains(">")) {
+						if (uptext.contains(">")) {
 							Vars.status = "Interacting with range.";
-							interact_Object(range(), "Use", Conditions.get().cook_Interface_Open());
+							interact_Object(range, "Use", Conditions.get().cook_Interface_Open());
 						} else {
 							if (!Objectives.COOK.interface_Open())
 								use_Item();
@@ -84,9 +89,10 @@ public class Cook extends Task {
 		Vars.status = "Clicking cook all interface.";
 		RSInterface cook_Interface = Interfaces.get(307, 6);
 		if (cook_Interface != null && !cook_Interface.isHidden()) {
+			AntiBan.getReactionTime();
+			AntiBan.sleepReactionTime();
 			if (cook_Interface.click("Cook All")) {
-				General.sleep(AntiBan.getReactionTime());
-				General.println("Generated reaction time: " + AntiBan.getReactionTime());
+				AntiBan.generateTrackers(AntiBan.getWaitingTime());
 				Timing.waitCondition(Conditions.get().animating(), General.random(4000, 7000));
 			}
 		}
@@ -96,9 +102,10 @@ public class Cook extends Task {
 		Vars.status = "Clicking use on " + Vars.food;
 		RSItem[] item = Inventory.find(Vars.food);
 		if (item.length > 0) {
+			AntiBan.getReactionTime();
+			AntiBan.sleepReactionTime();
 			if (item[0].click("Use")) {
-				General.sleep(AntiBan.getReactionTime());
-				General.println("Generated reaction time: " + AntiBan.getReactionTime());
+				AntiBan.generateTrackers(AntiBan.getWaitingTime());
 				Timing.waitCondition(Conditions.get().item_Clicked(), General.random(4000, 5000));
 			}
 		}
@@ -107,9 +114,10 @@ public class Cook extends Task {
 	public static void interact_Object(RSObject object, String action, Condition condition) {
 		if (object != null) {
 			if (object.isOnScreen()) {
+				AntiBan.getReactionTime();
+				AntiBan.sleepReactionTime();
 				if (object.click(action)) {
-					General.sleep(AntiBan.getReactionTime());
-					General.println("Generated reaction time: " + AntiBan.getReactionTime());
+					AntiBan.generateTrackers(AntiBan.getWaitingTime());
 					Timing.waitCondition(condition, General.random(4000, 7000));
 				}
 			} else {
@@ -122,21 +130,22 @@ public class Cook extends Task {
 		return Objects.findNearest(Objectives.COOK.get_Area().getAllTiles().length, new Filter<RSObject>() {
 			@Override
 			public boolean accept(RSObject object) {
-				if (object == null) {
+				if (object == null)
 					return false;
-				}
-				if (object.getDefinition() == null) {
+
+				RSObjectDefinition def = object.getDefinition();
+				if (def == null)
 					return false;
-				}
-				if (object.getDefinition().getActions() == null) {
+
+				if (def.getActions() == null)
 					return false;
-				}
-				String[] actions = object.getDefinition().getActions();
-				if (actions.length == 0) {
+
+				String[] actions = def.getActions();
+				if (actions.length == 0)
 					return false;
-				}
+
 				for (String a : actions) {
-					return object.getDefinition().getName().equals("Door") && a.equals("Open")
+					return def.getName().equals("Door") && a.equals("Open")
 							&& Objectives.COOK.get_Area().contains(object);
 				}
 				return false;
@@ -144,7 +153,7 @@ public class Cook extends Task {
 		});
 	}
 
-	public static RSObject obstacle() {
+	public static RSObject findObstacle() {
 		RSObject[] obstacles = get_Possible_Obstacles();
 		if (obstacles.length > 0) {
 			return obstacles[0];
@@ -153,24 +162,25 @@ public class Cook extends Task {
 	}
 
 	private static RSObject[] get_Possible_Ranges() {
-		return Objects.findNearest(Objectives.COOK.get_Area().getAllTiles().length, new Filter<RSObject>() {
+		return Objects.findNearest(20, new Filter<RSObject>() {
 			@Override
 			public boolean accept(RSObject object) {
 				if (object == null) {
 					return false;
 				}
-				if (object.getDefinition() == null) {
+				RSObjectDefinition def = object.getDefinition();
+				if (def == null) {
 					return false;
 				}
-				return object.getDefinition().getName().equals("Range") && Objectives.COOK.get_Area().contains(object);
+				return def.getName().equals("Range") && Objectives.COOK.get_Area().contains(object);
 			}
 		});
 	}
 
-	public static RSObject range() {
+	public static RSObject grabRange() {
 		RSObject[] ranges = get_Possible_Ranges();
 		if (ranges.length > 0) {
-			return get_Possible_Ranges()[0];
+			return ranges[0];
 		}
 		return null;
 	}

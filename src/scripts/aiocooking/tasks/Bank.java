@@ -38,7 +38,7 @@ public class Bank extends Task {
 				Walking.blindWalkTo(Objectives.BANK.get_Walk_Tile());
 			} else {
 				Vars.status = "Handling obstacle.";
-				Cook.interact_Object(Cook.obstacle(), "Open",
+				Cook.interact_Object(Cook.obstacle, "Open",
 						Conditions.get().can_Reach_Tile(Objectives.BANK.get_Walk_Tile()));
 			}
 		} else {
@@ -70,9 +70,10 @@ public class Bank extends Task {
 	private void bank() {
 		if (!Objectives.BANK.interface_Open()) {
 			Vars.status = "Opening bank.";
+			AntiBan.getReactionTime();
+			AntiBan.sleepReactionTime();
 			if (Banking.openBank()) {
-				General.sleep(AntiBan.getReactionTime());
-				General.println("Generated reaction time: " + AntiBan.getReactionTime());
+				AntiBan.generateTrackers(AntiBan.getWaitingTime());
 				Timing.waitCondition(Conditions.get().bank_open(), General.random(4000, 7000));
 			}
 		} else {
@@ -92,16 +93,18 @@ public class Bank extends Task {
 	private void withdraw() {
 		if (Inventory.isFull() && Inventory.getCount(Food.SHRIMP.name()) == 0) {
 			Vars.status = "Depositing items.";
+			AntiBan.getReactionTime();
+			AntiBan.sleepReactionTime();
 			if (Banking.depositAll() > 0) {
-				General.sleep(AntiBan.getReactionTime());
-				General.println("Generated reaction time: " + AntiBan.getReactionTime());
+				AntiBan.generateTrackers(AntiBan.getWaitingTime());
 				Timing.waitCondition(Conditions.get().inventory_Empty(), General.random(4000, 7000));
 			}
 		} else {
 			Vars.status = "Withdrawing " + Vars.food;
+			AntiBan.getReactionTime();
+			AntiBan.sleepReactionTime();
 			if (Banking.withdraw(0, Vars.food)) {
-				General.sleep(AntiBan.getReactionTime());
-				General.println("Generated reaction time: " + AntiBan.getReactionTime());
+				AntiBan.generateTrackers(AntiBan.getWaitingTime());
 				Timing.waitCondition(Conditions.get().got_Item(), General.random(4000, 7000));
 			}
 		}
