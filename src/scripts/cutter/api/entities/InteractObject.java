@@ -43,7 +43,7 @@ public class InteractObject {
 					return false;
 				if (!Arrays.asList(actions).contains(action))
 					return false;
-				return def.getName().equals(name) && area.contains(o);
+				return def.getName().equals(name);
 			}
 		};
 	}

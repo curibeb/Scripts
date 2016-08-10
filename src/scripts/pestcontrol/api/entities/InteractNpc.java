@@ -41,7 +41,7 @@ public class InteractNpc {
 				if (allNpcs)
 					return area.contains(a);
 				else
-					return def.getName().equals(name) && area.contains(a);
+					return def.getName().equals(name);
 			}
 		};
 	}
