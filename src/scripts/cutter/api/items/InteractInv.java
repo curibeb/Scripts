@@ -34,8 +34,6 @@ public class InteractInv {
 		return Inventory.find(new Filter<RSItem>() {
 			@Override
 			public boolean accept(RSItem a) {
-				if (a == null)
-					return false;
 				RSItemDefinition def = a.getDefinition();
 				if (def == null)
 					return false;

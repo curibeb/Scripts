@@ -30,8 +30,6 @@ public class InteractNpc {
 		return new Filter<RSNPC>() {
 			@Override
 			public boolean accept(RSNPC a) {
-				if (a == null)
-					return false;
 				RSNPCDefinition def = a.getDefinition();
 				if (def == null)
 					return false;

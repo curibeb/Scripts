@@ -35,8 +35,6 @@ public class InteractObject {
 		return new Filter<RSObject>() {
 			@Override
 			public boolean accept(RSObject o) {
-				if (o == null)
-					return false;
 				RSObjectDefinition def = o.getDefinition();
 				if (def == null)
 					return false;

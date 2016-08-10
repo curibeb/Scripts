@@ -130,9 +130,6 @@ public class Cook extends Task {
 		return Objects.findNearest(Objectives.COOK.get_Area().getAllTiles().length, new Filter<RSObject>() {
 			@Override
 			public boolean accept(RSObject object) {
-				if (object == null)
-					return false;
-
 				RSObjectDefinition def = object.getDefinition();
 				if (def == null)
 					return false;
@@ -165,13 +162,9 @@ public class Cook extends Task {
 		return Objects.findNearest(20, new Filter<RSObject>() {
 			@Override
 			public boolean accept(RSObject object) {
-				if (object == null) {
-					return false;
-				}
 				RSObjectDefinition def = object.getDefinition();
-				if (def == null) {
+				if (def == null)
 					return false;
-				}
 				return def.getName().equals("Range") && Objectives.COOK.get_Area().contains(object);
 			}
 		});

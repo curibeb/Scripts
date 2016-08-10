@@ -23,8 +23,6 @@ public class InteractGround {
 		return GroundItems.findNearest(new Filter<RSGroundItem>() {
 			@Override
 			public boolean accept(RSGroundItem a) {
-				if (a == null)
-					return false;
 				RSItemDefinition def = a.getDefinition();
 				if (def == null)
 					return false;
