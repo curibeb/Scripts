@@ -31,7 +31,7 @@ public final class Antiban {
 
 	static {
 		abc = new ABCUtil();
-		print_debug = false;
+		print_debug = true;
 		resources_won = 0;
 		resources_lost = 0;
 		run_at = abc.generateRunActivation();

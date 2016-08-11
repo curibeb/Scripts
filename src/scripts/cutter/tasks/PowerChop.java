@@ -13,6 +13,7 @@ import org.tribot.api2007.Player;
 import org.tribot.api2007.WebWalking;
 import org.tribot.api2007.types.RSItem;
 
+import scripts.cutter.api.antiban.Antiban;
 import scripts.cutter.taskframework.Task;
 import scripts.cutter.utilities.Priorities;
 import scripts.cutter.utilities.Vars;
@@ -33,6 +34,12 @@ public class PowerChop extends Task {
 
 	@Override
 	public void execute() {
+		long t = System.currentTimeMillis();
+
+		while (Player.getAnimation() != -1 && (System.currentTimeMillis() - t) < 5000) {
+			General.random(500, 800);
+			Antiban.timedActions();
+		}
 		if (Vars.trees_Loc.contains(Player.getPosition())) {
 			if (full) {
 				dropAll();
@@ -74,8 +81,8 @@ public class PowerChop extends Task {
 						continue;
 					Rectangle r = new RSItem(4 * j + i, 0, 0, RSItem.TYPE.INVENTORY).getArea();
 					if (!r.contains(Mouse.getPos())) {
-						Mouse.move(new Point((int) r.getCenterX() + General.random(-3, 3),
-								(int) r.getCenterY() + General.random(-3, 3)));
+						Mouse.move(new Point((int) r.getCenterX() + General.random(-10, 10),
+								(int) r.getCenterY() + General.random(-10, 10)));
 					}
 					if (r.contains(Mouse.getPos())) {
 						Mouse.click(3);
