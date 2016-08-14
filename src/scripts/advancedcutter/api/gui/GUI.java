@@ -14,6 +14,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class GUI extends Application {
@@ -47,6 +48,7 @@ public class GUI extends Application {
 			stage.setTitle(this.guiTitle);
 			stage.setAlwaysOnTop(true);
 			stage.setResizable(false);
+			stage.getIcons().add(new Image("http://www.freeiconspng.com/uploads/tree-icon-0.png"));
 			Platform.setImplicitExit(false);
 
 			FXMLLoader loader = new FXMLLoader(fxml);

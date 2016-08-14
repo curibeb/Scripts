@@ -4,11 +4,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.tribot.script.Script;
+import org.tribot.script.interfaces.Ending;
 
 import scripts.advancedcutter.api.gui.GUI;
 import scripts.advancedcutter.api.utilities.Vars;
 
-public class Main extends Script {
+public class Main extends Script implements Ending{
 	public static GUI gui = null;
 
 	public GUI getGUI() {
@@ -29,9 +30,16 @@ public class Main extends Script {
 				sleep(250);
 		}
 		while (Vars.start) {
-			System.out.print("script started");
 			sleep(500, 800);
 		}
+	}
+
+	@Override
+	public void onEnd() {
+		if (gui.isOpen()){
+			gui.close();
+		}
+		System.out.print("Thank you for using C#2Bot Cutter");
 	}
 
 }
