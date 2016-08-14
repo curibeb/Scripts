@@ -1,4 +1,4 @@
-package scripts;
+package scripts.api.dynamicsig;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
