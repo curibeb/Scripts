@@ -18,8 +18,8 @@ public class SigData {
 		// data and post it themselves, we will be encrypting it here and
 		// decrypting it in php.
 		// These keys should be the same as in PHP (db.php) (16bit long)
-		String privateKey = "1CCC2B991268A";
-		String initVector = "66DD6AEA626C7";
+		String privateKey = "121234567892asas";
+		String initVector = "121234567892asad";
 
 		try {
 			// data we will be encrypting. you can remove the var's if you want
@@ -49,9 +49,10 @@ public class SigData {
 					token = token + java.lang.Integer.toHexString(encrypted[i] & 0xFF);
 				}
 			}
+			General.println(token);
 
 			// And post it :)
-			URL url = new URL("www.yourdomain.com/yourscriptname/input.php?token=" + token);
+			URL url = new URL("http://csharp2bot.pe.hu/cutter/input.php?token=" + token);
 			URLConnection conn = url.openConnection();
 
 			// fake request coming from browser (solves permission issue on
@@ -64,7 +65,7 @@ public class SigData {
 			in.close();
 			return true;
 		} catch (Exception e) {
-			General.println(e.getMessage());
+			General.println(e);
 		}
 		return false;
 	}

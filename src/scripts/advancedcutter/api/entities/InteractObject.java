@@ -54,7 +54,7 @@ public class InteractObject {
 
 	private RSObject[] objects() {
 		if (!this.tileObject)
-			return Objects.findNearest(distance, this.areaFilter(area).combine(this.objectFilter(), false));
+			return Objects.findNearest(distance, this.areaFilter(area).combine(this.objectFilter(), true));
 		else
 			return Objects.getAt(tile);
 	}

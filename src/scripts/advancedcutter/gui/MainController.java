@@ -83,6 +83,14 @@ public class MainController extends AbstractGUIController {
 
 	private void startBtnEvent() {
 		Vars.start = true;
+		if (this.progressiveLeveling.isSelected()) {
+			Vars.progressiveLevel = true;
+		} else {
+			if (this.methodCombo.getSelectionModel().getSelectedIndex() == 0)
+				Vars.customChop = true;
+			else
+				Vars.standardChop = true;
+		}
 		Main.gui.close();
 	}
 
