@@ -2,6 +2,8 @@ package scripts.advancedcutter.tasks.custom;
 
 import scripts.advancedcutter.api.taskframework.Task;
 import scripts.advancedcutter.api.utilities.Vars;
+import scripts.advancedcutter.general.BankChop;
+import scripts.advancedcutter.general.PowerChop;
 
 public class Custom extends Task {
 

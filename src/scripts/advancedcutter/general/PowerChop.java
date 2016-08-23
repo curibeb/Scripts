@@ -1,4 +1,4 @@
-package scripts.advancedcutter.tasks.custom;
+package scripts.advancedcutter.general;
 
 public class PowerChop {
 
