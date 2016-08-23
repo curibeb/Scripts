@@ -21,7 +21,7 @@ public class ProgLevelSetup {
 			return "Mithril axe";
 		if (wcLevel >= 31 && wcLevel < 41)
 			return "Adamant axe";
-		if (wcLevel >= 31 && wcLevel < 41)
+		if (wcLevel >= 41)
 			return "Rune axe";
 		return "Bronze axe";
 	}

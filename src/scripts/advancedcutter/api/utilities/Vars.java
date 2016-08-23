@@ -7,6 +7,7 @@ import org.tribot.api2007.types.RSTile;
 
 public class Vars {
 
+	public static String treeType;
 	public static int logsPerHour;
 	public static int logsChoped;
 	public static int xpGained;
