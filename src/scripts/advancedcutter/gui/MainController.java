@@ -1,6 +1,7 @@
 package scripts.advancedcutter.gui;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ import javafx.scene.layout.AnchorPane;
 import scripts.advancedcutter.Main;
 import scripts.advancedcutter.api.gui.AbstractGUIController;
 import scripts.advancedcutter.api.utilities.Vars;
+import scripts.advancedcutter.enums.treetypes.TreeTypes;
 
 public class MainController extends AbstractGUIController {
 
@@ -101,40 +103,81 @@ public class MainController extends AbstractGUIController {
 	}
 
 	private void loadBtnEvent() {
-		if (methodCombo.getSelectionModel().getSelectedIndex() == 0) {
-			
+		path = new File(Util.getWorkingDirectory().getAbsolutePath(),
+				this.presetCombo.getValue() + "_C#2Bot_Advanced_Cutter.ini");
+		try {
+			if (path.exists()) {
+
+				prop.load(new FileInputStream(path));
+				String powerchop = prop.getProperty("powerchop");
+				String chopMethod = prop.getProperty("chopmethod");
+				Vars.treeType = prop.getProperty("treeType");
+
+				if (chopMethod.equals("Custom chop")) {
+					this.methodCombo.getSelectionModel().select(0);
+				} else {
+					this.methodCombo.getSelectionModel().select(1);
+				}
+
+				if (Boolean.valueOf(powerchop) == true) {
+					this.powerchop.setSelected(true);
+				}
+
+				this.firstBankTile = new RSTile(Integer.parseInt(prop.getProperty("bankfirsttilex")),
+						Integer.parseInt(prop.getProperty("bankfirsttiley")), 0);
+				this.secondBankTile = new RSTile(Integer.parseInt(prop.getProperty("banksecondtilex")),
+						Integer.parseInt(prop.getProperty("banksecondtiley")), 0);
+
+				this.firstTreeTile = new RSTile(Integer.parseInt(prop.getProperty("treefirsttilex")),
+						Integer.parseInt(prop.getProperty("treefirsttiley")), 0);
+				this.secondTreeTile = new RSTile(Integer.parseInt(prop.getProperty("treesecondtilex")),
+						Integer.parseInt(prop.getProperty("treesecondtiley")), 0);
+
+				Vars.chopAreaWalkTile = new RSTile(Integer.parseInt(prop.getProperty("treewalktilex")),
+						Integer.parseInt(prop.getProperty("treewalktiley")), 0);
+
+				if (this.powerchop.isSelected()) {
+					Vars.powerChop = true;
+				}
+				for (TreeTypes tree : TreeTypes.values()) {
+					if (tree.getName().equals(Vars.treeType)) {
+						this.treeCombo.getSelectionModel().select(tree.getIndex());
+					}
+				}
+				this.bankAreafirstTile.setText(String.valueOf(this.firstBankTile));
+				this.bankAreaSecondTile.setText(String.valueOf(this.secondBankTile));
+				this.treeAreaFirstTile.setText(String.valueOf(this.firstTreeTile));
+				this.treeAreaSecondTile.setText(String.valueOf(this.secondTreeTile));
+				this.treeSpotWalkTile.setText(String.valueOf(Vars.chopAreaWalkTile));
+			}
+
+		} catch (Exception e2) {
+			System.out.print("Unable to load settings");
 		}
 	}
 
 	private void saveBtnEvent() {
-		if (methodCombo.getSelectionModel().getSelectedIndex() == 0) {
-			this.saveCustomSetting();
-		} else {
-
-		}
-	}
-
-	private void saveCustomSetting() {
 		path = new File(Util.getWorkingDirectory().getAbsolutePath(),
 				this.presetName.getText() + "_C#2Bot_Advanced_Cutter.ini");
 		try {
 			prop.clear();
-			prop.put("treeType", this.treeCombo.getValue());
-			prop.put("bankfirsttilex", this.firstBankTile.getX());
-			prop.put("bankfirsttiley", this.firstBankTile.getY());
-			prop.put("banksecondtilex", this.secondBankTile.getX());
-			prop.put("banksecondtiley", this.secondBankTile.getY());
-			prop.put("treefirsttilex", this.firstTreeTile.getX());
-			prop.put("treefirsttiley", this.firstTreeTile.getY());
-			prop.put("treesecondtilex", this.secondTreeTile.getX());
-			prop.put("treesecondtiley", this.secondTreeTile.getY());
-			prop.put("treewalktilex", Vars.chopAreaWalkTile.getX());
-			prop.put("treewalktiley", Vars.chopAreaWalkTile.getY());
-			prop.put("powerchop", this.powerchop.isSelected());
+			prop.put("chopmethod", String.valueOf(this.methodCombo.getValue()));
+			prop.put("treeType", String.valueOf(this.treeCombo.getValue()));
+			prop.put("bankfirsttilex", String.valueOf(this.firstBankTile.getX()));
+			prop.put("bankfirsttiley", String.valueOf(this.firstBankTile.getY()));
+			prop.put("banksecondtilex", String.valueOf(this.secondBankTile.getX()));
+			prop.put("banksecondtiley", String.valueOf(this.secondBankTile.getY()));
+			prop.put("treefirsttilex", String.valueOf(this.firstTreeTile.getX()));
+			prop.put("treefirsttiley", String.valueOf(this.firstTreeTile.getY()));
+			prop.put("treesecondtilex", String.valueOf(this.secondTreeTile.getX()));
+			prop.put("treesecondtiley", String.valueOf(this.secondTreeTile.getY()));
+			prop.put("treewalktilex", String.valueOf(Vars.chopAreaWalkTile.getX()));
+			prop.put("treewalktiley", String.valueOf(Vars.chopAreaWalkTile.getY()));
+			prop.put("powerchop", String.valueOf(this.powerchop.isSelected()));
 			prop.store(new FileOutputStream(path), "GUI Settings");
 			System.out.print(this.presetName.getText() + " preset saved successfully.");
 		} catch (Exception e1) {
-			System.out.print("Unable to save settings: " + e1);
+			System.out.print("Save failed, please fill all the required field");
 		}
 	}
 
@@ -236,6 +279,9 @@ public class MainController extends AbstractGUIController {
 	public void methodComboChanged(ActionEvent event) {
 		this.optionListView.getItems().clear();
 		this.powerchop.setSelected(false);
+		if (this.presetCombo.getSelectionModel().getSelectedItem() != null) {
+			this.presetName.setText(this.presetCombo.getValue());
+		}
 		if (this.treeCombo.getSelectionModel().getSelectedItem() == null) {
 			this.optionListView.getItems().add("Please select");
 			this.optionListView.getItems().add("a tree");
@@ -272,7 +318,7 @@ public class MainController extends AbstractGUIController {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.methodList = FXCollections.observableArrayList("Custom chop", "Standard chop");
-		this.treeList = FXCollections.observableArrayList("Tree", "Oak", "Willow", "Yew", "Magic tree");
+		this.treeList = FXCollections.observableArrayList("Tree", "Oak", "Willow", "Yew");
 		this.locationList = FXCollections.observableArrayList("Varrock", "Falador", "Catherby", "Draynor", "Lumbridge");
 		this.optionListView.getItems().add("Please choose");
 		this.optionListView.getItems().add("options from");

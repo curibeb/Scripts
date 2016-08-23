@@ -95,7 +95,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ComboBox fx:id="presetCombo" layoutX="172.0" layoutY="286.0" prefHeight="25.0" prefWidth="133.0" promptText="Select preset" />
+      <ComboBox fx:id="presetCombo" layoutX="172.0" layoutY="286.0" onAction="#methodComboChanged" prefHeight="25.0" prefWidth="133.0" promptText="Select preset" />
       <Button fx:id="saveBtn" layoutX="517.0" layoutY="281.0" mnemonicParsing="false" onAction="#buttonAction" prefHeight="35.0" prefWidth="201.0" text="Save preset">
          <font>
             <Font name="System Bold" size="12.0" />
