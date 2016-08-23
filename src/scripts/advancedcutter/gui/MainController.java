@@ -89,7 +89,7 @@ public class MainController extends AbstractGUIController {
 			if (this.methodCombo.getSelectionModel().getSelectedIndex() == 0)
 				Vars.customChop = true;
 			else
-				Vars.standardChop = true;
+				Vars.normalChop = true;
 		}
 		Main.gui.close();
 	}

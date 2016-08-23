@@ -13,8 +13,9 @@ public class Vars {
 	public static long runTime;
 	public static long beforeStartTime = System.currentTimeMillis();
 
+	public static boolean powerChop = false;
 	public static boolean progressiveLevel = false;
 	public static boolean customChop = false;
-	public static boolean standardChop = false;
+	public static boolean normalChop = false;
 	public static boolean start = false;
 }
