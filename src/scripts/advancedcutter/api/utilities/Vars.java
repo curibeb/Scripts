@@ -2,6 +2,8 @@ package scripts.advancedcutter.api.utilities;
 
 import org.tribot.api2007.Skills;
 import org.tribot.api2007.Skills.SKILLS;
+import org.tribot.api2007.types.RSArea;
+import org.tribot.api2007.types.RSTile;
 
 public class Vars {
 
@@ -18,4 +20,9 @@ public class Vars {
 	public static boolean customChop = false;
 	public static boolean normalChop = false;
 	public static boolean start = false;
+	
+	public static RSArea chopArea;
+	public static RSArea bankArea;
+	public static RSTile chopAreaWalkTile;
+	
 }

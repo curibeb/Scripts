@@ -3,6 +3,11 @@ package scripts.advancedcutter.gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.tribot.api.General;
+import org.tribot.api2007.Player;
+import org.tribot.api2007.types.RSArea;
+import org.tribot.api2007.types.RSTile;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,6 +50,8 @@ public class MainController extends AbstractGUIController {
 
 	private ObservableList<String> methodList, treeList, locationList;
 
+	private RSTile firstBankTile, secondBankTile, firstTreeTile, secondTreeTile;
+
 	public void buttonAction(ActionEvent event) {
 		Node node = (Node) event.getSource();
 		if (node.getId().equals(this.startBtn.getId())) {
@@ -56,29 +63,48 @@ public class MainController extends AbstractGUIController {
 		if (node.getId().equals(this.loadBtn.getId())) {
 			this.loadBtnEvent();
 		}
-		if (node.getId().equals(this.treeSpotWalkTile.getId())) {
-
+		if (node.getId().equals(this.setTreeSpotWalkBtn.getId())) {
+			General.println("The tree spot walking tile is set to " + Player.getPosition());
+			Vars.chopAreaWalkTile = Player.getPosition();
+			this.treeSpotWalkTile.setText(String.valueOf(Player.getPosition()));
 		}
 		if (node.getId().equals(this.setFirstBankTileBtn.getId())) {
-
+			General.println("First bank tile set to: " + Player.getPosition());
+			this.firstBankTile = Player.getPosition();
+			this.bankAreafirstTile.setText(String.valueOf(Player.getPosition()));
 		}
-		if (node.getId().equals(this.setFirstBankTileBtn.getId())) {
-
+		if (node.getId().equals(this.setSecondBankTileBtn.getId())) {
+			General.println("Second bank tile set to: " + Player.getPosition());
+			this.secondBankTile = Player.getPosition();
+			this.bankAreaSecondTile.setText(String.valueOf(Player.getPosition()));
 		}
 		if (node.getId().equals(this.setFirstTreeAreaBtn.getId())) {
-
+			General.println("First tree area tile set to: " + Player.getPosition());
+			this.firstTreeTile = Player.getPosition();
+			this.treeAreaFirstTile.setText(String.valueOf(Player.getPosition()));
 		}
 		if (node.getId().equals(this.setSecondTreeAreaBtn.getId())) {
-
+			General.println("Second tree area tile set to: " + Player.getPosition());
+			this.secondTreeTile = Player.getPosition();
+			this.treeAreaSecondTile.setText(String.valueOf(Player.getPosition()));
 		}
 	}
 
 	private void loadBtnEvent() {
-		// load settings
+		General.println("Settings loaded.");
 	}
 
 	private void saveBtnEvent() {
-		// save settings
+		General.println("Settings saved.");
+	}
+
+	private void handleCustomArea() {
+		if (this.firstBankTile != null && this.secondBankTile != null) {
+			Vars.bankArea = new RSArea(this.firstBankTile, this.secondBankTile);
+		}
+		if (this.firstTreeTile != null && this.secondTreeTile != null) {
+			Vars.chopArea = new RSArea(this.firstTreeTile, this.secondTreeTile);
+		}
 	}
 
 	private void startBtnEvent() {
@@ -86,10 +112,12 @@ public class MainController extends AbstractGUIController {
 		if (this.progressiveLeveling.isSelected()) {
 			Vars.progressiveLevel = true;
 		} else {
-			if (this.methodCombo.getSelectionModel().getSelectedIndex() == 0)
+			if (this.methodCombo.getSelectionModel().getSelectedIndex() == 0) {
+				this.handleCustomArea();
 				Vars.customChop = true;
-			else
+			} else {
 				Vars.normalChop = true;
+			}
 		}
 		Main.gui.close();
 	}
