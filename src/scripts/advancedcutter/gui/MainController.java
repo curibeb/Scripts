@@ -1,12 +1,16 @@
 package scripts.advancedcutter.gui;
 
+import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.tribot.api.General;
 import org.tribot.api2007.Player;
 import org.tribot.api2007.types.RSArea;
 import org.tribot.api2007.types.RSTile;
+import org.tribot.util.Util;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,7 +35,7 @@ public class MainController extends AbstractGUIController {
 	private Button startBtn, setTreeSpotWalkBtn, setFirstBankTileBtn, setSecondBankTileBtn, setFirstTreeAreaBtn,
 			setSecondTreeAreaBtn, saveBtn, loadBtn;
 	@FXML
-	private ComboBox<String> methodCombo, locationCombo, treeCombo;
+	private ComboBox<String> methodCombo, locationCombo, treeCombo, presetCombo;
 
 	@FXML
 	private ListView<String> optionListView;
@@ -51,6 +55,8 @@ public class MainController extends AbstractGUIController {
 	private ObservableList<String> methodList, treeList, locationList;
 
 	private RSTile firstBankTile, secondBankTile, firstTreeTile, secondTreeTile;
+
+	public static File path;
 
 	public void buttonAction(ActionEvent event) {
 		Node node = (Node) event.getSource();
@@ -213,6 +219,24 @@ public class MainController extends AbstractGUIController {
 		}
 	}
 
+	private void grabSettingFiles() {
+		path = new File(Util.getWorkingDirectory().getAbsolutePath());
+		File[] files = path.listFiles();
+		if (files != null) {
+			for (File file : files) {
+				if (file.getName().contains("C#2Bot_Advanced_Cutter")) {
+			        List<String> list = new ArrayList<String>();
+			        list.add("Item A");
+			        list.add("Item B");
+			        list.add("Item C");
+			        ObservableList<String> obList = FXCollections.observableList(list);
+			        this.presetCombo.getItems().clear();
+			        this.presetCombo.setItems(obList);
+				}
+			}
+		}
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.methodList = FXCollections.observableArrayList("Custom chop", "Standard chop");
@@ -231,6 +255,7 @@ public class MainController extends AbstractGUIController {
 		if (this.locationList.size() > 0) {
 			this.locationCombo.setItems(this.locationList);
 		}
+		this.grabSettingFiles();
 	}
 
 }
