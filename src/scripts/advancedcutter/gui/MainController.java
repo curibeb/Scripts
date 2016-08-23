@@ -1,9 +1,11 @@
 package scripts.advancedcutter.gui;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 import org.tribot.api.General;
@@ -44,7 +46,8 @@ public class MainController extends AbstractGUIController {
 	private AnchorPane customChopPane, mainPane;
 
 	@FXML
-	private TextField treeSpotWalkTile, treeAreaFirstTile, treeAreaSecondTile, bankAreafirstTile, bankAreaSecondTile;
+	private TextField treeSpotWalkTile, treeAreaFirstTile, treeAreaSecondTile, bankAreafirstTile, bankAreaSecondTile,
+			presetName;
 
 	@FXML
 	private CheckBox powerchop, progressiveLeveling;
@@ -56,7 +59,8 @@ public class MainController extends AbstractGUIController {
 
 	private RSTile firstBankTile, secondBankTile, firstTreeTile, secondTreeTile;
 
-	public static File path;
+	private static File path;
+	private static Properties prop = new Properties();
 
 	public void buttonAction(ActionEvent event) {
 		Node node = (Node) event.getSource();
@@ -97,11 +101,41 @@ public class MainController extends AbstractGUIController {
 	}
 
 	private void loadBtnEvent() {
-		General.println("Settings loaded.");
+		if (methodCombo.getSelectionModel().getSelectedIndex() == 0) {
+			
+		}
 	}
 
 	private void saveBtnEvent() {
-		General.println("Settings saved.");
+		if (methodCombo.getSelectionModel().getSelectedIndex() == 0) {
+			this.saveCustomSetting();
+		} else {
+
+		}
+	}
+
+	private void saveCustomSetting() {
+		path = new File(Util.getWorkingDirectory().getAbsolutePath(),
+				this.presetName.getText() + "_C#2Bot_Advanced_Cutter.ini");
+		try {
+			prop.clear();
+			prop.put("treeType", this.treeCombo.getValue());
+			prop.put("bankfirsttilex", this.firstBankTile.getX());
+			prop.put("bankfirsttiley", this.firstBankTile.getY());
+			prop.put("banksecondtilex", this.secondBankTile.getX());
+			prop.put("banksecondtiley", this.secondBankTile.getY());
+			prop.put("treefirsttilex", this.firstTreeTile.getX());
+			prop.put("treefirsttiley", this.firstTreeTile.getY());
+			prop.put("treesecondtilex", this.secondTreeTile.getX());
+			prop.put("treesecondtiley", this.secondTreeTile.getY());
+			prop.put("treewalktilex", Vars.chopAreaWalkTile.getX());
+			prop.put("treewalktiley", Vars.chopAreaWalkTile.getY());
+			prop.put("powerchop", this.powerchop.isSelected());
+			prop.store(new FileOutputStream(path), "GUI Settings");
+			System.out.print(this.presetName.getText() + " preset saved successfully.");
+		} catch (Exception e1) {
+			System.out.print("Unable to save settings: " + e1);
+		}
 	}
 
 	private void handleCustomArea() {
@@ -225,13 +259,11 @@ public class MainController extends AbstractGUIController {
 		if (files != null) {
 			for (File file : files) {
 				if (file.getName().contains("C#2Bot_Advanced_Cutter")) {
-			        List<String> list = new ArrayList<String>();
-			        list.add("Item A");
-			        list.add("Item B");
-			        list.add("Item C");
-			        ObservableList<String> obList = FXCollections.observableList(list);
-			        this.presetCombo.getItems().clear();
-			        this.presetCombo.setItems(obList);
+					List<String> list = new ArrayList<String>();
+					list.add(file.getName().replace("_C#2Bot_Advanced_Cutter.ini", ""));
+					ObservableList<String> obList = FXCollections.observableList(list);
+					this.presetCombo.getItems().clear();
+					this.presetCombo.setItems(obList);
 				}
 			}
 		}

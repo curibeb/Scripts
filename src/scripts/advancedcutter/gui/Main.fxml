@@ -89,7 +89,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField layoutX="14.0" layoutY="286.0" />
+      <TextField fx:id="presetName" layoutX="14.0" layoutY="286.0" />
       <Label layoutX="15.0" layoutY="268.0" text="Preset:" textFill="#e5e000">
          <font>
             <Font name="System Bold" size="12.0" />
