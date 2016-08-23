@@ -97,13 +97,19 @@ public class MainController extends AbstractGUIController {
 	private void shouldDisableMain(boolean disable) {
 		for (Node node : this.mainPane.getChildren()) {
 			if (node instanceof Button || node instanceof ComboBox || node instanceof TextField
-					|| node instanceof ListView) {
+					|| node instanceof ListView || node instanceof CheckBox) {
 				if (node instanceof Button) {
 					Button btn = (Button) node;
 					if (!btn.getId().equals(this.startBtn.getId()))
 						node.setDisable(disable);
 				} else {
-					node.setDisable(disable);
+					if (node instanceof CheckBox) {
+						CheckBox cb = (CheckBox) node;
+						if (!cb.getId().equals(this.progressiveLeveling.getId()))
+							node.setDisable(disable);
+					} else {
+						node.setDisable(disable);
+					}
 				}
 			}
 		}
@@ -111,8 +117,7 @@ public class MainController extends AbstractGUIController {
 
 	private void shouldDisableCustom(boolean disable) {
 		for (Node node : this.customChopPane.getChildren()) {
-			if (node instanceof Button || node instanceof ComboBox || node instanceof TextField
-					|| node instanceof ListView) {
+			if (node instanceof Button || node instanceof ComboBox || node instanceof ListView) {
 				if (node instanceof Button) {
 					node.setDisable(disable);
 				} else {

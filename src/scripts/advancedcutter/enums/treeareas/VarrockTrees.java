@@ -15,6 +15,18 @@ public enum VarrockTrees {
 		public RSTile getWalkTile() {
 			return new RSTile(3164, 3407, 0);
 		}
+	},
+	OAKS_SOUTH {
+		@Override
+		public RSArea getArea() {
+			return new RSArea(new RSTile(3192, 3381, 0), new RSTile(3225, 3352, 0));
+		}
+
+		@Override
+		public RSTile getWalkTile() {
+			return new RSTile(3204, 3367, 0);
+		}
+
 	};
 
 	public abstract RSArea getArea();

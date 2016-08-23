@@ -2,6 +2,8 @@ package scripts.advancedcutter.api.conditions;
 
 import org.tribot.api.types.generic.Condition;
 import org.tribot.api2007.Banking;
+import org.tribot.api2007.Equipment;
+import org.tribot.api2007.Equipment.SLOTS;
 import org.tribot.api2007.Game;
 import org.tribot.api2007.Interfaces;
 import org.tribot.api2007.Inventory;
@@ -9,6 +11,8 @@ import org.tribot.api2007.PathFinding;
 import org.tribot.api2007.Player;
 import org.tribot.api2007.types.RSArea;
 import org.tribot.api2007.types.RSInterfaceChild;
+import org.tribot.api2007.types.RSItem;
+import org.tribot.api2007.types.RSItemDefinition;
 import org.tribot.api2007.types.RSTile;
 
 public class Conditions {
@@ -165,6 +169,21 @@ public class Conditions {
 				if (temp == null)
 					return false;
 				return !temp.isHidden();
+			}
+		};
+	}
+
+	public Condition equipmentOn(SLOTS slot, String item) {
+		return new Condition() {
+			@Override
+			public boolean active() {
+				RSItem[] item = Equipment.find(slot);
+				if (item.length == 0)
+					return false;
+				RSItemDefinition def = item[0].getDefinition();
+				if (def == null)
+					return false;
+				return def.getName().equals(item);
 			}
 		};
 	}
