@@ -1,6 +1,5 @@
 package scripts.advancedcutter.gui;
 
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -40,25 +39,32 @@ import scripts.advancedcutter.enums.treetypes.TreeTypes;
 public class MainController extends AbstractGUIController {
 
 	@FXML
+	@DoNotRename
 	private Button startBtn, setTreeSpotWalkBtn, setFirstBankTileBtn, setSecondBankTileBtn, setFirstTreeAreaBtn,
 			setSecondTreeAreaBtn, saveBtn, loadBtn;
 	@FXML
+	@DoNotRename
 	private ComboBox<String> methodCombo, locationCombo, treeCombo, presetCombo;
 
 	@FXML
+	@DoNotRename
 	private ListView<String> optionListView;
 
 	@FXML
+	@DoNotRename
 	private AnchorPane customChopPane, mainPane;
 
 	@FXML
+	@DoNotRename
 	private TextField treeSpotWalkTile, treeAreaFirstTile, treeAreaSecondTile, bankAreafirstTile, bankAreaSecondTile,
 			presetName;
 
 	@FXML
+	@DoNotRename
 	private CheckBox powerchop, progressiveLeveling;
 
 	@FXML
+	@DoNotRename
 	private ImageView image;
 
 	private ObservableList<String> methodList, treeList, locationList;
@@ -68,6 +74,7 @@ public class MainController extends AbstractGUIController {
 	private static File path;
 	private static Properties prop = new Properties();
 
+	@DoNotRename
 	public void buttonAction(ActionEvent event) {
 		Node node = (Node) event.getSource();
 		if (node.getId().equals(this.startBtn.getId())) {
@@ -106,6 +113,7 @@ public class MainController extends AbstractGUIController {
 		}
 	}
 
+	@DoNotRename
 	private void loadBtnEvent() {
 		path = new File(Util.getWorkingDirectory().getAbsolutePath(),
 				this.presetCombo.getValue() + "_C#2Bot_Advanced_Cutter.ini");
@@ -160,6 +168,7 @@ public class MainController extends AbstractGUIController {
 		}
 	}
 
+	@DoNotRename
 	private void saveBtnEvent() {
 		path = new File(Util.getWorkingDirectory().getAbsolutePath(),
 				this.presetName.getText() + "_C#2Bot_Advanced_Cutter.ini");
@@ -185,6 +194,7 @@ public class MainController extends AbstractGUIController {
 		}
 	}
 
+	@DoNotRename
 	private void handleCustomArea() {
 		if (this.firstBankTile != null && this.secondBankTile != null) {
 			Vars.bankArea = new RSArea(this.firstBankTile, this.secondBankTile);
@@ -201,14 +211,14 @@ public class MainController extends AbstractGUIController {
 		} else {
 			if (this.methodCombo.getSelectionModel().getSelectedIndex() == 0) {
 				this.handleCustomArea();
-				Vars.customChop = true;
 			} else {
-				Vars.normalChop = true;
+
 			}
 		}
 		Main.gui.close();
 	}
 
+	@DoNotRename
 	private void shouldDisableMain(boolean disable) {
 		for (Node node : this.mainPane.getChildren()) {
 			if (node instanceof Button || node instanceof ComboBox || node instanceof TextField
@@ -230,6 +240,7 @@ public class MainController extends AbstractGUIController {
 		}
 	}
 
+	@DoNotRename
 	private void shouldDisableCustom(boolean disable) {
 		for (Node node : this.customChopPane.getChildren()) {
 			if (node instanceof Button || node instanceof ComboBox || node instanceof ListView) {
@@ -242,6 +253,7 @@ public class MainController extends AbstractGUIController {
 		}
 	}
 
+	@DoNotRename
 	public void progressiveLevelingSelected(ActionEvent event) {
 		if (this.progressiveLeveling.isSelected()) {
 			this.shouldDisableMain(true);
@@ -252,6 +264,7 @@ public class MainController extends AbstractGUIController {
 		}
 	}
 
+	@DoNotRename
 	public void powerChopSelected(ActionEvent event) {
 		for (Node node : this.customChopPane.getChildren()) {
 			if (node instanceof Button) {
@@ -272,6 +285,7 @@ public class MainController extends AbstractGUIController {
 		}
 	}
 
+	@DoNotRename
 	public void treeComboChanged(ActionEvent event) {
 		this.optionListView.getItems().clear();
 		if (this.locationCombo.getSelectionModel().getSelectedItem() == null) {
@@ -280,6 +294,7 @@ public class MainController extends AbstractGUIController {
 		}
 	}
 
+	@DoNotRename
 	public void methodComboChanged(ActionEvent event) {
 		this.optionListView.getItems().clear();
 		this.powerchop.setSelected(false);
@@ -303,6 +318,7 @@ public class MainController extends AbstractGUIController {
 		}
 	}
 
+	@DoNotRename
 	private void grabSettingFiles() {
 		path = new File(Util.getWorkingDirectory().getAbsolutePath());
 		File[] files = path.listFiles();
@@ -320,7 +336,9 @@ public class MainController extends AbstractGUIController {
 	}
 
 	@Override
+	@DoNotRename
 	public void initialize(URL location, ResourceBundle resources) {
+
 		this.methodList = FXCollections.observableArrayList("Custom chop", "Standard chop");
 		this.treeList = FXCollections.observableArrayList("Tree", "Oak", "Willow", "Yew");
 		this.locationList = FXCollections.observableArrayList("Varrock", "Falador", "Catherby", "Draynor", "Lumbridge");

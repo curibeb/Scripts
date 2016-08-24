@@ -29,6 +29,10 @@ public class GUI extends Application {
 	private final URL fxml;
 	private boolean isOpen = false;
 
+	public static void main(String[] args) {
+		Application.launch((java.lang.String[]) null);
+	}
+
 	public GUI(URL fxml, String guiTitle) {
 		this.guiTitle = guiTitle;
 		this.fxml = fxml;

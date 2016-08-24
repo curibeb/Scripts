@@ -18,8 +18,6 @@ public class Vars {
 
 	public static boolean powerChop = false;
 	public static boolean progressiveLevel = false;
-	public static boolean customChop = false;
-	public static boolean normalChop = false;
 	public static boolean start = false;
 	
 	public static RSArea chopArea;

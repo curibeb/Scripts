@@ -8,6 +8,7 @@ import org.tribot.api.General;
 import org.tribot.api.input.Mouse;
 import org.tribot.api2007.Walking;
 import org.tribot.script.Script;
+import org.tribot.script.ScriptManifest;
 import org.tribot.script.interfaces.Ending;
 import org.tribot.script.interfaces.Painting;
 import org.tribot.script.interfaces.Starting;
@@ -24,17 +25,17 @@ import scripts.advancedcutter.tasks.proglevel.ProgLevel;
 import scripts.advancedcutter.tasks.woodcut.WoodCut;
 
 @DoNotRename
+@ScriptManifest(authors = { "C#2bot" }, category = "C#2bot", name = "Advanced Cutter")
 public class Main extends Script implements Starting, Ending, Painting {
+
 	public static String status = "";
 	public static GUI gui = null;
 	private TaskSet taskset = new TaskSet();
-	private String url = "https://raw.githubusercontent.com/CSharp2Bot/Scripts/master/src/scripts/advancedcutter/gui/Main.fxml";
-	
+
 	public GUI getGUI() {
 		try {
-			return new GUI(
-					new URL(url),
-					"C#2Bot Cutter");
+			URL url = new URL("http://csharp2bot.pe.hu/cutter/Main.fxml");
+			return new GUI(url, "C#2Bot Cutter");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
@@ -44,8 +45,7 @@ public class Main extends Script implements Starting, Ending, Painting {
 	private void addTasks() {
 		if (Vars.progressiveLevel) {
 			taskset.addTasks(new ProgLevel());
-		}
-		if (Vars.customChop){
+		} else {
 			taskset.addTasks(new WoodCut());
 		}
 	}

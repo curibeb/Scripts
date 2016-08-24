@@ -4,6 +4,7 @@ import scripts.advancedcutter.api.taskframework.Task;
 import scripts.advancedcutter.api.utilities.Vars;
 import scripts.advancedcutter.general.BankChop;
 import scripts.advancedcutter.general.PowerChop;
+import scripts.advancedcutter.general.ProgLevelSetup;
 
 public class WoodCut extends Task {
 
@@ -14,7 +15,7 @@ public class WoodCut extends Task {
 
 	@Override
 	public boolean validate() {
-		return Vars.customChop;
+		return  ProgLevelSetup.gotAxe();
 	}
 
 	@Override
