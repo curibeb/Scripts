@@ -1,5 +1,6 @@
 package scripts.advancedcutter.api.gui;
 
+import java.io.IOException;
 import java.net.URL;
 
 import javax.swing.SwingUtilities;
@@ -7,6 +8,8 @@ import javax.swing.SwingUtilities;
 import org.tribot.api.General;
 import org.tribot.api.Timing;
 import org.tribot.api.types.generic.Condition;
+
+import com.allatori.annotations.DoNotRename;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -17,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+@DoNotRename
 public class GUI extends Application {
 
 	private String guiTitle;
@@ -63,7 +67,7 @@ public class GUI extends Application {
 
 			scene = new Scene(root, 720, 395);
 			stage.setScene(scene);
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

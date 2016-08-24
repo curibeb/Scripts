@@ -9,6 +9,9 @@ import org.tribot.api2007.Combat;
 import org.tribot.api2007.Game;
 import org.tribot.api2007.Options;
 
+import com.allatori.annotations.DoNotRename;
+
+@DoNotRename
 public final class Antiban {
 
 	private static final ABCUtil abc;

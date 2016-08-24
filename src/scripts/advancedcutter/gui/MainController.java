@@ -1,5 +1,6 @@
 package scripts.advancedcutter.gui;
 
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -14,6 +15,8 @@ import org.tribot.api2007.Player;
 import org.tribot.api2007.types.RSArea;
 import org.tribot.api2007.types.RSTile;
 import org.tribot.util.Util;
+
+import com.allatori.annotations.DoNotRename;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,6 +36,7 @@ import scripts.advancedcutter.api.gui.AbstractGUIController;
 import scripts.advancedcutter.api.utilities.Vars;
 import scripts.advancedcutter.enums.treetypes.TreeTypes;
 
+@DoNotRename
 public class MainController extends AbstractGUIController {
 
 	@FXML

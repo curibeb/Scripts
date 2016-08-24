@@ -4,6 +4,9 @@ import org.tribot.api2007.Player;
 import org.tribot.api2007.Players;
 import org.tribot.api2007.types.RSPlayer;
 
+import com.allatori.annotations.DoNotRename;
+
+@DoNotRename
 public class InteractPlayer {
 
 	private RSPlayer[] players() {

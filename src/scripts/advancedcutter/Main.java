@@ -12,6 +12,8 @@ import org.tribot.script.interfaces.Ending;
 import org.tribot.script.interfaces.Painting;
 import org.tribot.script.interfaces.Starting;
 
+import com.allatori.annotations.DoNotRename;
+
 import scripts.advancedcutter.Paint.Paint;
 import scripts.advancedcutter.api.dynamicsig.SigData;
 import scripts.advancedcutter.api.gui.GUI;
@@ -21,15 +23,17 @@ import scripts.advancedcutter.api.utilities.Vars;
 import scripts.advancedcutter.tasks.proglevel.ProgLevel;
 import scripts.advancedcutter.tasks.woodcut.WoodCut;
 
+@DoNotRename
 public class Main extends Script implements Starting, Ending, Painting {
 	public static String status = "";
 	public static GUI gui = null;
 	private TaskSet taskset = new TaskSet();
-
+	private String url = "https://raw.githubusercontent.com/CSharp2Bot/Scripts/master/src/scripts/advancedcutter/gui/Main.fxml";
+	
 	public GUI getGUI() {
 		try {
 			return new GUI(
-					new URL("https://raw.githubusercontent.com/CSharp2Bot/Scripts/master/src/scripts/advancedcutter/gui/Main.fxml"),
+					new URL(url),
 					"C#2Bot Cutter");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

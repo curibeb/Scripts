@@ -15,6 +15,9 @@ import org.tribot.api2007.types.RSItem;
 import org.tribot.api2007.types.RSItemDefinition;
 import org.tribot.api2007.types.RSTile;
 
+import com.allatori.annotations.DoNotRename;
+
+@DoNotRename
 public class Conditions {
 
 	private static Conditions conditions = null;

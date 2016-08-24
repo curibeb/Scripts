@@ -13,6 +13,9 @@ import org.tribot.api2007.types.RSObject;
 import org.tribot.api2007.types.RSObjectDefinition;
 import org.tribot.api2007.types.RSTile;
 
+import com.allatori.annotations.DoNotRename;
+
+@DoNotRename
 public class InteractObject {
 
 	private String name;

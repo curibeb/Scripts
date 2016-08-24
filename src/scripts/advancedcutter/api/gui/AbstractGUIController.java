@@ -1,7 +1,10 @@
 package scripts.advancedcutter.api.gui;
 
+import com.allatori.annotations.DoNotRename;
+
 import javafx.fxml.Initializable;
 
+@DoNotRename
 public abstract class AbstractGUIController implements Initializable {
 
 	private GUI gui = null;

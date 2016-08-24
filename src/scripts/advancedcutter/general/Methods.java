@@ -1,5 +1,6 @@
 package scripts.advancedcutter.general;
 
+
 import org.tribot.api.General;
 import org.tribot.api.Timing;
 import org.tribot.api.input.Mouse;

@@ -12,6 +12,9 @@ import org.tribot.api2007.types.RSArea;
 import org.tribot.api2007.types.RSNPC;
 import org.tribot.api2007.types.RSNPCDefinition;
 
+import com.allatori.annotations.DoNotRename;
+
+@DoNotRename
 public class InteractNpc {
 
 	private String name;
