@@ -11,6 +11,9 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.tribot.api.General;
 
+import com.allatori.annotations.DoNotRename;
+
+@DoNotRename
 public class SigData {
 	public static boolean send(long runtimeInSeconds, int[] vars) {
 

@@ -15,14 +15,14 @@ public class WoodCut extends Task {
 
 	@Override
 	public boolean validate() {
-		return  ProgLevelSetup.gotAxe();
+		return ProgLevelSetup.gotAxe();
 	}
 
 	@Override
 	public void execute() {
 		if (Vars.powerChop)
-			PowerChop.execute();
+			PowerChop.execute(Vars.chopArea);
 		else
-			BankChop.execute(Vars.bankArea,Vars.chopArea);
+			BankChop.execute(Vars.bankArea, Vars.chopArea);
 	}
 }

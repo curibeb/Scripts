@@ -1,6 +1,5 @@
 package scripts.advancedcutter.general;
 
-
 import org.tribot.api.General;
 import org.tribot.api.Timing;
 import org.tribot.api.input.Mouse;
@@ -25,19 +24,20 @@ public class Methods {
 			if (hovered(tree)) {
 				Mouse.click(3);
 			} else {
-				hover(tree);
+				if (hover(tree))
+					Timing.waitCondition(Conditions.get().uptext_Contains(tree), General.random(4000, 6000));
 			}
 		} else {
 			if (!hovered(tree)) {
 				Main.status = "Hover over next tree";
 				Antiban.getABCUtil().rotateCamera();
-				hover(tree);
-				General.sleep(500, 800);
+				if (hover(tree))
+					Timing.waitCondition(Conditions.get().uptext_Contains(tree), General.random(4000, 6000));
 			}
 		}
 	}
 
-	public static void hover(String tree) {
+	public static boolean hover(String tree) {
 		RSObject[] trees = Objects.findNearest(6, tree);
 		if (trees.length > 1) {
 			for (RSObject t : trees) {
@@ -45,10 +45,11 @@ public class Methods {
 					if (!t.isOnScreen())
 						Camera.turnToTile(trees[1]);
 					else
-						t.hover();
+						return t.hover();
 				}
 			}
 		}
+		return false;
 	}
 
 	private static boolean hovered(String tree) {

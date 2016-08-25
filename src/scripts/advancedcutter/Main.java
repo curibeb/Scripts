@@ -22,6 +22,8 @@ import scripts.advancedcutter.api.taskframework.Task;
 import scripts.advancedcutter.api.taskframework.TaskSet;
 import scripts.advancedcutter.api.utilities.Vars;
 import scripts.advancedcutter.tasks.proglevel.ProgLevel;
+import scripts.advancedcutter.tasks.woodcut.GetAxe;
+import scripts.advancedcutter.tasks.woodcut.ToggleRun;
 import scripts.advancedcutter.tasks.woodcut.WoodCut;
 
 @DoNotRename
@@ -44,9 +46,9 @@ public class Main extends Script implements Starting, Ending, Painting {
 
 	private void addTasks() {
 		if (Vars.progressiveLevel) {
-			taskset.addTasks(new ProgLevel());
+			taskset.addTasks(new ProgLevel(), new GetAxe(), new ToggleRun());
 		} else {
-			taskset.addTasks(new WoodCut());
+			taskset.addTasks(new WoodCut(), new GetAxe(), new ToggleRun());
 		}
 	}
 

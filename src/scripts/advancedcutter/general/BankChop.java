@@ -8,6 +8,7 @@ import org.tribot.api2007.Player;
 import org.tribot.api2007.WebWalking;
 import org.tribot.api2007.types.RSArea;
 
+import scripts.advancedcutter.Main;
 import scripts.advancedcutter.api.antiban.Antiban;
 import scripts.advancedcutter.api.conditions.Conditions;
 import scripts.advancedcutter.api.utilities.Vars;
@@ -17,15 +18,19 @@ public class BankChop {
 
 	public static void execute(RSArea bankArea, RSArea treeArea) {
 		if (Inventory.isFull()) {
-			if (bankArea.contains(Player.getPosition()))
+			if (bankArea.contains(Player.getPosition())) {
 				handleBank();
-			else
+			} else {
+				Main.status = "Walk to bank.";
 				WebWalking.walkTo(bankArea.getRandomTile());
+			}
 		} else {
-			if (treeArea.contains(Player.getPosition()))
+			if (treeArea.contains(Player.getPosition())) {
 				Methods.chop(Vars.treeType, Vars.chopArea);
-			else
+			} else {
+				Main.status = "Walk to tree area.";
 				WebWalking.walkTo(treeArea.getRandomTile());
+			}
 		}
 	}
 
@@ -39,6 +44,7 @@ public class BankChop {
 	}
 
 	private static void handleBank() {
+		Main.status = "Banking.";
 		if (Banking.isBankScreenOpen()) {
 			if (Banking.depositAllExcept(ProgLevelSetup.axeName()) > 0) {
 				Timing.waitCondition(Conditions.get().dontHaveItem(logName()), General.random(4000, 6000));

@@ -206,6 +206,7 @@ public class MainController extends AbstractGUIController {
 
 	private void startBtnEvent() {
 		Vars.start = true;
+		Vars.powerChop = this.powerchop.isSelected();
 		if (this.progressiveLeveling.isSelected()) {
 			Vars.progressiveLevel = true;
 		} else {
@@ -300,6 +301,7 @@ public class MainController extends AbstractGUIController {
 		this.powerchop.setSelected(false);
 		if (this.presetCombo.getSelectionModel().getSelectedItem() != null) {
 			this.presetName.setText(this.presetCombo.getValue());
+			this.loadBtnEvent();
 		}
 		if (this.treeCombo.getSelectionModel().getSelectedItem() == null) {
 			this.optionListView.getItems().add("Please select");
